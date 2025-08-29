@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>ZARUverse | Unveil the Myth</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Comic+Neue&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to bottom, #0f0f0f, #000000);
-      color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f0f0f, #1a1a1a);
+      color: #fff;
     }
     header {
       display: flex;
@@ -18,130 +17,125 @@
       align-items: center;
       padding: 20px 40px;
       background-color: #111;
-      border-bottom: 1px solid #333;
     }
-    .logo img {
+    header img {
       height: 50px;
     }
     nav a {
-      margin-left: 30px;
-      text-decoration: none;
+      margin: 0 15px;
       color: #ccc;
-      transition: color 0.3s;
+      text-decoration: none;
+      font-weight: bold;
     }
     nav a:hover {
-      color: gold;
+      color: #ffd700;
     }
     .hero {
       text-align: center;
       padding: 80px 20px;
-    }
-    .hero img {
-      width: 200px;
-      filter: drop-shadow(0 0 10px gold);
-      transition: transform 0.3s;
+      background-image: url('zaru-lion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      background-color: rgba(0,0,0,0.7);
     }
     .hero h1 {
-      font-size: 48px;
-      margin-top: 20px;
-      color: gold;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      font-size: 3em;
+      margin-bottom: 20px;
     }
     .hero p {
-      font-size: 18px;
+      font-size: 1.2em;
       max-width: 600px;
-      margin: 20px auto;
-      line-height: 1.6;
-      font-family: 'Comic Neue', cursive;
+      margin: 0 auto 30px;
     }
-    .buttons {
-      margin-top: 30px;
-    }
-    .buttons button {
-      background-color: gold;
-      color: black;
-      border: none;
-      padding: 12px 24px;
+    .hero .buttons a {
+      display: inline-block;
       margin: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
+      padding: 12px 25px;
+      background-color: #00c9a7;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
     }
-    .buttons button:hover {
-      background-color: #ffd700;
-      transform: scale(1.1) rotate(-2deg);
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+    .section p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1em;
+      color: #ccc;
     }
     footer {
+      background-color: #111;
+      padding: 30px 20px;
       text-align: center;
-      padding: 40px 20px;
-      background-color: #000;
-      border-top: 1px solid #333;
-      font-size: 14px;
-      color: #777;
+      font-size: 0.9em;
+      color: #888;
     }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-      }
-      nav {
-        margin-top: 10px;
-        display: flex;
-        flex-wrap: wrap;
-      }
-      nav a {
-        margin: 10px 10px 0 0;
-      }
-      .hero h1 {
-        font-size: 32px;
-      }
-      .hero p {
-        font-size: 16px;
-        padding: 0 10px;
-      }
-      .hero img {
-        width: 150px;
-      }
-      .buttons button {
-        width: 100%;
-        margin: 10px 0;
-      }
+    footer a {
+      margin: 0 10px;
+      color: #aaa;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">
-      <img src="zaru-lion-logo.jpg" alt="ZARU Logo" />
-    </div>
+    <img src="zaru-lion-logo.jpg" alt="ZARUverse Logo">
     <nav>
       <a href="#">Home</a>
       <a href="#">Lore</a>
       <a href="#">NFTs</a>
+      <a href="#">Token</a>
       <a href="#">DAO</a>
-      <a href="#">Contact</a>
+      <a href="#">Airdrop</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <img src="zaru-lion.jpg" alt="ZARU Lion" />
+  <div class="hero">
     <h1>Unveil the Myth. Own the Power.</h1>
-    <p>ZARU is the bloodline of the Verse. A token forged in lore, crowned in credibility, and unleashed through viral symbolism.</p>
+    <p>ZARU is the bloodline of the Verse. Forged from mythic code. Designed for viral power. Stake it to ascend.</p>
     <div class="buttons">
-      <button>Explore the Token</button>
-      <button>Join the DAO</button>
+      <a href="#token">Explore the Token</a>
+      <a href="https://youtube.com/@ZARUverse" target="_blank">Watch on YouTube</a>
     </div>
-  </section>
+  </div>
+
+  <div class="section" id="utility">
+    <h2>Utility</h2>
+    <p>Stake. Vote. Unlock lore. ZARU empowers active creation in the Verse.</p>
+  </div>
+
+  <div class="section" id="symbolism">
+    <h2>Symbolism</h2>
+    <p>Crafted from mythic code. ZARU is more than a token — it’s a symbol.</p>
+  </div>
+
+  <div class="section" id="credibility">
+    <h2>Credibility</h2>
+    <p>Audited. Deflationary. Meme-resistant and privacy-first.</p>
+  </div>
 
   <footer>
-    &copy; 2025 ZARUverse. All rights reserved.
+    <a href="whitepaper.html" target="_blank">Whitepaper</a>
+    <a href="#">Manifesto</a>
+    <a href="#">OpenSea</a>
+    <a href="#">Discord</a>
+    <a href="#">Telegram</a>
+    <a href="#">Terms & Privacy</a>
   </footer>
+
 </body>
 </html>
