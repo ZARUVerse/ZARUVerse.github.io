@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZARU Token Sale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #f5f5f5;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+      flex-wrap: wrap;
+    }
+    .logo {
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 12px gold;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      color: #ffd700;
+      font-size: 2rem;
+      margin-left: 20px;
+    }
+    .section {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .title {
+      font-family: 'Cinzel', serif;
+      color: #ffd700;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .warning {
+      color: #ff4d4d;
+      font-size: 0.9rem;
+    }
+    .badge {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .buy-button {
+      background-color: #000;
+      color: #ffd700;
+      border: 2px solid #ffd700;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    .buy-button:hover {
+      background-color: #222;
+    }
+    .buy-button img {
+      height: 24px;
+      margin-right: 10px;
+    }
+    .qr-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+    #qrcode {
+      margin-top: 10px;
+    }
+    .lore {
+      background-color: #222;
+      color: #ffd700;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
+    input[type="number"] {
+      padding: 5px;
+      border: 1px solid #ffd700;
+      background-color: #111;
+      color: #ffd700;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    .progress-container {
+      margin-top: 30px;
+    }
+    .progress-bar {
+      background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      width: 100%;
+    }
+    .progress-fill {
+      width: 25%;
+      background: gold;
+      height: 100%;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-left: 0;
+      }
+      .section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="assets/zaru-logo.png" alt="ZARUverse Logo" class="logo">
+      <h1>ZARU Token Sale</h1>
+    </div>
+    <button class="buy-button">
+      <img src="assets/zaru-logo.png" alt="ZARU">
+      Connect Wallet
+    </button>
+  </header>
+
+  <div class="section">
+    <div class="title">🛒 ZARU Token Sale – Claim Your Piece of the Myth</div>
+    <p>ZARU is the native token of the ZARUverse ecosystem—built on BNB Chain, backed by lore, and designed for staking, voting, and unlocking encrypted content.</p>
+    <p class="warning">Do not send funds to token address!</p>
+
+    <div class="title">🔱 Why ZARU?</div>
+    <ul>
+      <li>Deflationary supply with real utility</li>
+      <li>Access to mythic NFTs and DAO governance</li>
+      <li>Embedded referral system for viral growth</li>
+      <li>Branded smart contracts with verified credibility</li>
+    </ul>
+
+    <div class="qr-section">
+      <div class="title">🧿 ورود به ZARUverse</div>
+      <p>اسکن کنید تا وارد صفحه خرید شوید</p>
+      <canvas id="qrcode"></canvas>
+    </div>
+
+    <div class="title">Token sale info</div>
+    <div class="badge">LIVE</div>
+    <p>1 ZARU = 2.5 USDT</p>
+    <label for="amount">Input investment amount:</label>
+    <input type="number" id="amount" min="0" step="0.1"> USDT
+    <button class="buy-button" onclick="showLore()">
+      <img src="assets/zaru-logo.png" alt="ZARU">
+      Buy ZARU
+    </button>
+
+    <div id="loreDrop" class="lore" style="display: none;">
+      🧿 <strong>ZARU Guardian Activated:</strong> لوگوی شما ثبت شد. قدرت شما در زنجیره رمزنگاری شد.
+    </div>
+
+    <div class="progress-container">
+      <label>Token Sale Progress:</label>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <p style="font-size: 0.9rem;">25,000 / 100,000 ZARU Sold</p>
+    </div>
+  </div>
+
+  <script>
+    QRCode.toCanvas(document.getElementById("qrcode"), "https://zaruverse.github.io/buy", {
+      width: 180,
+      color: {
+        dark: "#ffd700",
+        light: "#0f0f0f"
+      }
+    });
+
+    function showLore() {
+      document.getElementById("loreDrop").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
