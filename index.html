@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZARUverse | Unveil the Myth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Comic+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0f0f0f, #000000);
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #111;
+      border-bottom: 1px solid #333;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: gold;
+    }
+    nav a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: gold;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    .hero img {
+      width: 200px;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 0 10px gold);
+    }
+    .hero h1 {
+      font-size: 48px;
+      margin-top: 20px;
+      color: gold;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      font-family: 'Comic Neue', cursive;
+    }
+    .buttons {
+      margin-top: 30px;
+    }
+    .buttons button {
+      background-color: gold;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .buttons button:hover {
+      background-color: #ffd700;
+      transform: scale(1.1) rotate(-2deg);
+    }
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 60px 20px;
+      background-color: #111;
+      border-top: 1px solid #333;
+      flex-wrap: wrap;
+    }
+    .feature {
+      max-width: 300px;
+      text-align: center;
+      margin: 20px;
+    }
+    .feature h3 {
+      color: gold;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #000;
+      border-top: 1px solid #333;
+      font-size: 14px;
+      color: #777;
+    }
+    #loreDrop {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      color: gold;
+      font-size: 14px;
+      font-family: 'Comic Neue', cursive;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+      nav {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin: 10px 10px 0 0;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero p {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+      .hero img {
+        width: 150px;
+      }
+      .buttons button {
+        width: 100%;
+        margin: 10px 0;
+      }
+      .features {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 10px;
+      }
+      .feature {
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🦁 ZARUverse</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Lore</a>
+      <a href="#">NFTs</a>
+      <a href="#">DAO</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Golden_Lion.svg/1024px-Golden_Lion.svg.png" alt="Golden Lion" id="lion" />
+    <h1>Unveil the Myth. Own the Power.</h1>
+    <p>ZARU is the bloodline of the Verse. A token forged in lore, crowned in credibility, and unleashed through viral symbolism. Join the movement. Shape the myth.</p>
+    <div class="buttons">
+      <button onclick="crazyEffect()">Explore the Token</button>
+      <button onclick="crazyEffect()">Watch on YouTube</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <h3>🧠 Utility</h3>
+      <p>Staking, voting, lore unlocks, and DAO access—all powered by ZARU.</p>
+    </div>
+    <div class="feature">
+      <h3>🔮 Symbolism</h3>
+      <p>Every NFT is a mythic artifact—crafted with crypto lore and viral branding.</p>
+    </div>
+    <div class="feature">
+      <h3>🛡️ Credibility</h3>
+      <p>Built by Diamond Holding. Audited. Verified. Uncrowned but unstoppable.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 ZARUverse. All rights reserved. | Manifesto | OpenSea | Discord
+  </footer>
+
+  <div id="loreDrop"></div>
+
+  <script>
+    const lion = document.getElementById('lion');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      lion.style.transform = `rotateY(${x}deg)`;
+    });
+
+    const loreLines = [
+      "ARXIUM was forged in the fires of forgotten chains.",
+      "The DAO does not sleep. It waits.",
+      "ZARU is not a token. It’s a prophecy.",
+      "Only the uncrowned can rule the Verse."
+    ];
+    window.addEventListener('scroll', () => {
+      const index = Math.floor(window.scrollY / 100) % loreLines.length;
+      document.getElementById('loreDrop').innerText = loreLines[index];
+    });
+
+    function crazyEffect() {
+      const btn = event.target;
+      btn.style.transform = 'scale(1.2) rotate(10deg)';
+      btn.style.backgroundColor = '#ff00ff';
+      btn.innerText = '⚡ DAO UNLEASHED ⚡';
+      const audio = new Audio('https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3');
+      audio.play();
+    }
+  </script>
+</body>
+</html>
