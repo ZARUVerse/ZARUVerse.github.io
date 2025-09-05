@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>ZARUverse Ambassador Program</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -11,48 +11,103 @@
       color: #ffd700;
       font-family: 'Orbitron', sans-serif;
       text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
     }
-    .logo {
+    header img {
       height: 80px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px gold;
       margin-bottom: 20px;
     }
     h1 {
       font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
     }
-    .desc {
+    .subtitle {
       font-size: 1rem;
       color: #ccc;
-      max-width: 700px;
-      margin: auto;
       margin-bottom: 30px;
     }
-    .apply-button {
-      background-color: #000;
-      color: #ffd700;
-      border: 2px solid #ffd700;
-      padding: 10px 20px;
+    .benefits {
+      background-color: #111;
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .benefits p {
+      margin: 10px 0;
       font-size: 1rem;
-      cursor: pointer;
+    }
+    form {
+      margin-top: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: #222;
+      color: #ffd700;
+      font-size: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background-color: #00c9a7;
+      color: #fff;
       text-decoration: none;
       border-radius: 5px;
-      transition: background 0.3s;
+      font-weight: bold;
+      cursor: pointer;
     }
-    .apply-button:hover {
-      background-color: #222;
+    .links {
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
+    .links a {
+      color: #ffd700;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .links a:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
-  <h1>Ambassador Program</h1>
-  <p class="desc">
-    Join the mythic movement. As a ZARU Ambassador, you’ll represent the brand across Web3, help grow the community, and earn exclusive rewards including NFTs, early access, and ZARU tokens.
-  </p>
-  <a href="https://t.me/zaruversebot/app" class="apply-button">Become a ZARU Ambassador</a>
+
+  <header>
+    <img src="lion-logo.png" alt="ZARUverse Logo">
+  </header>
+
+  <h1>BECOME A ZARUVERSE AMBASSADOR</h1>
+  <p class="subtitle">Join the myth. Spread the power. Earn your place in the Verse.</p>
+
+  <div class="benefits">
+    <p>✅ Early access to drops and lore</p>
+    <p>✅ Exclusive ZARUverse NFT badge</p>
+    <p>✅ Token rewards for outreach</p>
+    <p>✅ Direct connection to the core team</p>
+  </div>
+
+  <form action="mailto:zaru.verse@makise.io" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="social" placeholder="Link to your Twitter, Telegram, or Discord" required></textarea>
+    <input type="submit" value="APPLY NOW" class="btn">
+  </form>
+
+  <div class="links">
+    <a href="whitepaper.html">📜 Whitepaper</a>
+    <a href="docs.html">📘 Docs</a>
+    <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
+  </div>
+
 </body>
 </html>
