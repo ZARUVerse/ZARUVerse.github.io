@@ -1,3 +1,6 @@
+<!-- خلاصه: نسخه نهایی HTML Token Sale ZARUverse -->
+<!-- شامل لوگو شیر، دکمه‌های خرید، QR، و اتصال به قرارداد -->
+
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -114,6 +117,10 @@
       background: gold;
       height: 100%;
     }
+    a {
+      color: #ffd700;
+      text-decoration: none;
+    }
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -133,13 +140,9 @@
 
   <header>
     <div style="display: flex; align-items: center;">
-      <img src="assets/zaru-logo.png" alt="ZARUverse Logo" class="logo">
+      <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
       <h1>ZARU Token Sale</h1>
     </div>
-    <button class="buy-button">
-      <img src="assets/zaru-logo.png" alt="ZARU">
-      Connect Wallet
-    </button>
   </header>
 
   <div class="section">
@@ -155,25 +158,26 @@
       <li>Branded smart contracts with verified credibility</li>
     </ul>
 
-    <div class="qr-section">
-      <div class="title">🧿 ورود به ZARUverse</div>
-      <p>اسکن کنید تا وارد صفحه خرید شوید</p>
-      <canvas id="qrcode"></canvas>
-    </div>
+    <div class="title">📜 Contract Info</div>
+    <p>Token Contract: <code>0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</code></p>
+    <p><a href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank">View on BscScan</a></p>
 
-    <div class="title">Token sale info</div>
-    <div class="badge">LIVE</div>
-    <p>1 ZARU = 2.5 USDT</p>
-    <label for="amount">Input investment amount:</label>
-    <input type="number" id="amount" min="0" step="0.1"> USDT
-    <button class="buy-button" onclick="showLore()">
-      <img src="assets/zaru-logo.png" alt="ZARU">
-      Buy ZARU
-    </button>
+    <div class="title">Choose Your Path</div>
+    <p>🧿 Enter the mythic ZARUverse or ⚡ swap instantly on PancakeSwap</p>
 
-    <div id="loreDrop" class="lore" style="display: none;">
-      🧿 <strong>ZARU Guardian Activated:</strong> لوگوی شما ثبت شد. قدرت شما در زنجیره رمزنگاری شد.
-    </div>
+    <a href="https://zaruverse.github.io/buy" target="_blank">
+      <button class="buy-button">
+        <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARU">
+        Buy ZARU (Lore Drop)
+      </button>
+    </a>
+
+    <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank">
+      <button class="buy-button">
+        <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARU">
+        Buy ZARU on PancakeSwap
+      </button>
+    </a>
 
     <div class="progress-container">
       <label>Token Sale Progress:</label>
@@ -182,6 +186,18 @@
       </div>
       <p style="font-size: 0.9rem;">25,000 / 100,000 ZARU Sold</p>
     </div>
+
+    <div class="qr-section">
+      <div class="title">🧿 ورود به ZARUverse</div>
+      <p>اسکن کنید تا وارد صفحه خرید شوید</p>
+      <canvas id="qrcode"></canvas>
+    </div>
+
+    <div class="title">🔐 Security & Compliance</div>
+    <ul>
+      <li><a href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6#code" target="_blank">Smart Contract Verified on BscScan</a></li>
+      <li><span style="color:#ff4d4d;">Audit & KYC pending – will be published before CEX listing</span></li>
+    </ul>
   </div>
 
   <script>
@@ -192,10 +208,6 @@
         light: "#0f0f0f"
       }
     });
-
-    function showLore() {
-      document.getElementById("loreDrop").style.display = "block";
-    }
   </script>
 
 </body>
