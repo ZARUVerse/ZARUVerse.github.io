@@ -9,7 +9,7 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: radial-gradient(circle at top, #0f0f0f, #1a1a1a);
-      color: #fff;
+      color: #ffd700;
     }
     header {
       display: flex;
@@ -23,12 +23,12 @@
     }
     nav a {
       margin: 0 15px;
-      color: #ccc;
+      color: #ffd700;
       text-decoration: none;
       font-weight: bold;
     }
     nav a:hover {
-      color: #ffd700;
+      color: #fff;
     }
     .hero {
       text-align: center;
@@ -73,20 +73,30 @@
       font-size: 1em;
       color: #ccc;
     }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
     footer {
       background-color: #111;
-      padding: 30px 20px;
+      padding: 40px 20px;
       text-align: center;
       font-size: 0.9em;
-      color: #888;
+      color: #aaa;
     }
     footer a {
       margin: 0 10px;
-      color: #aaa;
+      color: #ffd700;
       text-decoration: none;
     }
     footer a:hover {
       color: #fff;
+    }
+    .social-icons {
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -96,45 +106,72 @@
     <img src="zaru-lion-logo.jpg" alt="ZARUverse Logo">
     <nav>
       <a href="#">Home</a>
-      <a href="#">Lore</a>
-      <a href="#">NFTs</a>
-      <a href="#">Token</a>
-      <a href="#">DAO</a>
+      <a href="lore.html">Lore</a>
+      <a href="nft.html">NFTs</a>
+      <a href="tokensale.html">Token</a>
+      <a href="dao.html">DAO</a>
       <a href="#">Airdrop</a>
     </nav>
   </header>
 
   <div class="hero">
-    <h1>Unveil the Myth. Own the Power.</h1>
+    <h1>UNVEIL THE MYTH. OWN THE POWER.</h1>
     <p>ZARU is the bloodline of the Verse. Forged from mythic code. Designed for viral power. Stake it to ascend.</p>
     <div class="buttons">
-      <a href="#token">Explore the Token</a>
+      <a href="tokensale.html">Explore the Token</a>
       <a href="https://youtube.com/@ZARUverse" target="_blank">Watch on YouTube</a>
     </div>
   </div>
 
-  <div class="section" id="utility">
-    <h2>Utility</h2>
+  <div class="section">
+    <h2>UTILITY</h2>
     <p>Stake. Vote. Unlock lore. ZARU empowers active creation in the Verse.</p>
   </div>
 
-  <div class="section" id="symbolism">
-    <h2>Symbolism</h2>
+  <div class="section">
+    <h2>SYMBOLISM</h2>
     <p>Crafted from mythic code. ZARU is more than a token — it’s a symbol.</p>
   </div>
 
-  <div class="section" id="credibility">
-    <h2>Credibility</h2>
+  <div class="section">
+    <h2>CREDIBILITY</h2>
     <p>Audited. Deflationary. Meme-resistant and privacy-first.</p>
   </div>
 
+  <div class="section" id="swap">
+    <h2>🔄 Swap to ZARU</h2>
+    <p>Convert any token to <strong>ZARU</strong> directly via PancakeSwap. ZARU is always the destination.</p>
+    <iframe src="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6"></iframe>
+  </div>
+
   <footer>
-    <a href="whitepaper.html" target="_blank">Whitepaper</a>
-    <a href="#">Manifesto</a>
-    <a href="#">OpenSea</a>
-    <a href="#">Discord</a>
-    <a href="#">Telegram</a>
-    <a href="#">Terms & Privacy</a>
+    <h2>Connect with ZARUverse</h2>
+    <p>
+      <a href="nft.html">NFT Drops</a>
+      <a href="lore.html">Lore Unlock</a>
+      <a href="dao.html">DAO Voting</a>
+      <a href="tokensale.html">Token Sale</a>
+      <a href="whitepaper.html">Whitepaper</a>
+      <a href="ambassadors.html">Ambassadors</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://zaruverse.gitbook.com">GitBook</a>
+    </p>
+    <div class="social-icons">
+      <a href="https://t.me/zaruverse">Telegram</a>
+      <a href="https://discord.gg/EWVcrwwJ">Discord</a>
+      <a href="https://x.com/zaruverse">X</a>
+      <a href="https://instagram.com/zaruverse">Instagram</a>
+      <a href="https://facebook.com/zaruverse">Facebook</a>
+      <a href="https://youtube.com/zaruverse">YouTube</a>
+      <a href="https://reddit.com/u/zaruverse">Reddit</a>
+      <a href="https://hey.xyz/u/zaruverse">Hey</a>
+      <a href="https://www.linkdin.com/in/zaruverse">LinkedIn</a>
+    </div>
+    <p>
+      <a href="https://github.com/zaruverse">GitHub</a> |
+      <a href="mailto:zaru.verse@makise.io">zaru.verse@makise.io</a> |
+      <a href="#">TL.rms & Privacy</a>
+    </p>
   </footer>
 
 </body>
