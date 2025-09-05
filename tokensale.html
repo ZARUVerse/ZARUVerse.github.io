@@ -1,214 +1,86 @@
-<!-- خلاصه: نسخه نهایی HTML Token Sale ZARUverse -->
-<!-- شامل لوگو شیر، دکمه‌های خرید، QR، و اتصال به قرارداد -->
-
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ZARU Token Sale</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>ZARUverse Token Sale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     body {
       background-color: #0f0f0f;
-      color: #f5f5f5;
+      color: #ffd700;
       font-family: 'Orbitron', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 40px;
-      background-color: #111;
-      border-bottom: 1px solid #333;
-      flex-wrap: wrap;
-    }
-    .logo {
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px gold;
+      text-align: center;
+      padding: 40px 20px;
     }
     h1 {
       font-family: 'Cinzel', serif;
-      color: #ffd700;
-      font-size: 2rem;
-      margin-left: 20px;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
-    .section {
-      padding: 40px;
-      max-width: 1000px;
+    .subtitle {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+    .sale-info {
+      background-color: #111;
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
       margin: auto;
     }
-    .title {
-      font-family: 'Cinzel', serif;
-      color: #ffd700;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .warning {
-      color: #ff4d4d;
-      font-size: 0.9rem;
-    }
-    .badge {
-      background-color: #28a745;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .buy-button {
-      background-color: #000;
-      color: #ffd700;
-      border: 2px solid #ffd700;
-      padding: 10px 20px;
+    .sale-info p {
+      margin: 10px 0;
       font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-      transition: background 0.3s;
     }
-    .buy-button:hover {
-      background-color: #222;
+    .btn {
+      display: inline-block;
+      margin: 15px;
+      padding: 12px 25px;
+      background-color: #00c9a7;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
     }
-    .buy-button img {
-      height: 24px;
-      margin-right: 10px;
-    }
-    .qr-section {
-      text-align: center;
-      margin-top: 40px;
-    }
-    #qrcode {
-      margin-top: 10px;
-    }
-    .lore {
-      background-color: #222;
-      color: #ffd700;
-      padding: 15px;
-      border-radius: 10px;
+    .links {
       margin-top: 30px;
       font-size: 0.95rem;
     }
-    input[type="number"] {
-      padding: 5px;
-      border: 1px solid #ffd700;
-      background-color: #111;
-      color: #ffd700;
-      border-radius: 5px;
-      margin: 10px 0;
-    }
-    .progress-container {
-      margin-top: 30px;
-    }
-    .progress-bar {
-      background: #333;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 20px;
-      width: 100%;
-    }
-    .progress-fill {
-      width: 25%;
-      background: gold;
-      height: 100%;
-    }
-    a {
+    .links a {
       color: #ffd700;
       text-decoration: none;
+      margin: 0 10px;
     }
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      h1 {
-        font-size: 1.5rem;
-        margin-left: 0;
-      }
-      .section {
-        padding: 20px;
-      }
+    .links a:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div style="display: flex; align-items: center;">
-      <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
-      <h1>ZARU Token Sale</h1>
-    </div>
-  </header>
+  <h1>ZARUverse Token Sale</h1>
+  <p class="subtitle">Claim your stake in the myth. Limited supply. Infinite power.</p>
 
-  <div class="section">
-    <div class="title">🛒 ZARU Token Sale – Claim Your Piece of the Myth</div>
-    <p>ZARU is the native token of the ZARUverse ecosystem—built on BNB Chain, backed by lore, and designed for staking, voting, and unlocking encrypted content.</p>
-    <p class="warning">Do not send funds to token address!</p>
-
-    <div class="title">🔱 Why ZARU?</div>
-    <ul>
-      <li>Deflationary supply with real utility</li>
-      <li>Access to mythic NFTs and DAO governance</li>
-      <li>Embedded referral system for viral growth</li>
-      <li>Branded smart contracts with verified credibility</li>
-    </ul>
-
-    <div class="title">📜 Contract Info</div>
-    <p>Token Contract: <code>0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</code></p>
-    <p><a href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank">View on BscScan</a></p>
-
-    <div class="title">Choose Your Path</div>
-    <p>🧿 Enter the mythic ZARUverse or ⚡ swap instantly on PancakeSwap</p>
-
-    <a href="https://zaruverse.github.io/buy" target="_blank">
-      <button class="buy-button">
-        <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARU">
-        Buy ZARU (Lore Drop)
-      </button>
-    </a>
-
-    <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank">
-      <button class="buy-button">
-        <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARU">
-        Buy ZARU on PancakeSwap
-      </button>
-    </a>
-
-    <div class="progress-container">
-      <label>Token Sale Progress:</label>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-      <p style="font-size: 0.9rem;">25,000 / 100,000 ZARU Sold</p>
-    </div>
-
-    <div class="qr-section">
-      <div class="title">🧿 ورود به ZARUverse</div>
-      <p>اسکن کنید تا وارد صفحه خرید شوید</p>
-      <canvas id="qrcode"></canvas>
-    </div>
-
-    <div class="title">🔐 Security & Compliance</div>
-    <ul>
-      <li><a href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6#code" target="_blank">Smart Contract Verified on BscScan</a></li>
-      <li><span style="color:#ff4d4d;">Audit & KYC pending – will be published before CEX listing</span></li>
-    </ul>
+  <div class="sale-info">
+    <p><strong>Token:</strong> ZARU</p>
+    <p><strong>Contract:</strong> <a href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank">View on BSCScan</a></p>
+    <p><strong>Price:</strong> 1 ZARU = 0.1 BNB</p>
+    <p><strong>Start Date:</strong> Sep 10, 2025 – 14:00 UTC</p>
+    <p><strong>Max Supply:</strong> 1,000,000 ZARU</p>
+    <p><strong>Phases:</strong> Private → Public → Final</p>
+    <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" class="btn" target="_blank">Buy on PancakeSwap</a>
+    <a href="https://connect.zaruverse.io" class="btn" target="_blank">Connect Wallet</a>
   </div>
 
-  <script>
-    QRCode.toCanvas(document.getElementById("qrcode"), "https://zaruverse.github.io/buy", {
-      width: 180,
-      color: {
-        dark: "#ffd700",
-        light: "#0f0f0f"
-      }
-    });
-  </script>
+  <div class="links">
+    <a href="whitepaper.html">📜 Whitepaper</a>
+    <a href="docs.html">📘 Docs</a>
+    <a href="ambassadors.html">🤝 Become Ambassador</a>
+    <a href="mailto:zaru.verse@makise.io">📧 Contact Team</a>
+  </div>
 
 </body>
 </html>
