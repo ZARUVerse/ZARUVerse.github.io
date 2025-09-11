@@ -19,7 +19,7 @@
       --teal: #00c9a7;
       --line: rgba(255,215,0,.12);
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box }
     html, body {
       margin: 0;
       padding: 0;
@@ -28,60 +28,42 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       line-height: 1.6;
     }
-    a { color: var(--gold); text-decoration: none; }
-    a:hover { color: #fff; }
+    a { color: var(--gold); text-decoration: none }
+    a:hover { color: #fff }
 
     /* Header */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: sticky; top: 0; z-index: 40;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
       padding: 14px 20px;
-      background: rgba(10,10,12,.7);
-      backdrop-filter: blur(8px);
+      background: rgba(10,10,12,.7); backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--line);
     }
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      color: var(--gold);
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; color: var(--gold);
     }
     .brand img {
-      width: 44px;
-      height: 44px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid var(--line);
+      width: 44px; height: 44px; object-fit: cover;
+      border-radius: 10px; border: 1px solid var(--line);
     }
     nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display: flex; flex-wrap: wrap; gap: 10px;
     }
     nav a {
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      color: var(--gold);
-      transition: background .18s, border-color .18s;
+      padding: 8px 12px; border-radius: 10px;
+      border: 1px solid transparent; font-weight: 700;
+      color: var(--gold); transition: background .18s, border-color .18s;
     }
-    nav a:hover,
-    nav a.active {
+    nav a.active,
+    nav a:hover {
       background: rgba(255,215,0,.07);
       border-color: var(--line);
     }
 
     /* Hero */
     .hero {
-      position: relative;
-      text-align: center;
-      padding: 92px 18px 64px;
+      text-align: center; padding: 92px 18px 64px;
       background:
         linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.85)),
         url('zaru-lion.jpg') center/cover no-repeat;
@@ -99,23 +81,14 @@
       font-size: clamp(14px,2.5vw,18px);
     }
     .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 12px;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px; margin-top: 12px;
     }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      font-weight: 800;
-      color: #0b0b0c;
-      background: var(--teal);
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 12px 16px; border-radius: 12px;
+      border: 1px solid var(--line); font-weight: 800;
+      color: #0b0b0c; background: var(--teal);
       transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
     }
     .btn:hover {
@@ -123,12 +96,10 @@
       box-shadow: 0 10px 28px rgba(0,201,167,.18);
     }
     .btn-outline {
-      background: rgba(255,255,255,.04);
-      color: #fff;
+      background: rgba(255,255,255,.04); color: #fff;
     }
     .btn-gold {
-      background: rgba(255,215,0,.12);
-      color: var(--gold);
+      background: rgba(255,215,0,.12); color: var(--gold);
     }
     .btn:focus {
       outline: 2px solid rgba(255,215,0,.4);
@@ -137,8 +108,7 @@
 
     /* Sections */
     .section {
-      padding: 56px 18px;
-      border-top: 1px solid var(--line);
+      padding: 56px 18px; border-top: 1px solid var(--line);
     }
     .section h2 {
       margin: 0 0 10px;
@@ -146,104 +116,80 @@
       color: var(--gold);
     }
     .section p {
-      margin: 0 auto;
-      max-width: 840px;
+      margin: 0 auto; max-width: 840px;
       color: var(--muted);
     }
     .grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 20px;
+      display: grid; gap: 16px; margin-top: 20px;
       grid-template-columns: repeat(3, minmax(0,1fr));
     }
     @media (max-width:900px) {
-      .grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr }
     }
     .card {
       background: linear-gradient(180deg, rgba(255,215,0,.05), rgba(255,215,0,.02));
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px;
-      text-align: left;
+      border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px; text-align: left;
     }
     .card h3 {
-      margin: 0 0 8px;
-      color: var(--gold-soft);
-      font-size: 18px;
+      margin: 0 0 8px; color: var(--gold-soft); font-size: 18px;
     }
     .card p {
-      margin: 0;
-      color: #cfcfcf;
-      font-size: 14px;
+      margin: 0; color: #cfcfcf; font-size: 14px;
     }
 
     /* Swap */
     .swap {
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 1000px; margin: 0 auto;
     }
     iframe {
-      width: 100%;
-      height: 540px;
-      border: none;
-      border-radius: 14px;
-      margin-top: 16px;
-      background: #111;
+      width: 100%; height: 540px; border: none;
+      border-radius: 14px; margin-top: 16px; background: #111;
     }
 
     /* Footer */
     footer {
       background: linear-gradient(180deg,#0a0a0c,#08080a);
       border-top: 1px solid var(--line);
-      padding: 40px 18px 28px;
-      text-align: center;
+      padding: 40px 18px 28px; text-align: center;
     }
     .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 10px auto;
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin: 10px auto;
       max-width: 1200px;
     }
     footer a {
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--gold);
+      padding: 6px 10px; border-radius: 10px;
+      border: 1px solid transparent; font-weight: 700;
+      font-size: 14px; color: var(--gold);
       transition: background .18s, border-color .18s;
     }
     footer a:hover {
-      background: rgba(255,215,0,.07);
-      border-color: var(--line);
+      background: rgba(255,215,0,.07); border-color: var(--line);
     }
     .email {
       margin-top: 10px;
     }
     .copy {
-      margin-top: 8px;
-      color: #9a9aa0;
-      font-size: 12px;
+      margin-top: 8px; color: #9a9aa0; font-size: 12px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header / Navigation -->
   <header>
     <a class="brand" href="https://zaruverse.github.io" target="_blank" rel="noopener">
       <img src="zaru-lion-logo.jpg" alt="ZARUverse logo" />
       <span>ZARUverse</span>
     </a>
     <nav>
-      <a href="https://zaruverse.github.io" class="active" target="_blank" rel="noopener">Home</a>
-      <a href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Whitepaper</a>
-      <a href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Token Sale</a>
-      <a href="https://zaruverse.github.io/docs" target="_blank" rel="noopener">Docs</a>
-      <a href="https://zaruverse.gitbook.com" target="_blank" rel="noopener">GitBook</a>
-      <a href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Arxium NFT</a>
+      <a href="https://zaruverse.github.io" class="active">Home</a>
+      <a href="https://zaruverse.github.io/whitepaper.html">Whitepaper</a>
+      <a href="https://zaruverse.github.io/tokensale.html">Token Sale</a>
+      <a href="https://zaruverse.github.io/docs">Docs</a>
+      <a href="https://zaruverse.gitbook.com">GitBook</a>
+      <a href="https://arxium-leader-of-dao.mintpad.me/">Arxium NFT</a>
     </nav>
   </header>
 
@@ -252,25 +198,25 @@
     <h1>UNVEIL THE MYTH. OWN THE POWER.</h1>
     <p>ZARU is the bloodline of the Verse. Forged from mythic code. Designed for viral power. Stake it to ascend.</p>
     <div class="buttons">
-      <a class="btn" href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Explore the Token</a>
-      <a class="btn btn-outline" href="https://youtube.com/zaruverse" target="_blank" rel="noopener">Watch on YouTube</a>
-      <a class="btn btn-gold" href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Read Whitepaper</a>
-      <a class="btn btn-outline" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Buy Arxium NFT</a>
+      <a class="btn" href="https://zaruverse.github.io/tokensale.html">Explore the Token</a>
+      <a class="btn btn-outline" href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">Watch on YouTube</a>
+      <a class="btn btn-gold" href="https://zaruverse.github.io/whitepaper.html">Read Whitepaper</a>
+      <a class="btn btn-outline" href="https://arxium-leader-of-dao.mintpad.me/">Buy Arxium NFT</a>
     </div>
   </section>
 
-  <!-- Arxium Highlight -->
+  <!-- Arxium – Leader of DAO -->
   <section class="section">
     <h2>👑 Arxium – Leader of DAO</h2>
     <p>Genesis Relic of the ZARUverse. Grants DAO leadership, staking access, and unlocks encrypted lore.</p>
-    <div class="buttons" style="margin-top: 14px;">
-      <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Open Mintpad</a>
-      <a class="btn btn-outline" href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk Thread</a>
-      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Smart Contract</a>
+    <div class="buttons" style="margin-top:14px;">
+      <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/">Open Mintpad</a>
+      <a class="btn btn-outline" href="https://bitcointalk.org/index.php?topic=5558498.new#new">Bitcointalk Thread</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract">Smart Contract</a>
     </div>
   </section>
 
-  <!-- Pillars -->
+  <!-- Pillars of the Verse -->
   <section class="section">
     <h2>Pillars of the Verse</h2>
     <div class="grid">
@@ -289,7 +235,7 @@
     </div>
   </section>
 
-  <!-- Swap -->
+  <!-- Swap to ZARU -->
   <section class="section">
     <h2>🔄 Swap to ZARU</h2>
     <p>Convert any token to ZARU using the embedded DEX. ZARU is always the destination.</p>
@@ -299,64 +245,64 @@
         title="Swap to ZARU">
       </iframe>
     </div>
-    <div class="buttons" style="margin-top: 18px;">
-      <a class="btn btn-outline" href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity (GeckoTerminal)</a>
-      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">Whitepaper PDF</a>
+    <div class="buttons" style="margin-top:18px;">
+      <a class="btn btn-outline" href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">Liquidity (GeckoTerminal)</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">Whitepaper PDF</a>
     </div>
   </section>
 
-  <!-- Community -->
+  <!-- Community & Channels -->
   <section class="section">
     <h2>Community & Channels</h2>
     <p>Join the ZARUverse across platforms. Build, vote, and claim your place in the myth.</p>
-    <div class="buttons" style="margin-top: 14px;">
-      <a class="btn" href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
-      <a class="btn btn-outline" href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">Telegram Bot</a>
-      <a class="btn btn-outline" href="https://t.me/zaru-eco" target="_blank" rel="noopener">Telegram Eco</a>
-      <a class="btn btn-outline" href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
-      <a class="btn btn-gold" href="https://x.com/zaruverse" target="_blank" rel="noopener">X (Twitter)</a>
-      <a class="btn btn-outline" href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn-outline" href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn btn-outline" href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
-      <a class="btn btn-outline" href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
-      <a class="btn btn-outline" href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-outline" href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
-      <a class="btn btn-outline" href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
+    <div class="buttons" style="margin-top:14px;">
+      <a class="btn" href="https://t.me/zaruverse">Telegram</a>
+      <a class="btn btn-outline" href="https://t.me/zaruversebot/app">Telegram Bot</a>
+      <a class="btn btn-outline" href="https://t.me/zaru-eco">Telegram Eco</a>
+      <a class="btn btn-outline" href="https://discord.gg/EWVcrwwJ">Discord</a>
+      <a class="btn btn-gold" href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">YouTube</a>
+      <a class="btn btn-outline" href="https://x.com/zaruverse">X (Twitter)</a>
+      <a class="btn btn-outline" href="https://instagram.com/zaruverse">Instagram</a>
+      <a class="btn btn-outline" href="https://facebook.com/zaruverse">Facebook</a>
+      <a class="btn btn-outline" href="https://reddit.com/u/zaruverse">Reddit</a>
+      <a class="btn btn-outline" href="https://hey.xyz/u/zaruverse">Hey</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/zaruverse">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/zaruverse">GitHub</a>
+      <a class="btn btn-outline" href="https://bsky.app/profile/makese.site">Bluesky</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="row">
-      <a href="https://zaruverse.github.io" target="_blank" rel="noopener">Home</a>
-      <a href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Whitepaper</a>
-      <a href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Token Sale</a>
-      <a href="https://zaruverse.github.io/docs" target="_blank" rel="noopener">Docs</a>
-      <a href="https://zaruverse.gitbook.com" target="_blank" rel="noopener">GitBook</a>
-      <a href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Arxium NFT</a>
+      <a href="https://zaruverse.github.io">Home</a>
+      <a href="https://zaruverse.github.io/whitepaper.html">Whitepaper</a>
+      <a href="https://zaruverse.github.io/tokensale.html">Token Sale</a>
+      <a href="https://zaruverse.github.io/docs">Docs</a>
+      <a href="https://zaruverse.gitbook.com">GitBook</a>
+      <a href="https://arxium-leader-of-dao.mintpad.me/">Arxium NFT</a>
     </div>
     <div class="row">
-      <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank" rel="noopener">CMC DEX</a>
-      <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity</a>
-      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk</a>
-      <a href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Contract</a>
-      <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">PDF</a>
+      <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">CMC DEX</a>
+      <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">Liquidity</a>
+      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">Bitcointalk</a>
+      <a href="https://github.com/zaruverse/zarutoken-contract">Contract</a>
+      <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">PDF</a>
     </div>
     <div class="row">
-      <a href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://x.com/zaruverse" target="_blank" rel="noopener">X</a>
-      <a href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">TG Bot</a>
-      <a href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
-      <a href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
-      <a href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
-      <a href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://t.me/zaru-eco" target="_blank" rel="noopener">TG Eco</a>
-      <a href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
+      <a href="https://facebook.com/zaruverse">Facebook</a>
+      <a href="https://t.me/zaruverse">Telegram</a>
+      <a href="https://x.com/zaruverse">X</a>
+      <a href="https://instagram.com/zaruverse">Instagram</a>
+      <a href="https://github.com/zaruverse">GitHub</a>
+      <a href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">YouTube</a>
+      <a href="https://t.me/zaruversebot/app">TG Bot</a>
+      <a href="https://discord.gg/EWVcrwwJ">Discord</a>
+      <a href="https://reddit.com/u/zaruverse">Reddit</a>
+      <a href="https://hey.xyz/u/zaruverse">Hey</a>
+      <a href="https://www.linkedin.com/in/zaruverse">LinkedIn</a>
+      <a href="https://t.me/zaru-eco">TG Eco</a>
+      <a href="https://bsky.app/profile/makese.site">Bluesky</a>
     </div>
     <div class="email">
       <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a>
