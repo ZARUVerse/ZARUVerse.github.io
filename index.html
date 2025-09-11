@@ -19,7 +19,7 @@
       --teal: #00c9a7;
       --line: rgba(255,215,0,.12);
     }
-    * { box-sizing: border-box }
+    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
@@ -28,8 +28,8 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       line-height: 1.6;
     }
-    a { color: var(--gold); text-decoration: none }
-    a:hover { color: #fff }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: #fff; }
 
     /* Header */
     header {
@@ -154,10 +154,10 @@
       display: grid;
       gap: 16px;
       margin-top: 20px;
-      grid-template-columns: repeat(3,minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
     }
     @media (max-width:900px) {
-      .grid { grid-template-columns: 1fr }
+      .grid { grid-template-columns: 1fr; }
     }
     .card {
       background: linear-gradient(180deg, rgba(255,215,0,.05), rgba(255,215,0,.02));
@@ -259,7 +259,110 @@
     </div>
   </section>
 
-  <!-- Rest of the sections unchanged -->
+  <!-- Arxium Highlight -->
+  <section class="section">
+    <h2>👑 Arxium – Leader of DAO</h2>
+    <p>Genesis Relic of the ZARUverse. Grants DAO leadership, staking access, and unlocks encrypted lore.</p>
+    <div class="buttons" style="margin-top: 14px;">
+      <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Open Mintpad</a>
+      <a class="btn btn-outline" href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk Thread</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Smart Contract</a>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section">
+    <h2>Pillars of the Verse</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Utility</h3>
+        <p>Stake. Vote. Unlock lore. ZARU fuels active creation and governance across the Verse.</p>
+      </div>
+      <div class="card">
+        <h3>Symbolism</h3>
+        <p>Forged from mythic code. More than a token—ZARU is a standard of honor and power.</p>
+      </div>
+      <div class="card">
+        <h3>Credibility</h3>
+        <p>Open code, public visibility of liquidity, and a community built to endure both noise and hype.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Swap -->
+  <section class="section">
+    <h2>🔄 Swap to ZARU</h2>
+    <p>Convert any token to ZARU using the embedded DEX. ZARU is always the destination.</p>
+    <div class="swap">
+      <iframe
+        src="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6"
+        title="Swap to ZARU">
+      </iframe>
+    </div>
+    <div class="buttons" style="margin-top: 18px;">
+      <a class="btn btn-outline" href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity (GeckoTerminal)</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">Whitepaper PDF</a>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="section">
+    <h2>Community & Channels</h2>
+    <p>Join the ZARUverse across platforms. Build, vote, and claim your place in the myth.</p>
+    <div class="buttons" style="margin-top: 14px;">
+      <a class="btn" href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn btn-outline" href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">Telegram Bot</a>
+      <a class="btn btn-outline" href="https://t.me/zaru-eco" target="_blank" rel="noopener">Telegram Eco</a>
+      <a class="btn btn-outline" href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
+      <a class="btn btn-gold" href="https://x.com/zaruverse" target="_blank" rel="noopener">X (Twitter)</a>
+      <a class="btn btn-outline" href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-outline" href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn btn-outline" href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn btn-outline" href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
+      <a class="btn btn-outline" href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
+      <a class="btn btn-outline" href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <a href="https://zaruverse.github.io" target="_blank" rel="noopener">Home</a>
+      <a href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Whitepaper</a>
+      <a href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Token Sale</a>
+      <a href="https://zaruverse.github.io/docs" target="_blank" rel="noopener">Docs</a>
+      <a href="https://zaruverse.gitbook.com" target="_blank" rel="noopener">GitBook</a>
+      <a href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Arxium NFT</a>
+    </div>
+    <div class="row">
+      <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank" rel="noopener">CMC DEX</a>
+      <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity</a>
+      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk</a>
+      <a href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Contract</a>
+      <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">PDF</a>
+    </div>
+    <div class="row">
+      <a href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://x.com/zaruverse" target="_blank" rel="noopener">X</a>
+      <a href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">TG Bot</a>
+      <a href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
+      <a href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
+      <a href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
+      <a href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://t.me/zaru-eco" target="_blank" rel="noopener">TG Eco</a>
+      <a href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
+    </div>
+    <div class="email">
+      <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a>
+    </div>
+    <div class="copy">© ZARUverse. All rights reserved.</div>
+  </footer>
 
 </body>
 </html>
