@@ -1,258 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- Meta -->
+  <meta charset="UTF-8" />
   <title>ZARUverse | Unveil the Myth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0f0f0f">
-  <meta name="description" content="ZARUverse — Mythic code, viral power. Token, NFT, DAO, and lore-driven crypto ecosystem.">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="ZARUverse — Mythic code, viral power. Token, NFT, DAO, and lore-driven crypto ecosystem." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <style>
-    :root {
-      --bg-dark: #0c0c0c;
-      --bg-deep: #141414;
-      --gold: #ffd700;
-      --gold-soft: #e6c200;
-      --teal: #00c9a7;
-      --text: #e7e7e7;
-      --muted: #b8b8b8;
+    :root{
+      --bg:#0b0b0c;
+      --bg2:#131316;
+      --gold:#ffd700;
+      --gold-soft:#e6c200;
+      --text:#e8e8e8;
+      --muted:#bdbdbd;
+      --teal:#00c9a7;
+      --line:rgba(255,215,0,.12);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at 50% -20%, #191919, #0f0f0f 55%, #0a0a0a 100%);
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.5;
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 50% -10%, #1b1b1f, #0d0d10 55%, #0a0a0c);color:var(--text);font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;line-height:1.6}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{color:#fff}
 
     /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 28px;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+    header{
+      position:sticky;top:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 20px;background:rgba(10,10,12,.7);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line)
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .brand img {
-      height: 44px;
-      width: 44px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--gold);
-      font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all .18s ease;
-    }
-
-    nav a:hover {
-      color: #fff;
-      border-color: rgba(255, 215, 0, 0.25);
-      background: rgba(255, 215, 0, 0.06);
-    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--gold)}
+    .brand img{width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+    nav{display:flex;flex-wrap:wrap;gap:10px}
+    nav a{padding:8px 12px;border-radius:10px;border:1px solid transparent;font-weight:700;color:var(--gold);transition:.18s}
+    nav a:hover{background:rgba(255,215,0,.07);border-color:var(--line)}
 
     /* Hero */
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 88px 18px 64px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85)), url('zaru-lion.jpg') center/cover no-repeat;
+    .hero{
+      position:relative;text-align:center;padding:92px 18px 64px;overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.85)),
+        url('zaru-lion.jpg') center/cover no-repeat;
+      border-bottom:1px solid var(--line)
     }
-
-    .hero h1 {
-      margin: 0 0 14px;
-      font-size: clamp(28px, 6vw, 56px);
-      color: var(--gold);
+    .hero h1{margin:0 0 12px;font-size:clamp(28px,6vw,56px);letter-spacing:.5px;color:var(--gold)}
+    .hero p{margin:0 auto 22px;max-width:820px;color:#dcdcdc;font-size:clamp(14px,2.5vw,18px)}
+    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+      font-weight:800;color:#0b0b0c;background:var(--teal);
+      transition:transform .08s ease, box-shadow .18s ease, background .18s ease
     }
-
-    .hero p {
-      margin: 0 auto 22px;
-      max-width: 720px;
-      color: #dcdcdc;
-      font-size: clamp(14px, 2.5vw, 18px);
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform .08s ease, box-shadow .18s ease;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-    }
-
-    .btn-primary {
-      background: var(--teal);
-      color: #0a0a0a;
-      border-color: transparent;
-    }
-
-    .btn-outline {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .btn-gold {
-      background: rgba(255, 215, 0, 0.1);
-      color: var(--gold);
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0, 201, 167, 0.18);
-    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,201,167,.18)}
+    .btn-outline{background:rgba(255,255,255,.04);color:#fff}
+    .btn-gold{background:rgba(255,215,0,.12);color:var(--gold)}
 
     /* Sections */
-    .section {
-      padding: 56px 18px;
-      text-align: center;
-      border-top: 1px solid rgba(255, 215, 0, 0.08);
-    }
-
-    .section h2 {
-      margin: 0 0 12px;
-      font-size: clamp(22px, 4.5vw, 34px);
-      color: var(--gold);
-    }
-
-    .section p {
-      margin: 0 auto;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    @media (max-width: 900px) {
-      .grid { 
-        grid-template-columns: 1fr; 
-      }
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255, 215, 0, 0.03), rgba(255, 215, 0, 0.01));
-      border: 1px solid rgba(255, 215, 0, 0.12);
-      border-radius: 14px;
-      padding: 18px;
-      text-align: left;
-    }
-
-    .card h3 {
-      margin: 0 0 8px; 
-      color: var(--gold-soft); 
-      font-size: 18px;
-    }
-
-    .card p {
-      margin: 0; 
-      color: #cfcfcf; 
-      font-size: 14px; 
-    }
+    .section{padding:56px 18px;border-top:1px solid var(--line)}
+    .section h2{margin:0 0 10px;font-size:clamp(22px,4.2vw,34px);color:var(--gold)}
+    .section p{margin:0 auto;max-width:840px;color:var(--muted)}
+    .grid{display:grid;gap:16px;margin-top:20px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,215,0,.05), rgba(255,215,0,.02));border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left}
+    .card h3{margin:0 0 8px;color:var(--gold-soft);font-size:18px}
+    .card p{margin:0;color:#cfcfcf;font-size:14px}
 
     /* Swap */
-    .swap {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    iframe {
-      width: 100%;
-      height: 520px;
-      border: none;
-      border-radius: 14px;
-      margin-top: 16px;
-      background: #111;
-    }
+    .swap{max-width:1000px;margin:0 auto}
+    iframe{width:100%;height:540px;border:none;border-radius:14px;margin-top:16px;background:#111}
 
     /* Footer */
-    footer {
-      background: #0b0b0b;
-      padding: 40px 18px 26px;
-      border-top: 1px solid rgba(255, 215, 0, 0.12);
-      text-align: center;
-      color: #bfbfbf;
-    }
-
-    .links, .social, .refs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 8px auto 16px;
-      max-width: 1100px;
-    }
-
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: all .18s ease;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    footer a:hover { 
-      color: #fff; 
-      border-color: rgba(255, 215, 0, 0.25); 
-      background: rgba(255, 215, 0, 0.06); 
-    }
-
-    .copyright {
-      font-size: 12px; 
-      color: #9a9a9a;
-    }
+    footer{background:linear-gradient(180deg,#0a0a0c,#08080a);border-top:1px solid var(--line);padding:40px 18px 28px;text-align:center}
+    .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:10px auto;max-width:1200px}
+    footer a{padding:6px 10px;border-radius:10px;border:1px solid transparent;font-weight:700;font-size:14px}
+    footer a:hover{background:rgba(255,215,0,.07);border-color:var(--line)}
+    .email{margin-top:10px}
+    .copy{margin-top:8px;color:#9a9aa0;font-size:12px}
   </style>
 </head>
 <body>
@@ -260,7 +87,7 @@
   <!-- Header -->
   <header>
     <a class="brand" href="https://zaruverse.github.io" target="_blank" rel="noopener">
-      <img src="zaru-lion-logo.jpg" alt="ZARUverse logo">
+      <img src="zaru-lion-logo.jpg" alt="ZARUverse logo" />
       <span>ZARUverse</span>
     </a>
     <nav>
@@ -278,7 +105,7 @@
     <h1>UNVEIL THE MYTH. OWN THE POWER.</h1>
     <p>ZARU is the bloodline of the Verse. Forged from mythic code. Designed for viral power. Stake it to ascend.</p>
     <div class="buttons">
-      <a class="btn btn-primary" href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Explore the Token</a>
+      <a class="btn" href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Explore the Token</a>
       <a class="btn btn-outline" href="https://youtube.com/zaruverse" target="_blank" rel="noopener">Watch on YouTube</a>
       <a class="btn btn-gold" href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Read Whitepaper</a>
       <a class="btn btn-outline" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Buy Arxium NFT</a>
@@ -289,10 +116,10 @@
   <section class="section">
     <h2>👑 Arxium – Leader of DAO</h2>
     <p>Genesis Relic of the ZARUverse. Grants DAO leadership, staking access, and unlocks encrypted lore.</p>
-    <div class="buttons" style="margin-top:14px;">
-      <a class="btn btn-primary" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Mintpad</a>
-      <a class="btn btn-gold" href="https://zaruverse.github.io/docs" target="_blank" rel="noopener">Docs</a>
+    <div class="buttons" style="margin-top:14px">
+      <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Open Mintpad</a>
       <a class="btn btn-outline" href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk Thread</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Smart Contract</a>
     </div>
   </section>
 
@@ -310,7 +137,7 @@
       </div>
       <div class="card">
         <h3>Credibility</h3>
-        <p>Open code, public audits, liquidity on-chain, and a community built to endure noise and hype.</p>
+        <p>Open code, public visibility of liquidity, and a community built to endure both noise and hype.</p>
       </div>
     </div>
   </section>
@@ -318,14 +145,16 @@
   <!-- Swap -->
   <section class="section">
     <h2>🔄 Swap to ZARU</h2>
-    <p>Convert any token to ZARU on PancakeSwap. ZARU is always the destination.</p>
+    <p>Convert any token to ZARU using the embedded DEX. ZARU is always the destination.</p>
     <div class="swap">
-      <iframe src="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" title="Swap to ZARU"></iframe>
+      <iframe
+        src="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6"
+        title="Swap to ZARU">
+      </iframe>
     </div>
-    <div class="buttons" style="margin-top:18px;">
+    <div class="buttons" style="margin-top:18px">
       <a class="btn btn-outline" href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity (GeckoTerminal)</a>
-      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Smart Contract</a>
-      <a class="btn btn-outline" href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">Whitepaper PDF</a>
+      <a class="btn btn-gold" href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">Whitepaper PDF</a>
     </div>
   </section>
 
@@ -333,8 +162,10 @@
   <section class="section">
     <h2>Community & Channels</h2>
     <p>Join the ZARUverse across platforms. Build, vote, and claim your place in the myth.</p>
-    <div class="buttons" style="margin-top:14px;">
-      <a class="btn btn-primary" href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
+    <div class="buttons" style="margin-top:14px">
+      <a class="btn" href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn btn-outline" href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">Telegram Bot</a>
+      <a class="btn btn-outline" href="https://t.me/zaru-eco" target="_blank" rel="noopener">Telegram Eco</a>
       <a class="btn btn-outline" href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
       <a class="btn btn-gold" href="https://x.com/zaruverse" target="_blank" rel="noopener">X (Twitter)</a>
       <a class="btn btn-outline" href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
@@ -342,50 +173,48 @@
       <a class="btn btn-outline" href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
       <a class="btn btn-outline" href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
       <a class="btn btn-outline" href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
-      <a class="btn btn-outline" href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
-      <a class="btn btn-outline" href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">Telegram Bot</a>
-      <a class="btn btn-outline" href="https://t.me/zaru-eco" target="_blank" rel="noopener">Telegram Eco</a>
       <a class="btn btn-outline" href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
+      <a class="btn btn-outline" href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="links">
+    <div class="row">
       <a href="https://zaruverse.github.io" target="_blank" rel="noopener">Home</a>
       <a href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">Whitepaper</a>
       <a href="https://zaruverse.github.io/tokensale.html" target="_blank" rel="noopener">Token Sale</a>
       <a href="https://zaruverse.github.io/docs" target="_blank" rel="noopener">Docs</a>
       <a href="https://zaruverse.gitbook.com" target="_blank" rel="noopener">GitBook</a>
       <a href="https://arxium-leader-of-dao.mintpad.me/" target="_blank" rel="noopener">Arxium NFT</a>
-      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk</a>
       <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank" rel="noopener">CMC DEX</a>
       <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity</a>
+      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new" target="_blank" rel="noopener">Bitcointalk</a>
       <a href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Contract</a>
       <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf" target="_blank" rel="noopener">PDF</a>
     </div>
 
-    <div class="social">
+    <div class="row">
+      <a href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
       <a href="https://t.me/zaruverse" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">Bot</a>
-      <a href="https://t.me/zaru-eco" target="_blank" rel="noopener">Eco</a>
-      <a href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
       <a href="https://x.com/zaruverse" target="_blank" rel="noopener">X</a>
       <a href="https://instagram.com/zaruverse" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://facebook.com/zaruverse" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
       <a href="https://youtube.com/zaruverse" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://t.me/zaruversebot/app" target="_blank" rel="noopener">TG Bot</a>
+      <a href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">Discord</a>
       <a href="https://reddit.com/u/zaruverse" target="_blank" rel="noopener">Reddit</a>
       <a href="https://hey.xyz/u/zaruverse" target="_blank" rel="noopener">Hey</a>
       <a href="https://www.linkedin.com/in/zaruverse" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://t.me/zaru-eco" target="_blank" rel="noopener">TG Eco</a>
       <a href="https://bsky.app/profile/makese.site" target="_blank" rel="noopener">Bluesky</a>
-      <a href="https://github.com/zaruverse" target="_blank" rel="noopener">GitHub</a>
     </div>
 
-    <div class="refs">
+    <div class="email">
       <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a>
     </div>
-
-    <div class="copyright">© ZARUverse. All rights reserved.</div>
+    <div class="copy">© ZARUverse. All rights reserved.</div>
   </footer>
 
 </body>
