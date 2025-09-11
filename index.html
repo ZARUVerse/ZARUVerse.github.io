@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>ZARUverse | Unveil the Myth</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f0f0f" />
-  <meta name="description" content="ZARUverse — Mythic code, viral power. Token, NFT, DAO, and lore-driven crypto ecosystem." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="description" content="ZARUverse — Mythic code, viral power. Token, NFT, DAO, and lore-driven crypto ecosystem.">
   <style>
     :root {
       --bg-dark: #0c0c0c;
@@ -16,6 +16,7 @@
       --text: #e7e7e7;
       --muted: #b8b8b8;
     }
+
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
@@ -29,22 +30,40 @@
     /* Header */
     header {
       position: sticky;
-      top: 0; z-index: 50;
-      display: flex; align-items: center; justify-content: space-between;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 16px 28px;
-      background: rgba(10,10,10,0.85);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,215,0,0.12);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.12);
     }
+
     .brand {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--gold);
-      font-weight: 700; letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
-    .brand img { height: 44px; width: 44px; object-fit: cover; border-radius: 8px; }
+
+    .brand img {
+      height: 44px;
+      width: 44px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
     nav {
-      display: flex; flex-wrap: wrap; gap: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
     }
+
     nav a {
       text-decoration: none;
       color: var(--gold);
@@ -54,10 +73,11 @@
       border: 1px solid transparent;
       transition: all .18s ease;
     }
+
     nav a:hover {
       color: #fff;
-      border-color: rgba(255,215,0,0.25);
-      background: rgba(255,215,0,0.06);
+      border-color: rgba(255, 215, 0, 0.25);
+      background: rgba(255, 215, 0, 0.06);
     }
 
     /* Hero */
@@ -66,51 +86,62 @@
       text-align: center;
       padding: 88px 18px 64px;
       overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.85)),
-        url('zaru-lion.jpg') center/cover no-repeat;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85)), url('zaru-lion.jpg') center/cover no-repeat;
     }
+
     .hero h1 {
       margin: 0 0 14px;
       font-size: clamp(28px, 6vw, 56px);
       color: var(--gold);
       letter-spacing: 1px;
     }
+
     .hero p {
       margin: 0 auto 22px;
       max-width: 720px;
       color: #dcdcdc;
       font-size: clamp(14px, 2.5vw, 18px);
     }
+
     .buttons {
-      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
       margin-top: 10px;
     }
+
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 8px;
       padding: 12px 18px;
       border-radius: 10px;
-      text-decoration: none; font-weight: 700;
+      text-decoration: none;
+      font-weight: 700;
       transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
-      border: 1px solid rgba(255,215,0,0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
+
     .btn-primary { background: var(--teal); color: #0a0a0a; border-color: transparent; }
-    .btn-outline { color: #fff; background: rgba(255,255,255,0.04); }
-    .btn-gold { background: rgba(255,215,0,0.1); color: var(--gold); }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,201,167,0.18); }
+    .btn-outline { color: #fff; background: rgba(255, 255, 255, 0.04); }
+    .btn-gold { background: rgba(255, 215, 0, 0.1); color: var(--gold); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 201, 167, 0.18); }
 
     /* Sections */
     .section {
       padding: 56px 18px;
       text-align: center;
-      border-top: 1px solid rgba(255,215,0,0.08);
+      border-top: 1px solid rgba(255, 215, 0, 0.08);
     }
+
     .section h2 {
       margin: 0 0 12px;
       font-size: clamp(22px, 4.5vw, 34px);
       color: var(--gold);
     }
+
     .section p {
       margin: 0 auto;
       max-width: 760px;
@@ -120,30 +151,41 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       margin-top: 22px;
     }
+
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
     }
+
     .card {
-      background: linear-gradient(180deg, rgba(255,215,0,0.03), rgba(255,215,0,0.01));
-      border: 1px solid rgba(255,215,0,0.12);
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.03), rgba(255, 215, 0, 0.01));
+      border: 1px solid rgba(255, 215, 0, 0.12);
       border-radius: 14px;
       padding: 18px;
       text-align: left;
     }
+
     .card h3 {
-      margin: 0 0 8px; color: var(--gold-soft); font-size: 18px;
+      margin: 0 0 8px; 
+      color: var(--gold-soft); 
+      font-size: 18px;
     }
-    .card p { margin: 0; color: #cfcfcf; font-size: 14px; }
+
+    .card p { 
+      margin: 0; 
+      color: #cfcfcf; 
+      font-size: 14px; 
+    }
 
     /* Swap */
     .swap {
       max-width: 980px;
       margin: 0 auto;
     }
+
     iframe {
       width: 100%;
       height: 520px;
@@ -157,14 +199,20 @@
     footer {
       background: #0b0b0b;
       padding: 40px 18px 26px;
-      border-top: 1px solid rgba(255,215,0,0.12);
+      border-top: 1px solid rgba(255, 215, 0, 0.12);
       text-align: center;
       color: #bfbfbf;
     }
+
     .links, .social, .refs {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-      margin: 8px auto 16px; max-width: 1100px;
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      justify-content: center;
+      margin: 8px auto 16px; 
+      max-width: 1100px;
     }
+
     footer a {
       color: var(--gold);
       text-decoration: none;
@@ -175,9 +223,16 @@
       font-weight: 600;
       font-size: 14px;
     }
-    footer a:hover { color: #fff; border-color: rgba(255,215,0,0.25); background: rgba(255,215,0,0.06); }
+
+    footer a:hover { 
+      color: #fff; 
+      border-color: rgba(255, 215, 0, 0.25); 
+      background: rgba(255, 215, 0, 0.06); 
+    }
+
     .copyright {
-      font-size: 12px; color: #9a9a9a;
+      font-size: 12px; 
+      color: #9a9a9a;
     }
   </style>
 </head>
@@ -186,7 +241,7 @@
   <!-- Header -->
   <header>
     <a class="brand" href="https://zaruverse.github.io" target="_blank" rel="noopener">
-      <img src="zaru-lion-logo.jpg" alt="ZARUverse logo" />
+      <img src="zaru-lion-logo.jpg" alt="ZARUverse logo">
       <span>ZARUverse</span>
     </a>
     <nav>
@@ -250,9 +305,6 @@
         src="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6"
         title="Swap to ZARU">
       </iframe>
-      <!-- If you prefer PancakeSwap widget, replace iframe src with:
-      https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6
-      -->
     </div>
     <div class="buttons" style="margin-top:18px;">
       <a class="btn btn-outline" href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" target="_blank" rel="noopener">Liquidity (GeckoTerminal)</a>
@@ -317,9 +369,7 @@
       <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a>
     </div>
 
-    <div class="copyright">
-      © ZARUverse. All rights reserved.
-    </div>
+    <div class="copyright">© ZARUverse. All rights reserved.</div>
   </footer>
 
 </body>
