@@ -59,8 +59,11 @@
       border-bottom: 1px solid rgba(255,215,0,.08);
     }
     main {
-      padding: 40px 20px;
+      background: url('zaru-lion.jpg') center/cover no-repeat;
+      padding: 80px 20px;
       text-align: center;
+      color: #ffd700;
+      min-height: 100vh;
     }
     footer {
       padding: 40px 20px;
@@ -77,6 +80,8 @@
       background: transparent;
       cursor: pointer;
       font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
     }
     .btn.primary {
       background: #ffd700;
@@ -122,14 +127,21 @@
   </nav>
 </header>
 <main>
-  <h1 style="color:#ffd700; font-size:32px;">Claim the Relic. Unlock the Lore.</h1>
+  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
+
+  <h1 style="font-size: 36px; font-weight: 900;">Claim the Relic. Unlock the Lore.</h1>
   <p style="max-width:600px; margin:20px auto; font-size:16px;">
     Arxium isn’t just an NFT. It’s your command seat in the DAO. Your key to encrypted prophecy. Your symbol of power.
   </p>
-  <a href="https://arxium-leader-of-dao.mintpad.me/" class="btn primary">🛡️ Mint Arxium</a>
+
+  <div style="margin: 30px 0;">
+    <a href="https://arxium-leader-of-dao.mintpad.me/" class="btn primary">🛡️ Mint Arxium</a>
+    <a href="https://www.youtube.com/@zaruverse" class="btn" style="margin-left:10px;">📺 YouTube</a>
+    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" class="btn" style="margin-left:10px;">🔄 Swap Token</a>
+  </div>
 
   <div style="margin-top:60px;">
-    <h2 style="color:#ffd700;">🔓 Unlock the Lore</h2>
+    <h2>🔓 Unlock the Lore</h2>
     <p id="walletStatus">Connect your wallet to verify ownership of Arxium NFT.</p>
     <button onclick="connectWallet()" class="btn primary">🔗 Connect Wallet</button>
     <button onclick="disconnectWallet()" class="btn">⛓ Disconnect</button>
