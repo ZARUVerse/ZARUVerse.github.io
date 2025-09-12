@@ -121,7 +121,6 @@
     <a href="https://bsky.app/profile/makese.site">🌌 Bluesky</a>
   </nav>
 </header>
-
 <main>
   <h1 style="color:#ffd700; font-size:32px;">Claim the Relic. Unlock the Lore.</h1>
   <p style="max-width:600px; margin:20px auto; font-size:16px;">
@@ -153,8 +152,15 @@
   }
 
   const CONTRACT_ADDRESS = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
-  const ABI = [ { "constant":true, "inputs":[{"name":"owner","type":"address"}], "name":"
-    "uint256"}], "type":"function" } ];
+  const ABI = [
+    {
+      constant: true,
+      inputs: [{ name: "owner", type: "address" }],
+      name: "balanceOf",
+      outputs: [{ name: "", type: "uint256" }],
+      type: "function"
+    }
+  ];
   const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
 
   let web3Modal, provider, web3, userAddress;
