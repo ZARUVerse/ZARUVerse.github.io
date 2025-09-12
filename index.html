@@ -6,14 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
   <style>
+    :root {
+      --black: #0b0b0c;
+      --gold: #ffd700;
+      --gray: #e8e8e8;
+      --deep: #111;
+    }
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: #0b0b0c;
-      color: #000;
+      background: var(--black);
+      color: var(--gray);
     }
     header {
-      background: #0b0b0c;
+      background: var(--black);
       border-bottom: 1px solid rgba(255,215,0,.12);
     }
     .mobile-header {
@@ -24,7 +30,7 @@
     }
     .brand {
       font-weight: 800;
-      color: #ffd700;
+      color: var(--gold);
       font-size: 20px;
       text-decoration: none;
     }
@@ -32,7 +38,7 @@
       font-size: 24px;
       background: none;
       border: none;
-      color: #ffd700;
+      color: var(--gold);
       cursor: pointer;
     }
     .mobile-menu {
@@ -41,7 +47,7 @@
       opacity: 0;
       padding: 0;
       transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-      background: #111;
+      background: var(--deep);
       border-top: 1px solid rgba(255,215,0,.12);
       display: flex;
       flex-direction: column;
@@ -54,7 +60,7 @@
     .mobile-menu a {
       padding: 12px 20px;
       font-size: 16px;
-      color: #ffd700;
+      color: var(--gold);
       text-decoration: none;
       border-bottom: 1px solid rgba(255,215,0,.08);
     }
@@ -62,8 +68,20 @@
       background: url('zaru-lion.jpg') center/cover no-repeat;
       padding: 80px 20px;
       text-align: center;
-      color: #ffd700;
       min-height: 100vh;
+      position: relative;
+      color: #000;
+    }
+    main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.28);
+      pointer-events: none;
+    }
+    main > * {
+      position: relative;
+      z-index: 1;
     }
     footer {
       padding: 40px 20px;
@@ -75,19 +93,27 @@
     .btn {
       padding: 10px 16px;
       border-radius: 10px;
-      border: 1px solid rgba(255,215,0,.12);
-      color: #ffd700;
-      background: transparent;
+      border: 1px solid rgba(0,0,0,0.2);
+      color: #111;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(2px);
       cursor: pointer;
       font-weight: 700;
       text-decoration: none;
       display: inline-block;
+      margin: 6px;
     }
     .btn.primary {
-      background: #ffd700;
-      color: #0b0b0c;
+      background: var(--gold);
+      color: var(--black);
       border: none;
       font-weight: 900;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+      100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0.4); }
     }
   </style>
 </head>
@@ -106,24 +132,11 @@
     <a href="https://zaruverse.gitbook.com">📘 GitBook</a>
     <a href="https://arxium-leader-of-dao.mintpad.me/">🛡️ Arxium NFT</a>
     <a href="https://github.com/zaruverse">💻 GitHub</a>
-    <a href="https://github.com/zaruverse/zarutoken-contract">🧠 Token Contract</a>
-    <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">📄 PDF Whitepaper</a>
-    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">📊 GeckoTerminal</a>
-    <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">📈 CMC DEX</a>
-    <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">🗣️ Bitcointalk</a>
-    <a href="mailto:zaru.verse@makese.site">📩 Contact</a>
+    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">🔄 Swap Token</a>
+    <a href="https://youtube.com/@zaruverse">📺 YouTube</a>
     <a href="https://t.me/zaruverse">📲 Telegram</a>
-    <a href="https://t.me/zaruversebot/app">🤖 Telegram Bot</a>
-    <a href="https://t.me/zaru-eco">🌱 Telegram Eco</a>
-    <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
     <a href="https://x.com/zaruverse">🐦 X (Twitter)</a>
-    <a href="https://facebook.com/zaruverse">📘 Facebook</a>
-    <a href="https://instagram.com/zaruverse">📷 Instagram</a>
-    <a href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">📺 YouTube</a>
-    <a href="https://reddit.com/u/zaruverse">👽 Reddit</a>
-    <a href="https://hey.xyz/u/zaruverse">🧑‍🚀 Hey.xyz</a>
-    <a href="https://www.linkedin.com/in/zaruverse">💼 LinkedIn</a>
-    <a href="https://bsky.app/profile/makese.site">🌌 Bluesky</a>
+    <a href="mailto:zaru.verse@makese.site">📩 Contact</a>
   </nav>
 </header>
 <main>
@@ -134,14 +147,18 @@
     Arxium isn’t just an NFT. It’s your command seat in the DAO. Your key to encrypted prophecy. Your symbol of power.
   </p>
 
+  <p style="font-size:18px; font-weight:700; color:#000; margin-top:40px;">
+    Only holders of Arxium command the prophecy. Mint yours. Rule the realm.
+  </p>
+
   <div style="margin: 30px 0;">
     <a href="https://arxium-leader-of-dao.mintpad.me/" class="btn primary">🛡️ Mint Arxium</a>
-    <a href="https://www.youtube.com/@zaruverse" class="btn" style="margin-left:10px;">📺 YouTube</a>
-    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" class="btn" style="margin-left:10px;">🔄 Swap Token</a>
+    <a href="https://youtube.com/@zaruverse" class="btn">📺 YouTube</a>
+    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" class="btn">🔄 Swap Token</a>
   </div>
 
   <div style="margin-top:60px;">
-    <h2>🔓 Unlock the Lore</h2>
+    <h2 style="color:#000;">🔓 Unlock the Lore</h2>
     <p id="walletStatus">Connect your wallet to verify ownership of Arxium NFT.</p>
     <button onclick="connectWallet()" class="btn primary">🔗 Connect Wallet</button>
     <button onclick="disconnectWallet()" class="btn">⛓ Disconnect</button>
@@ -259,10 +276,12 @@
       const balance = await contract.methods.balanceOf(userAddress).call();
       if (Number(balance) > 0) {
         setStatus(`🛡️ Holder verified — ${short(userAddress)} | Loading lore...`);
+        document.querySelector('.btn.primary').innerText = "✅ You Hold Arxium";
         fetchLore();
       } else {
         document.getElementById("loreOutput").innerText =
           "🚫 No Arxium detected. Mint the relic to unlock encrypted prophecy.";
+        document.querySelector('.btn.primary').innerText = "🛡️ Mint Arxium Now";
       }
     } catch (err) {
       document.getElementById("loreOutput").innerText = "⚠️ Verification failed. Check contract address/ABI/network.";
@@ -295,3 +314,5 @@
 
 </body>
 </html>
+
+
