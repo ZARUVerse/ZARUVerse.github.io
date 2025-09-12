@@ -5,351 +5,275 @@
   <title>ZARUverse | Claim the Relic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
-  <meta name="description" content="ZARUverse — Arxium: Leader of DAO. Claim the relic, unlock the lore, and take your command seat." />
   <style>
-    :root {
-      --bg: #0b0b0c;
-      --surface: #111114;
-      --gold: #ffd700;
-      --text: #e8e8e8;
-      --muted: #a0a0a0;
-      --line: rgba(255,215,0,.12);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    * { box-sizing: border-box }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,215,0,.06), transparent 60%), var(--bg);
-      color: var(--text);
+      font-family: system-ui, sans-serif;
+      background: #0b0b0c;
+      color: #e8e8e8;
     }
-    a { color: var(--gold); text-decoration: none }
-    /* Header */
     header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(11,11,12,.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+      background: #0b0b0c;
+      border-bottom: 1px solid rgba(255,215,0,.12);
     }
     .mobile-header {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 14px 20px;
     }
     .brand {
-      display:flex; align-items:center; gap:10px;
-      font-weight: 800; letter-spacing: .5px;
-      color: var(--gold); font-size: 20px;
+      font-weight: 800;
+      color: #ffd700;
+      font-size: 20px;
+      text-decoration: none;
     }
-    .brand .dot { width:10px; height:10px; border-radius:50%; background:var(--gold); box-shadow: 0 0 20px rgba(255,215,0,.6) }
     .hamburger {
-      font-size: 24px; background: none; border: none;
-      color: var(--gold); cursor: pointer;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #ffd700;
+      cursor: pointer;
     }
-    /* Mobile menu */
     .mobile-menu {
-      max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height .45s ease, opacity .3s ease;
-      background: var(--surface);
-      border-top: 1px solid var(--line);
-      display: flex; flex-direction: column;
-      box-shadow: var(--shadow);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      background: #111;
+      border-top: 1px solid rgba(255,215,0,.12);
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-menu.show {
+      max-height: 1000px;
+      opacity: 1;
+      padding: 10px 0;
     }
     .mobile-menu a {
-      padding: 12px 20px; font-size: 16px; color: var(--gold);
+      padding: 12px 20px;
+      font-size: 16px;
+      color: #ffd700;
+      text-decoration: none;
       border-bottom: 1px solid rgba(255,215,0,.08);
     }
-    .mobile-menu a:hover { background: rgba(255,215,0,.06) }
-    .mobile-menu.show { max-height: 1200px; opacity: 1 }
-
-    /* Hero */
-    .hero {
-      padding: 64px 20px 36px;
+    main {
+      padding: 40px 20px;
       text-align: center;
     }
-    .title {
-      color: var(--gold); font-size: 34px; line-height: 1.15; margin: 0 auto 14px; max-width: 900px; font-weight: 900;
-      text-shadow: 0 10px 30px rgba(255,215,0,.08);
-    }
-    .subtitle {
-      max-width: 720px; margin: 0 auto 22px; color: var(--muted); font-size: 16px;
-    }
-    .cta {
-      display:inline-block; margin-top: 10px; padding: 12px 20px;
-      background: var(--gold); color: #0b0b0c; border-radius: 10px; font-weight: 800;
-      box-shadow: 0 8px 22px rgba(255,215,0,.25);
-    }
-    .cta:hover { transform: translateY(-1px) scale(1.01) }
-
-    /* Lore section */
-    .section {
-      padding: 36px 20px; text-align: center;
-    }
-    .card {
-      max-width: 840px; margin: 0 auto; background: rgba(255,255,255,.02);
-      border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow);
+    footer {
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,215,0,.12);
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
     }
     .btn {
-      padding: 10px 16px; border-radius: 10px; border: 1px solid var(--line); color: var(--gold);
-      background: transparent; cursor: pointer; font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,0,.12);
+      color: #ffd700;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
     }
     .btn.primary {
-      background: var(--gold); color: #0b0b0c; border: none; font-weight: 900;
-      box-shadow: 0 8px 22px rgba(255,215,0,.25);
-    }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-    /* Social grid (icons row) */
-    .social-grid {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 20px auto 0; max-width: 960px;
-    }
-    .social-grid a {
-      font-size: 20px; background: rgba(255,215,0,.08); color: var(--gold);
-      padding: 10px 12px; border-radius: 12px; transition: transform .18s ease, background .18s ease;
-      border: 1px solid rgba(255,215,0,.16);
-    }
-    .social-grid a:hover { transform: scale(1.06); background: rgba(255,215,0,.16) }
-
-    /* Footer */
-    footer {
-      padding: 40px 20px; border-top: 1px solid var(--line); text-align: center; font-size: 14px; color: #aaa;
-    }
-
-    /* Desktop */
-    @media (min-width: 768px) {
-      .mobile-header { display: none }
-      .mobile-menu { display: none }
-      .title { font-size: 42px }
+      background: #ffd700;
+      color: #0b0b0c;
+      border: none;
+      font-weight: 900;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="mobile-header">
-      <a class="brand" href="https://zaruverse.github.io">
-        <span class="dot"></span> ZARUverse
-      </a>
-      <button class="hamburger" aria-label="Open menu" onclick="toggleMobileMenu()">☰</button>
-    </div>
+<header>
+  <div class="mobile-header">
+    <a class="brand" href="https://zaruverse.github.io">ZARUverse</a>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="https://zaruverse.github.io">🏠 Main Site</a>
+    <a href="https://zaruverse.github.io/whitepaper.html">📜 Whitepaper</a>
+    <a href="https://zaruverse.github.io/tokensale.html">💰 Token Sale</a>
+    <a href="https://zaruverse.github.io/docs">📚 Docs</a>
+    <a href="https://zaruverse.gitbook.com">📘 GitBook</a>
+    <a href="https://arxium-leader-of-dao.mintpad.me/">🛡️ Arxium NFT</a>
+    <a href="https://github.com/zaruverse">💻 GitHub</a>
+    <a href="https://github.com/zaruverse/zarutoken-contract">🧠 Token Contract</a>
+    <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">📄 PDF Whitepaper</a>
+    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">📊 GeckoTerminal</a>
+    <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">📈 CMC DEX</a>
+    <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">🗣️ Bitcointalk</a>
+    <a href="mailto:zaru.verse@makese.site">📩 Contact</a>
+    <a href="https://t.me/zaruverse">📲 Telegram</a>
+    <a href="https://t.me/zaruversebot/app">🤖 Telegram Bot</a>
+    <a href="https://t.me/zaru-eco">🌱 Telegram Eco</a>
+    <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
+    <a href="https://x.com/zaruverse">🐦 X (Twitter)</a>
+    <a href="https://facebook.com/zaruverse">📘 Facebook</a>
+    <a href="https://instagram.com/zaruverse">📷 Instagram</a>
+    <a href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">📺 YouTube</a>
+    <a href="https://reddit.com/u/zaruverse">👽 Reddit</a>
+    <a href="https://hey.xyz/u/zaruverse">🧑‍🚀 Hey.xyz</a>
+    <a href="https://www.linkedin.com/in/zaruverse">💼 LinkedIn</a>
+    <a href="https://bsky.app/profile/makese.site">🌌 Bluesky</a>
+  </nav>
+</header>
 
-    <!-- Mobile slide-down menu with ALL links -->
-    <nav id="mobileMenu" class="mobile-menu">
-      <!-- Core -->
-      <a href="https://zaruverse.github.io">🏠 Main Site</a>
-      <a href="https://zaruverse.github.io/whitepaper.html">📜 Whitepaper</a>
-      <a href="https://zaruverse.github.io/tokensale.html">💰 Token Sale</a>
-      <a href="https://zaruverse.github.io/docs">📚 Docs</a>
-      <a href="https://zaruverse.gitbook.com">📘 GitBook</a>
+<main>
+  <h1 style="color:#ffd700; font-size:32px;">Claim the Relic. Unlock the Lore.</h1>
+  <p style="max-width:600px; margin:20px auto; font-size:16px;">
+    Arxium isn’t just an NFT. It’s your command seat in the DAO. Your key to encrypted prophecy. Your symbol of power.
+  </p>
+  <a href="https://arxium-leader-of-dao.mintpad.me/" class="btn primary">🛡️ Mint Arxium</a>
 
-      <!-- Arxium + Market -->
-      <a href="https://arxium-leader-of-dao.mintpad.me/">🛡️ Arxium NFT</a>
-      <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">📊 GeckoTerminal</a>
-      <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">📈 CMC DEX</a>
-      <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">🗣️ Bitcointalk</a>
+  <div style="margin-top:60px;">
+    <h2 style="color:#ffd700;">🔓 Unlock the Lore</h2>
+    <p id="walletStatus">Connect your wallet to verify ownership of Arxium NFT.</p>
+    <button onclick="connectWallet()" class="btn primary">🔗 Connect Wallet</button>
+    <button onclick="disconnectWallet()" class="btn">⛓ Disconnect</button>
+    <div id="loreOutput" style="margin-top:30px; font-size:16px; max-width:600px; margin-left:auto; margin-right:auto; white-space:pre-wrap;"></div>
+  </div>
+</main>
 
-      <!-- Dev -->
-      <a href="https://github.com/zaruverse">💻 GitHub</a>
-      <a href="https://github.com/zaruverse/zarutoken-contract">🧠 Token Contract</a>
-      <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">📄 PDF Whitepaper</a>
+<footer>
+  <div>© ZARUverse. All rights reserved.</div>
+  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
+</footer>
 
-      <!-- Social -->
-      <a href="https://t.me/zaruverse">📲 Telegram</a>
-      <a href="https://t.me/zaruversebot/app">🤖 Telegram Bot</a>
-      <a href="https://t.me/zaru-eco">🌱 Telegram Eco</a>
-      <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
-      <a href="https://x.com/zaruverse">🐦 X (Twitter)</a>
-      <a href="https://facebook.com/zaruverse">📘 Facebook</a>
-      <a href="https://instagram.com/zaruverse">📷 Instagram</a>
-      <a href="https://youtube.com/@zaruverse?si=FQYqOELc_yMXLuuA">📺 YouTube</a>
-      <a href="https://reddit.com/u/zaruverse">👽 Reddit</a>
-      <a href="https://hey.xyz/u/zaruverse">🧑‍🚀 Hey.xyz</a>
-      <a href="https://www.linkedin.com/in/zaruverse">💼 LinkedIn</a>
-      <a href="https://bsky.app/profile/makese.site">🌌 Bluesky</a>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
 
-      <!-- Contact -->
-      <a href="mailto:zaru.verse@makese.site">📩 Contact</a>
-    </nav>
-  </header>
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('show');
+  }
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1 class="title">Claim the Relic. Unlock the Lore. Lead the DAO.</h1>
-    <p class="subtitle">
-      Arxium isn’t just an NFT — it’s your command seat. Own the relic, unlock encrypted prophecy, and vote with real weight.
-    </p>
-    <a class="cta" href="https://arxium-leader-of-dao.mintpad.me/">🛡️ Mint Arxium</a>
+  const CONTRACT_ADDRESS = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
+  const ABI = [ { "constant":true, "inputs":[{"name":"owner","type":"address"}], "name":"
+    "uint256"}], "type":"function" } ];
+  const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
 
-    <!-- Quick icons row -->
-    <div class="social-grid" aria-label="Official links">
-      <a href="https://zaruverse.github.io" title="Main Site">🌐</a>
-      <a href="https://zaruverse.github.io/whitepaper.html" title="Whitepaper">📜</a>
-      <a href="https://zaruverse.github.io/tokensale.html" title="Token Sale">💰</a>
-      <a href="https://zaruverse.github.io/docs" title="Docs">📚</a>
-      <a href="https://zaruverse.gitbook.com" title="GitBook">📘</a>
-      <a href="https://github.com/zaruverse" title="GitHub">💻</a>
-      <a href="https://github.com/zaruverse/zarutoken-contract" title="Token Contract">🧠</a>
-      <a href="https://arxium-leader-of-dao.mintpad.me/" title="Arxium NFT">🛡️</a>
-      <a href="https://t.me/zaruverse" title="Telegram">📲</a>
-      <a href="https://discord.gg/EWVcrwwJ" title="Discord">💬</a>
-      <a href="https://x.com/zaruverse" title="X">🐦</a>
-      <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" title="GeckoTerminal">📊</a>
-      <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" title="CMC DEX">📈</a>
-    </div>
-  </section>
+  let web3Modal, provider, web3, userAddress;
 
-  <!-- Lore gating -->
-  <section class="section">
-    <div class="card">
-      <h2 style="margin: 0 0 10px; color: var(--gold);">🔓 Unlock the Lore</h2>
-      <p id="walletStatus">Connect your wallet to verify Arxium ownership on BNB Chain.</p>
-      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:14px 0 8px;">
-        <button class="btn primary" onclick="connectWallet()">🔗 Connect Wallet</button>
-        <button class="btn" onclick="disconnectWallet()">⛓ Disconnect</button>
-      </div>
-      <div id="loreOutput" class="mono" style="margin-top:18px; font-size:16px; white-space:pre-wrap; text-align:left;"></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div>© ZARUverse. All rights reserved.</div>
-    <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-  </footer>
-
-  <!-- Scripts: Web3 + WalletConnect + Web3Modal -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
-
-  <script>
-    // Toggle mobile menu
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('show');
-    }
-
-    // -------- Wallet + Gating config --------
-    // TODO: آدرس قرارداد Arxium روی BNB Chain را اینجا قرار بده
-    const CONTRACT_ADDRESS = "0xYOUR_ARXIUM_CONTRACT_ADDRESS"; // e.g. 0x123...
-    const ABI = [
-      { "constant": true, "inputs": [{"name":"owner","type":"address"}], "name":"balanceOf", "outputs":[{"name":"","type":"uint256"}], "type":"function" }
-    ];
-    const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
-
-    let web3Modal, provider, web3, userAddress;
-
-    async function connectWallet() {
-      const providerOptions = {
-        walletconnect: {
-          package: window.WalletConnectProvider,
-          options: {
-            rpc: { 56: "https://bsc-dataseed.binance.org/" },
-            chainId: 56
-          }
+  async function connectWallet() {
+    const providerOptions = {
+      walletconnect: {
+        package: window.WalletConnectProvider,
+        options: {
+          rpc: { 56: "https://bsc-dataseed.binance.org/" },
+          chainId: 56
         }
-      };
-
-      web3Modal = new window.Web3Modal.default({
-        cacheProvider: false,
-        providerOptions
-      });
-
-      try {
-        provider = await web3Modal.connect();
-        web3 = new Web3(provider);
-
-        // Handle account/network changes
-        provider.on && provider.on('accountsChanged', (accounts) => handleAccountsChanged(accounts));
-        provider.on && provider.on('chainChanged', (chainId) => handleChainChanged(chainId));
-        provider.on && provider.on('disconnect', () => disconnectWallet());
-
-        const accounts = await web3.eth.getAccounts();
-        handleAccountsChanged(accounts);
-      } catch (err) {
-        setStatus("❌ Wallet connection failed.");
       }
-    }
+    };
 
-    function setStatus(text) {
-      document.getElementById("walletStatus").innerText = text;
-    }
+    web3Modal = new window.Web3Modal.default({
+      cacheProvider: false,
+      providerOptions
+    });
 
-    function handleAccountsChanged(accounts) {
-      if (!accounts || !accounts.length) {
-        userAddress = undefined;
-        setStatus("🪪 Wallet connected. No account selected.");
-        return;
-      }
-      userAddress = accounts[0];
-      setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain expected`);
+    try {
+      provider = await web3Modal.connect();
+      web3 = new Web3(provider);
+
+      provider.on && provider.on('accountsChanged', (accounts) => handleAccountsChanged(accounts));
+      provider.on && provider.on('chainChanged', (chainId) => handleChainChanged(chainId));
+      provider.on && provider.on('disconnect', () => disconnectWallet());
+
+      const accounts = await web3.eth.getAccounts();
+      handleAccountsChanged(accounts);
+    } catch (err) {
+      setStatus("❌ Wallet connection failed.");
+    }
+  }
+
+  function setStatus(text) {
+    document.getElementById("walletStatus").innerText = text;
+  }
+
+  function handleAccountsChanged(accounts) {
+    if (!accounts || !accounts.length) {
+      userAddress = undefined;
+      setStatus("🪪 Wallet connected. No account selected.");
+      return;
+    }
+    userAddress = accounts[0];
+    setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain expected`);
+    checkOwnership();
+  }
+
+  async function handleChainChanged(chainIdHex) {
+    const chainId = parseInt(chainIdHex, 16);
+    if (chainId !== 56) {
+      setStatus(`⚠️ Wrong network (ChainId ${chainId}). Switch to BNB Chain (56).`);
+    } else {
+      setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain`);
       checkOwnership();
     }
+  }
 
-    async function handleChainChanged(chainIdHex) {
-      const chainId = parseInt(chainIdHex, 16);
-      if (chainId !== 56) {
-        setStatus(`⚠️ Wrong network (ChainId ${chainId}). Switch to BNB Chain (56).`);
+  function short(addr) {
+    return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "";
+  }
+
+  async function disconnectWallet() {
+    try {
+      if (provider && provider.disconnect) await provider.disconnect();
+    } catch(e) {}
+    provider = undefined;
+    web3 = undefined;
+    userAddress = undefined;
+    setStatus("🔌 Disconnected. Connect to unlock the lore.");
+    document.getElementById("loreOutput").innerText = "";
+  }
+
+  async function checkOwnership() {
+    try {
+      const netId = await web3.eth.getChainId();
+      if (netId !== 56) {
+        setStatus(`⚠️ Wrong network (ChainId ${netId}). Please switch to BNB Chain (56).`);
+        return;
+      }
+      const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+      const balance = await contract.methods.balanceOf(userAddress).call();
+      if (Number(balance) > 0) {
+        setStatus(`🛡️ Holder verified — ${short(userAddress)} | Loading lore...`);
+        fetchLore();
       } else {
-        setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain`);
-        checkOwnership();
+        document.getElementById("loreOutput").innerText =
+          "🚫 No Arxium detected. Mint the relic to unlock encrypted prophecy.";
       }
+    } catch (err) {
+      document.getElementById("loreOutput").innerText = "⚠️ Verification failed. Check contract address/ABI/network.";
     }
+  }
 
-    function short(addr) { return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "" }
-
-    async function disconnectWallet() {
-      try {
-        if (provider && provider.disconnect) await provider.disconnect();
-      } catch(e) {}
-      provider = undefined; web3 = undefined; userAddress = undefined;
-      setStatus("🔌 Disconnected. Connect to unlock the lore.");
-      document.getElementById("loreOutput").innerText = "";
+  async function fetchLore() {
+    try {
+      const res = await fetch(IPFS_LORE, { cache: "no-store" });
+      if (!res.ok) throw new Error("IPFS fetch failed");
+      const text = await res.text();
+      typeLore(text);
+    } catch (err) {
+      document.getElementById("loreOutput").innerText = "⚠️ Failed to load lore from IPFS.";
     }
+  }
 
-    async function checkOwnership() {
-      try {
-        const netId = await web3.eth.getChainId();
-        if (netId !== 56) {
-          setStatus(`⚠️ Wrong network (ChainId ${netId}). Please switch to BNB Chain (56).`);
-          return;
-        }
-        const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-        const balance = await contract.methods.balanceOf(userAddress).call();
-        if (Number(balance) > 0) {
-          setStatus(`🛡️ Holder verified — ${short(userAddress)} | Loading lore...`);
-          fetchLore();
-        } else {
-          document.getElementById("loreOutput").innerText =
-            "🚫 No Arxium detected. Mint the relic to unlock encrypted prophecy.";
-        }
-      } catch (err) {
-        document.getElementById("loreOutput").innerText = "⚠️ Verification failed. Check contract address/ABI/network.";
-      }
-    }
+  function typeLore(text) {
+    const out = document.getElementById("loreOutput");
+    out.innerHTML = "";
+    let i = 0;
+    const speed = 26;
+    const timer = setInterval(() => {
+      out.innerHTML += text[i] || "";
+      i++;
+      if (i >= text.length) clearInterval(timer);
+    }, speed);
+  }
+</script>
 
-    async function fetchLore() {
-      try {
-        const res = await fetch(IPFS_LORE, { cache: "no-store" });
-        if (!res.ok) throw new Error("IPFS fetch failed");
-        const text = await res.text();
-        typeLore(text);
-      } catch (err) {
-        document.getElementById("loreOutput").innerText = "⚠️ Failed to load lore from IPFS.";
-      }
-    }
-
-    function typeLore(text) {
-      const out = document.getElementById("loreOutput");
-      out.innerHTML = "";
-      let i = 0;
-      const speed = 26; // ms per char
-      const timer = setInterval(() => {
-        out.innerHTML += text[i] || "";
-        i++;
-        if (i >= text.length) clearInterval(timer);
-      }, speed);
-    }
-  </script>
 </body>
 </html>
-```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/dimakorzhovnik/cyber.auction/tree/a09f39114629bbc0ec5a6d156399436b9d8ffbed/src%2Futils%2Fabi.js?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
