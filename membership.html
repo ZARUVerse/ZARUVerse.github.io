@@ -2,141 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZARUverse Membership</title>
-
-  <!-- تم مرکزی از template.html -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/template.css" /> <!-- اگر تم جدا داری -->
-
-  <!-- reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ"></script>
+  <title>ZARUverse | Membership</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/template.css" />
 
   <!-- Web3Modal -->
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
   <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ"></script>
 </head>
 
 <body>
-  <header>
-    <!-- ناوبری مرکزی از template.html -->
-  </header>
+<header>
+  <div class="mobile-header">
+    <a class="brand" href="index.html">ZARUverse</a>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="mint.html">🪙 Mint</a>
+    <a href="vault.html">🔐 Vault</a>
+    <a href="dao.html">⚖️ DAO</a>
+    <a href="membership.html">🧬 Membership</a>
+  </nav>
+</header>
 
-  <main>
-    <div id="formcarry-section" style="display:none;">
-      <section class="formcarry-container">
-        <form id="zaru-form">
-          <div class="formcarry-block">
-            <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" required />
-          </div>
+<main>
+  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
+  <h1 style="font-size: 36px; font-weight: 900;">ZARUverse Membership</h1>
+  <p style="max-width:600px; margin:20px auto; font-size:16px;">
+    You’ve been summoned to the realm. Only ZARU holders may inscribe their name into the scrolls of power.
+  </p>
 
-          <div class="formcarry-block">
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" required />
-          </div>
+  <div id="formcarry-section" style="display:none;">
+    <form id="zaru-form" style="max-width:600px; margin:40px auto;">
+      <input type="text" name="name" id="name" placeholder="🧑 Full Name" required class="btn" style="width:100%; margin-bottom:12px;" />
+      <input type="email" name="email" id="email" placeholder="📧 Email Address" required class="btn" style="width:100%; margin-bottom:12px;" />
+      <input type="text" name="wallet" id="wallet" readonly class="btn" style="width:100%; margin-bottom:12px;" />
+      <textarea name="message" id="message" placeholder="📜 Your message to the realm..." class="btn" style="width:100%; height:120px;"></textarea>
+      <button type="submit" class="btn primary" style="width:100%; margin-top:12px;">🧬 Join the Realm</button>
+    </form>
 
-          <div class="formcarry-block">
-            <label for="wallet">Wallet Address</label>
-            <input type="text" name="wallet" id="wallet" readonly />
-          </div>
-
-          <div class="formcarry-block">
-            <label for="message">Message</label>
-            <textarea name="message" id="message" placeholder="Enter your message..."></textarea>
-          </div>
-
-          <div class="formcarry-block">
-            <button type="submit">Send</button>
-          </div>
-        </form>
-
-        <div id="success-message" style="display:none; padding:20px; text-align:center;">
-          ✅ Your message has been received. Welcome to ZARUverse.
-        </div>
-      </section>
+    <div id="success-message" style="display:none; margin-top:40px; text-align:center;">
+      <h2>✅ Welcome to ZARUverse</h2>
+      <p>Your scroll has been received. The realm hears you.</p>
+      <a class="btn" href="vault.html">🔐 Enter the Vault</a>
     </div>
+  </div>
 
-    <div id="access-denied" style="display:none; text-align:center; padding:40px;">
-      <h2>🚫 Access Denied</h2>
-      <p>You must hold ZARU Token to access this form.</p>
-      <a href="https://tofunft.com/collection/zaruverse" target="_blank">Mint ZARU Token</a>
-    </div>
-  </main>
+  <div id="access-denied" style="display:none; text-align:center; padding:40px;">
+    <h2>🚫 Access Denied</h2>
+    <p>You must hold ZARU Token to access this form.</p>
+    <a class="btn" href="mint.html">🪙 Mint ZARU Token</a>
+  </div>
+</main>
 
-  <footer>
-    <!-- فوتر مرکزی از template.html -->
-  </footer>
+<footer>
+  <div>© ZARUverse. All rights reserved.</div>
+  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
+</footer>
 
-  <script>
-    const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
-    const zaruTokenABI = [{
-      "constant": true,
-      "inputs": [{"name": "_owner", "type": "address"}],
-      "name": "balanceOf",
-      "outputs": [{"name": "balance", "type": "uint256"}],
-      "type": "function"
-    }];
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('show');
+  }
 
-    async function checkZaruAccess() {
-      const providerOptions = {
-        walletconnect: {
-          package: window.WalletConnectProvider,
-          options: {
-            rpc: { 56: "https://bsc-dataseed.binance.org/" }
-          }
+  const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
+  const zaruTokenABI = [{
+    "constant": true,
+    "inputs": [{"name": "_owner", "type": "address"}],
+    "name": "balanceOf",
+    "outputs": [{"name": "balance", "type": "uint256"}],
+    "type": "function"
+  }];
+
+  async function checkZaruAccess() {
+    const providerOptions = {
+      walletconnect: {
+        package: window.WalletConnectProvider,
+        options: {
+          rpc: { 56: "https://bsc-dataseed.binance.org/" }
         }
-      };
-
-      const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-      const instance = await web3Modal.connect();
-      const web3 = new Web3(instance);
-      const accounts = await web3.eth.getAccounts();
-      const userAddress = accounts[0];
-      document.getElementById("wallet").value = userAddress;
-
-      const tokenContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
-      const balance = await tokenContract.methods.balanceOf(userAddress).call();
-
-      if (parseInt(balance) > 0) {
-        document.getElementById("formcarry-section").style.display = "block";
-      } else {
-        document.getElementById("access-denied").style.display = "block";
       }
+    };
+
+    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+    const instance = await web3Modal.connect();
+    const web3 = new Web3(instance);
+    const accounts = await web3.eth.getAccounts();
+    const userAddress = accounts[0];
+    document.getElementById("wallet").value = userAddress;
+
+    const tokenContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
+    const balance = await tokenContract.methods.balanceOf(userAddress).call();
+
+    if (parseInt(balance) > 0) {
+      document.getElementById("formcarry-section").style.display = "block";
+    } else {
+      document.getElementById("access-denied").style.display = "block";
     }
+  }
 
-    window.addEventListener("load", () => {
-      checkZaruAccess();
-    });
+  window.addEventListener("load", () => {
+    checkZaruAccess();
+  });
 
-    document.getElementById("zaru-form").addEventListener("submit", function(e) {
-      e.preventDefault();
+  document.getElementById("zaru-form").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      grecaptcha.ready(function() {
-        grecaptcha.execute('6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ', {action: 'submit'}).then(function(token) {
-          const formData = new FormData(document.getElementById("zaru-form"));
-          formData.append("g-recaptcha-response", token);
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ', {action: 'submit'}).then(function(token) {
+        const formData = new FormData(document.getElementById("zaru-form"));
+        formData.append("g-recaptcha-response", token);
 
-          fetch("https://formcarry.com/s/_g23_Fh7JC5", {
-            method: "POST",
-            body: formData
-          })
-          .then(response => {
-            if (response.ok) {
-              document.getElementById("zaru-form").style.display = "none";
-              document.getElementById("success-message").style.display = "block";
-            } else {
-              alert("❌ Submission failed. Try again.");
-            }
-          })
-          .catch(error => {
-            console.error("Error:", error);
-            alert("❌ Network error. Try again.");
-          });
+        fetch("https://formcarry.com/s/_g23_Fh7JC5", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            document.getElementById("zaru-form").style.display = "none";
+            document.getElementById("success-message").style.display = "block";
+          } else {
+            alert("❌ Submission failed. Try again.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("❌ Network error. Try again.");
         });
       });
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
