@@ -2,136 +2,259 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse | Mint NFT</title>
+  <title>ZARUverse | Mint & Claim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/template.css" />
-
-  <!-- Web3Modal -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
   <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
 </head>
-<body>
 
-<header>
-  <div class="mobile-header">
-    <a class="brand" href="index.html">ZARUverse</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold text-center mb-1">🪙 ZARU Mint & Claim</h1>
+    <p class="text-center text-secondary mb-4">Mint tokens, claim with NFT, or buy directly.</p>
+
+    <div class="text-center mb-4">
+      <button class="btn btn-warning btn-lg" id="connectWallet">🔗 Connect Wallet</button>
+      <p id="walletAddress" class="mt-3 small"></p>
+    </div>
+
+    <!-- Token info -->
+    <div id="tokenInfo" class="row g-3 justify-content-center" style="display:none;">
+      <div class="col-md-3">
+        <div class="card bg-secondary border-0">
+          <div class="card-body">
+            <div class="small text-uppercase text-muted">Token</div>
+            <div id="tokenMeta" class="fw-semibold">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-secondary border-0">
+          <div class="card-body">
+            <div class="small text-uppercase text-muted">Your balance</div>
+            <div id="userBalance" class="fw-semibold">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-secondary border-0">
+          <div class="card-body">
+            <div class="small text-uppercase text-muted">Total supply</div>
+            <div id="totalSupply" class="fw-semibold">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Mint -->
+    <div id="mintArea" style="display:none;">
+      <h3 class="h5 mb-3">🛠️ Mint ZARU (owner only, typically)</h3>
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label for="mintAmount" class="form-label">Amount (in ZARU):</label>
+          <input type="number" class="form-control" id="mintAmount" placeholder="e.g. 1000" min="0" step="any">
+        </div>
+        <div class="col-md-3 d-grid">
+          <button class="btn btn-success" id="mintBtn">Mint</button>
+        </div>
+      </div>
+      <p class="text-muted small mt-2">Note: If this reverts, the function may be restricted to the owner.</p>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Claim with NFT -->
+    <div id="claimArea" style="display:none;">
+      <h3 class="h5 mb-3">🎟️ Claim with NFT</h3>
+      <div class="d-grid d-md-inline-flex gap-2">
+        <button class="btn btn-primary" id="claimWithNFTBtn">Claim with NFT</button>
+      </div>
+      <p class="text-muted small mt-2">Requires holding the eligible NFT for claim unlocks.</p>
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Buy with BNB -->
+    <div id="buyArea" style="display:none;">
+      <h3 class="h5 mb-3">💳 Buy ZARU (BNB → ZARU)</h3>
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label for="buyValue" class="form-label">Amount (BNB):</label>
+          <input type="number" class="form-control" id="buyValue" placeholder="e.g. 0.1" min="0" step="any">
+        </div>
+        <div class="col-md-3 d-grid">
+          <button class="btn btn-outline-light" id="buyBtn">Buy</button>
+        </div>
+      </div>
+      <p class="text-muted small mt-2">Sends BNB as msg.value to the contract’s buy() function.</p>
+    </div>
+
+    <p id="statusMsg" class="mt-4 text-center"></p>
   </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="signup.html">🧬 Join ZARUverse</a>
-    <a href="mint.html">🪙 Mint</a>
-    <a href="dao.html">⚖️ DAO Council</a>
-    <a href="whitepaper.html">📜 Whitepaper</a>
-    <a href="tokensale.html">💰 Token Sale</a>
-    <a href="https://tofunft.com/collection/zaruverse">🖼️ TofuNFT</a>
-  </nav>
-</header>
 
-<main>
-  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
-  <h1 style="font-size: 36px; font-weight: 900;">Mint Your Arxium NFT</h1>
-  <p style="max-width:600px; margin:20px auto; font-size:16px;">
-    Claim your place in the realm. Only true holders may enter.
-  </p>
+  <script>
+    // ZARU token on BSC
+    const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
 
-  <div id="wallet-section" style="margin-top:30px;">
-    <button class="btn primary" id="connect-wallet">🔗 Connect Wallet</button>
-    <p id="wallet-address" style="margin-top:10px;"></p>
-  </div>
+    // Minimal ABI covering used functions (ERC-20 views + custom)
+    const zaruTokenABI = [
+      // ERC-20 views
+      {"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},
+      {"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},
+      {"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},
+      {"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+      {"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
 
-  <div id="mint-section" style="display:none; margin-top:30px;">
-    <p><strong>Price:</strong> <span id="price">...</span> BNB</p>
-    <button class="btn primary" id="mint-button">🔥 Mint Now</button>
-    <p id="mint-status" style="margin-top:20px;"></p>
-    <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank">View on Mintpad</a>
-  </div>
-</main>
+      // Custom functions from your contract
+      {"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},
+      {"inputs":[],"name":"claimWithNFT","outputs":[],"stateMutability":"nonpayable","type":"function"},
+      {"inputs":[],"name":"buy","outputs":[],"stateMutability":"payable","type":"function"}
+    ];
 
-<footer>
-  <div>© ZARUverse. All rights reserved.</div>
-  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-</footer>
+    let web3;
+    let userAddress;
+    let zaruContract;
+    let tokenDecimals = 18;
+    let tokenSymbol = "ZARU";
+    let tokenName = "ZARU";
 
-<script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('show');
-  }
-
-  const contractAddress = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
-  const contractABI = [
-    {
-      "inputs": [],
-      "name": "mint",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "mintPrice",
-      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
-      "name": "balanceOf",
-      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-      "stateMutability": "view",
-      "type": "function"
+    function setStatus(msg) {
+      const el = document.getElementById("statusMsg");
+      el.innerText = msg || "";
     }
-  ];
 
-  let web3;
-  let userAddress;
-  let contract;
+    function fromWeiDecimals(value) {
+      // Convert using token decimals (not necessarily 18)
+      return Number(value) / (10 ** tokenDecimals);
+    }
 
-  async function connectWallet() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider,
-        options: {
-          rpc: { 56: "https://bsc-dataseed.binance.org/" }
+    function toWeiDecimals(amountStr) {
+      const num = Number(amountStr || "0");
+      if (isNaN(num) || num <= 0) return "0";
+      // Use BigInt to avoid precision issues
+      const mul = BigInt(10) ** BigInt(tokenDecimals);
+      return (BigInt(Math.trunc(num * 1e6)) * (mul / BigInt(1e6))).toString();
+    }
+
+    async function connectWallet() {
+      try {
+        const providerOptions = {
+          walletconnect: {
+            package: window.WalletConnectProvider,
+            options: { rpc: { 56: "https://bsc-dataseed.binance.org/" } }
+          }
+        };
+        const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+        const instance = await web3Modal.connect();
+        web3 = new Web3(instance);
+
+        const accounts = await web3.eth.getAccounts();
+        userAddress = accounts[0];
+        zaruContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
+
+        document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
+        document.getElementById("tokenInfo").style.display = "flex";
+        document.getElementById("mintArea").style.display = "block";
+        document.getElementById("claimArea").style.display = "block";
+        document.getElementById("buyArea").style.display = "block";
+
+        await loadTokenMeta();
+        await refreshBalances();
+
+        // Optional: refresh on new blocks
+        if (instance.on) {
+          instance.on("accountsChanged", async (accs) => {
+            userAddress = accs[0];
+            document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
+            await refreshBalances();
+          });
+          instance.on("chainChanged", async () => {
+            await refreshBalances();
+          });
         }
+      } catch (err) {
+        console.error(err);
+        setStatus("❌ Wallet connection failed.");
       }
-    };
-
-    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-    const instance = await web3Modal.connect();
-    web3 = new Web3(instance);
-    const accounts = await web3.eth.getAccounts();
-    userAddress = accounts[0];
-    document.getElementById("wallet-address").innerText = `Connected: ${userAddress}`;
-    document.getElementById("mint-section").style.display = "block";
-
-    contract = new web3.eth.Contract(contractABI, contractAddress);
-    const priceWei = await contract.methods.mintPrice().call();
-    const priceBNB = web3.utils.fromWei(priceWei, "ether");
-    document.getElementById("price").innerText = priceBNB;
-  }
-
-  async function mintNFT() {
-    document.getElementById("mint-status").innerText = "⏳ Minting...";
-    try {
-      const price = await contract.methods.mintPrice().call();
-      await contract.methods.mint().send({
-        from: userAddress,
-        value: price
-      });
-      document.getElementById("mint-status").innerText = "✅ Mint successful!";
-    } catch (err) {
-      console.error(err);
-      document.getElementById("mint-status").innerText = "❌ Mint failed.";
     }
-  }
 
-  document.getElementById("connect-wallet").addEventListener("click", connectWallet);
-  document.getElementById("mint-button").addEventListener("click", mintNFT);
-</script>
+    async function loadTokenMeta() {
+      try {
+        tokenName = await zaruContract.methods.name().call();
+        tokenSymbol = await zaruContract.methods.symbol().call();
+        tokenDecimals = parseInt(await zaruContract.methods.decimals().call());
+      } catch (e) {
+        console.warn("Could not fetch name/symbol/decimals, using defaults.");
+      }
+      document.getElementById("tokenMeta").innerText = `${tokenName} (${tokenSymbol}) • ${tokenDecimals} decimals`;
+    }
 
+    async function refreshBalances() {
+      try {
+        const [rawBal, rawSupply] = await Promise.all([
+          zaruContract.methods.balanceOf(userAddress).call(),
+          zaruContract.methods.totalSupply().call()
+        ]);
+        document.getElementById("userBalance").innerText = `${fromWeiDecimals(rawBal)} ${tokenSymbol}`;
+        document.getElementById("totalSupply").innerText = `${fromWeiDecimals(rawSupply)} ${tokenSymbol}`;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function mintTokens() {
+      const amount = document.getElementById("mintAmount").value;
+      if (!amount || Number(amount) <= 0) return alert("❌ Enter a valid amount");
+
+      setStatus("⏳ Minting...");
+      try {
+        const amountWei = toWeiDecimals(amount);
+        await zaruContract.methods.mint(amountWei).send({ from: userAddress });
+        setStatus("✅ Minted successfully!");
+        await refreshBalances();
+      } catch (err) {
+        console.error(err);
+        setStatus("❌ Mint failed. (Owner-only or reverted)");
+      }
+    }
+
+    async function claimWithNFT() {
+      setStatus("⏳ Claiming with NFT...");
+      try {
+        await zaruContract.methods.claimWithNFT().send({ from: userAddress });
+        setStatus("✅ Claimed successfully!");
+        await refreshBalances();
+      } catch (err) {
+        console.error(err);
+        setStatus("❌ Claim failed.");
+      }
+    }
+
+    async function buyTokens() {
+      const bnb = document.getElementById("buyValue").value;
+      if (!bnb || Number(bnb) <= 0) return alert("❌ Enter BNB amount");
+
+      setStatus("⏳ Buying...");
+      try {
+        const valueWei = web3.utils.toWei(bnb.toString(), "ether");
+        await zaruContract.methods.buy().send({ from: userAddress, value: valueWei });
+        setStatus("✅ Purchase successful!");
+        await refreshBalances();
+      } catch (err) {
+        console.error(err);
+        setStatus("❌ Purchase failed.");
+      }
+    }
+
+    // Events
+    document.getElementById("connectWallet").addEventListener("click", connectWallet);
+    document.getElementById("mintBtn").addEventListener("click", mintTokens);
+    document.getElementById("claimWithNFTBtn").addEventListener("click", claimWithNFT);
+    document.getElementById("buyBtn").addEventListener("click", buyTokens);
+  </script>
 </body>
 </html>
