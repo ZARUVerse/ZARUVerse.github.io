@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZARUverse Technology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <style>
+    :root {
+      --black: #0b0b0c;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
+    }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: rgba(255,255,255,0.04);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.7);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.7);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('zaru-lion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text);
+      padding: 40px 20px;
+      text-align: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--hover);
+      margin-top: 40px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 800px;
+      margin: 12px auto;
+      line-height: 1.6;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .back-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .back-links a {
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .back-links a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      box-shadow: 0 0 12px rgba(255,215,0,0.28);
+    }
+    .tech-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .tech-section h3 {
+      color: var(--hover);
+      margin-top: 0;
+    }
+    .tech-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .tech-section li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 15px;
+    }
+    .tech-section li:last-child {
+      border-bottom: none;
+    }
+    .dao-map {
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .dao-map img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(255,215,0,0.2);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+
+<h1>⚙️ ZARUverse Technology</h1>
+<p>Technical stack, DAO structure, and relic logic—engineered for uncrowned kings.</p>
+
+<div class="tech-section">
+  <h3>🧱 Core Stack</h3>
+  <ul>
+    <li><strong>Smart Contracts:</strong> BEP‑20 for ZARU token, ERC‑1155 for relics</li>
+    <li><strong>Frontend:</strong> Vanilla JS + Ethers v6, wallet injection</li>
+    <li><strong>Network:</strong> BNB Smart Chain mainnet + testnet</li>
+    <li><strong>Security:</strong> Role-based access, timelocks, pausable circuits</li>
+    <li><strong>Licensing:</strong> MIT for code, proprietary for brand/NFT assets</li>
+    <li><strong>Marketplace:</strong> Verified on OKX NFT</li>
+  </ul>
+</div>
+
+<div class="dao-map">
+  <h2>🧭 DAO Structure</h2>
+  <p>The following map outlines how governance, relics, and community participation flow through ZARUverse.</p>
+  <img src="https://i.postimg.cc/HxSZMK2C/IMG-0643.png" alt="DAO MAP" />
+</div>
+
+<div class="back-links">
+  <a href="index.html">← Gateway</a>
+  <a href="nft.html">🖼️ NFTs</a>
+  <a href="claim.html">🎁 Claim</a>
+  <a href="lore.html">📖 Lore</a>
+  <a href="dao.html">⚖️ DAO</a>
+</div>
+
+<footer>© ZARUverse — engineered with lore and rigor.</footer>
+
+<script>
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+</body>
+</html>
