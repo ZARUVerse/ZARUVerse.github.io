@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZARUverse | Mint NFT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/template.css" />
+
+  <!-- Web3Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
+  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="mobile-header">
+    <a class="brand" href="index.html">ZARUverse</a>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="signup.html">🧬 Join ZARUverse</a>
+    <a href="mint.html">🪙 Mint</a>
+    <a href="dao.html">⚖️ DAO Council</a>
+    <a href="whitepaper.html">📜 Whitepaper</a>
+    <a href="tokensale.html">💰 Token Sale</a>
+    <a href="https://tofunft.com/collection/zaruverse">🖼️ TofuNFT</a>
+  </nav>
+</header>
+
+<main>
+  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
+  <h1 style="font-size: 36px; font-weight: 900;">Mint Your Arxium NFT</h1>
+  <p style="max-width:600px; margin:20px auto; font-size:16px;">
+    Claim your place in the realm. Only true holders may enter.
+  </p>
+
+  <div id="wallet-section" style="margin-top:30px;">
+    <button class="btn primary" id="connect-wallet">🔗 Connect Wallet</button>
+    <p id="wallet-address" style="margin-top:10px;"></p>
+  </div>
+
+  <div id="mint-section" style="display:none; margin-top:30px;">
+    <p><strong>Price:</strong> <span id="price">...</span> BNB</p>
+    <button class="btn primary" id="mint-button">🔥 Mint Now</button>
+    <p id="mint-status" style="margin-top:20px;"></p>
+    <a class="btn" href="https://arxium-leader-of-dao.mintpad.me/" target="_blank">View on Mintpad</a>
+  </div>
+</main>
+
+<footer>
+  <div>© ZARUverse. All rights reserved.</div>
+  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('show');
+  }
+
+  const contractAddress = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
+  const contractABI = [
+    {
+      "inputs": [],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "mintPrice",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+      "name": "balanceOf",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
+  let web3;
+  let userAddress;
+  let contract;
+
+  async function connectWallet() {
+    const providerOptions = {
+      walletconnect: {
+        package: window.WalletConnectProvider,
+        options: {
+          rpc: { 56: "https://bsc-dataseed.binance.org/" }
+        }
+      }
+    };
+
+    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+    const instance = await web3Modal.connect();
+    web3 = new Web3(instance);
+    const accounts = await web3.eth.getAccounts();
+    userAddress = accounts[0];
+    document.getElementById("wallet-address").innerText = `Connected: ${userAddress}`;
+    document.getElementById("mint-section").style.display = "block";
+
+    contract = new web3.eth.Contract(contractABI, contractAddress);
+    const priceWei = await contract.methods.mintPrice().call();
+    const priceBNB = web3.utils.fromWei(priceWei, "ether");
+    document.getElementById("price").innerText = priceBNB;
+  }
+
+  async function mintNFT() {
+    document.getElementById("mint-status").innerText = "⏳ Minting...";
+    try {
+      const price = await contract.methods.mintPrice().call();
+      await contract.methods.mint().send({
+        from: userAddress,
+        value: price
+      });
+      document.getElementById("mint-status").innerText = "✅ Mint successful!";
+    } catch (err) {
+      console.error(err);
+      document.getElementById("mint-status").innerText = "❌ Mint failed.";
+    }
+  }
+
+  document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+  document.getElementById("mint-button").addEventListener("click", mintNFT);
+</script>
+
+</body>
+</html>
