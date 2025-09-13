@@ -18,50 +18,60 @@
       --bg: var(--light-bg); --text: var(--light-text); --card: #fff;
       --hover: var(--gold); --hover-text: var(--black); --border: rgba(0,0,0,0.1);
     }
-    body { margin:0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 40px 20px; }
-    .container { max-width: 980px; margin: 0 auto; }
-    .top { display:flex; justify-content: space-between; align-items:center; gap:12px; }
-    h1 { font-size: 36px; font-weight: 900; color: var(--hover); margin: 0 0 10px; }
-    h2 { font-size: 22px; color: var(--hover); margin: 28px 0 10px; }
-    p { line-height: 1.7; opacity: .9; margin: 10px 0; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 16px 0; }
-    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media(min-width: 860px){ .grid { grid-template-columns: 1fr 1fr; } }
-    .theme-toggle { background: var(--hover); color: var(--hover-text); border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
+    body { margin:0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    header { display:flex; justify-content: space-between; align-items:center; gap:12px; padding: 18px 20px; }
+    .brand { font-weight: 900; color: var(--hover); letter-spacing:.3px; }
+    .nav { display:flex; gap:10px; flex-wrap:wrap; }
     .btn { display:inline-block; padding:10px 14px; background: var(--card); border:1px solid var(--border); color: var(--text); text-decoration:none; border-radius:10px; font-weight:600; }
     .btn:hover { background: var(--hover); color: var(--hover-text); }
-    footer { margin-top: 40px; font-size: 13px; opacity: .65; text-align: center; }
-    ul { margin: 10px 0 0 18px; }
+    .theme-toggle { background: var(--hover); color: var(--hover-text); border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    main { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+    h1 { font-size: 38px; font-weight: 900; color: var(--hover); margin: 6px 0 14px; }
+    h2 { font-size: 22px; color: var(--hover); margin: 28px 0 10px; }
+    p { line-height: 1.7; opacity: .9; margin: 10px 0; }
+    ul { margin: 8px 0 8px 18px; line-height: 1.7; opacity:.9; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 16px 0; }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+    @media(min-width: 900px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    footer { margin-top: 40px; font-size: 13px; opacity: .65; text-align: center; padding: 20px; }
+    blockquote { margin: 10px 0; padding: 12px 14px; background: var(--card); border-left: 3px solid var(--hover); opacity:.95; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top">
-      <h1>📄 ZARUverse Whitepaper</h1>
-      <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
-    </div>
 
+  <header>
+    <div class="brand">🦁 ZARUverse</div>
+    <nav class="nav">
+      <a class="btn" href="index.html">Home</a>
+      <a class="btn" href="token.html">Tokens</a>
+      <a class="btn" href="governance.html">Governance</a>
+      <a class="btn" href="claim.html">Claim</a>
+      <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1>📜 ZARUverse Whitepaper</h1>
     <div class="card">
       <h2>Abstract</h2>
-      <p>ZARUverse یک اکوسیستم برند-محور روی BNB Chain است که با دو توکن ZARU و DMD و نقش Relic (Arxium) اداره می‌شود. ZARU نبض تعاملات است؛ DMD تاج حاکمیت. رأی‌دهی در Snapshot و اجرا از طریق قراردادها و سیاست‌های خزانه صورت می‌گیرد.</p>
+      <p>ZARUverse is a branded crypto ecosystem on BNB Smart Chain, powered by a dual-token model (ZARU + DMD) and relic-gated governance. Utility meets prestige, lore meets execution. No VC, no fluff—just myth, code, and community.</p>
     </div>
 
     <div class="grid">
       <div class="card">
         <h2>Network</h2>
-        <p>BNB Smart Chain (Chain ID: 56). سازگار با EVM، کارمزد پایین، مناسب برای DeFi/NFT/DAO.</p>
-        <div class="links">
-          <a class="btn" target="_blank" href="https://bscscan.com">BSCScan</a>
-          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Snapshot: zaruverse.bnb</a>
-        </div>
+        <ul>
+          <li><strong>Chain:</strong> BNB Smart Chain (Chain ID: 56)</li>
+          <li><strong>Compatibility:</strong> EVM, low fees, ideal for DeFi/NFT/DAO</li>
+          <li><strong>Explorer:</strong> <a class="btn" target="_blank" href="https://bscscan.com">Open BSCScan</a></li>
+        </ul>
       </div>
 
       <div class="card">
         <h2>Tokens</h2>
-        <p><strong>ZARU</strong>: توکن Utility برای تعاملات، رأی عمومی، staking و lore unlock.</p>
-        <p><strong>DMD</strong>: توکن Prestige برای رأی طلایی، کنترل خزانه، دسترسی‌های ویژه.</p>
+        <p><strong>ZARU</strong> — Utility for staking, DAO voting, and lore unlock.</p>
+        <p><strong>DMD</strong> — Prestige for vault control, golden vote, and relic minting.</p>
       </div>
     </div>
 
@@ -77,20 +87,25 @@
       <div class="card">
         <h2>Governance</h2>
         <ul>
-          <li><strong>Model:</strong> Dual-token + Relic gating</li>
-          <li><strong>Voting:</strong> Snapshot (zaruverse.bnb)</li>
-          <li><strong>Weights:</strong> ZARU = رأی عمومی، DMD = رأی طلایی</li>
-          <li><strong>Gating:</strong> Arxium برای فعال‌سازی رأی (در صورت تعریف)</li>
+          <li><strong>Model:</strong> Dual-token voting + relic gating</li>
+          <li><strong>Platform:</strong> Snapshot (space: zaruverse.bnb)</li>
+          <li><strong>Weights:</strong> ZARU = 1 vote, DMD = 10 votes</li>
+          <li><strong>Gating:</strong> Arxium NFT required to activate voting rights</li>
         </ul>
-        <div class="links" style="margin-top:12px;">
+        <div style="margin-top:10px;">
+          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Open Snapshot</a>
           <a class="btn" href="governance.html">Governance page</a>
-          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Vote on Snapshot</a>
         </div>
       </div>
 
       <div class="card">
         <h2>Relics</h2>
-        <p>Relicها کلیدهای حاکمیتی‌اند. Arxium رأی را فعال می‌کند؛ Vaultbound حافظه را می‌گشاید. نسل‌های بعدی Relic، دسترسی‌ها و آیین‌های تازه می‌آورند.</p>
+        <p>Relics are governance keys, not collectibles.</p>
+        <ul>
+          <li><strong>Arxium:</strong> Unlocks voting</li>
+          <li><strong>Vaultbound:</strong> Unlocks memory</li>
+          <li><strong>Future:</strong> New rituals, access layers, DAO roles</li>
+        </ul>
       </div>
     </div>
 
@@ -98,36 +113,48 @@
       <div class="card">
         <h2>Treasury</h2>
         <ul>
-          <li><strong>Sources:</strong> کارمزدها، فروش NFT/توکن، مشارکت‌ها</li>
-          <li><strong>Uses:</strong> توسعه پروتکل، هنری/برند، نقدینگی، عملیات</li>
-          <li><strong>Controls:</strong> Proposal → Snapshot → Execution policy</li>
+          <li><strong>Sources:</strong> Token/NFT sales, fees, contributions</li>
+          <li><strong>Uses:</strong> Protocol development, branding, liquidity, operations</li>
+          <li><strong>Controls:</strong> Proposal → Snapshot vote → Execution policy</li>
         </ul>
       </div>
 
       <div class="card">
         <h2>Roadmap</h2>
         <ul>
-          <li><strong>Phase I:</strong> راه‌اندازی وب + توکن‌ها + Snapshot</li>
-          <li><strong>Phase II:</strong> Relic utilities + staking + lore unlock</li>
-          <li><strong>Phase III:</strong> DAO عملیات خزانه + ادغام‌های صرافی/NFT</li>
+          <li><strong>Phase I:</strong> Launch site, tokens, Snapshot space</li>
+          <li><strong>Phase II:</strong> Relic utility, staking, lore unlock</li>
+          <li><strong>Phase III:</strong> DAO treasury ops, exchange/NFT integrations</li>
         </ul>
       </div>
     </div>
 
-    <div class="card">
-      <h2>Security & audit</h2>
-      <ul>
-        <li><strong>Best practices:</strong> حداقل دسترسی، timelock، چندامضایی برای خزانه</li>
-        <li><strong>Audit:</strong> افزودن گزارش‌های ممیزی پس از انتشار رسمی</li>
-      </ul>
+    <div class="grid">
+      <div class="card">
+        <h2>Security and audit</h2>
+        <ul>
+          <li><strong>Best practices:</strong> Timelocks, multi-sig treasury, minimal permissions</li>
+          <li><strong>Audit:</strong> Reports to be published post-launch</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Legal notice</h2>
+        <p>This document is for informational purposes only and does not constitute financial or legal advice. Participation in crypto assets involves risk. Check your local regulations before engaging.</p>
+      </div>
     </div>
 
     <div class="card">
-      <h2>Legal notice</h2>
-      <p>این سند صرفاً اطلاع‌رسانی است و مشاوره مالی/حقوقی نیست. مشارکت در رمزارزها دارای ریسک است. قوانین محل سکونت خود را بررسی کنید.</p>
+      <h2>Branding statement</h2>
+      <blockquote>
+        ZARU is not a coin. It’s a covenant.<br />
+        DMD is not a flex. It’s a throne.<br />
+        Relics are not collectibles. They are keys.<br /><br />
+        🦁 ZARUverse — forged for the uncrowned kings.
+      </blockquote>
     </div>
 
-    <div class="links">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px;">
       <a class="btn" href="index.html">← Home</a>
       <a class="btn" href="token.html">Tokens</a>
       <a class="btn" href="governance.html">Governance</a>
@@ -135,14 +162,19 @@
     </div>
 
     <footer>© ZARUverse — written in myth, executed on-chain.</footer>
-  </div>
+  </main>
 
   <script>
     function toggleTheme(){
-      const d=document.documentElement; const n=d.getAttribute('data-theme')==='dark'?'light':'dark';
-      d.setAttribute('data-theme', n); localStorage.setItem('theme', n);
+      const d=document.documentElement;
+      const n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+      d.setAttribute('data-theme', n);
+      localStorage.setItem('theme', n);
     }
-    (function(){ const s=localStorage.getItem('theme'); if(s){ document.documentElement.setAttribute('data-theme', s); }})();
+    (function(){
+      const s=localStorage.getItem('theme');
+      if(s){ document.documentElement.setAttribute('data-theme', s); }
+    })();
   </script>
 </body>
 </html>
