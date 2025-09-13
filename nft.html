@@ -1,123 +1,206 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse NFT Drops</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <title>ZARUverse | Your NFT Relics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
   <style>
     body {
-      background-color: #0f0f0f;
-      color: #f5f5f5;
-      font-family: 'Orbitron', sans-serif;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      padding: 20px 40px;
-      background-color: #111;
-      border-bottom: 1px solid #333;
-    }
-    .logo {
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px gold;
+      font-family: system-ui, sans-serif;
+      background: #0b0b0c;
+      color: #e8e8e8;
+      text-align: center;
+      padding: 40px 20px;
     }
     h1 {
-      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 900;
       color: #ffd700;
-      font-size: 2rem;
-      margin-left: 20px;
+      margin-bottom: 20px;
     }
-    .section {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .title {
-      font-family: 'Cinzel', serif;
-      color: #ffd700;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+    .btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      background: #ffd700;
+      color: #0b0b0c;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 6px;
+      text-decoration: none;
+      display: inline-block;
     }
     .nft-card {
-      background-color: #111;
-      border: 1px solid #ffd700;
-      border-radius: 10px;
+      margin-bottom: 40px;
       padding: 20px;
-      text-align: center;
-      margin-top: 30px;
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255,215,0,0.2);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .nft-card img {
       max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ffd700;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255,215,0,0.4);
     }
-    .nft-card h3 {
-      font-family: 'Cinzel', serif;
-      color: #ffd700;
-      margin-top: 15px;
-    }
-    .nft-card p {
-      font-size: 0.95rem;
-      margin: 5px 0;
-    }
-    .mint-button {
-      background-color: #000;
-      color: #ffd700;
-      border: 2px solid #ffd700;
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 15px;
-      display: inline-block;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .mint-button:hover {
-      background-color: #222;
-    }
-    a {
-      color: #ffd700;
-      text-decoration: none;
-    }
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      h1 {
-        font-size: 1.5rem;
-        margin-left: 0;
-      }
-      .section {
-        padding: 20px;
-      }
+    .lore {
+      margin-top: 20px;
+      font-size: 14px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
-    <h1>ZARUverse NFT Drops</h1>
-  </header>
+<h1>🛡️ Your Arxium NFTs</h1>
+<p id="walletStatus">Connect your wallet to view your relics.</p>
+<button class="btn" onclick="connectWallet()">🔗 Connect Wallet</button>
+<button class="btn" onclick="disconnectWallet()">⛓ Disconnect</button>
 
-  <div class="section">
-    <div class="title">🧿 Own a Piece of the Mythic ZARUverse</div>
-    <p>Mythic NFTs unlock riddle-like lore and legendary powers. Mint on BNB Chain, reinforce the ecosystem’s unity.</p>
+<div id="nftList" style="margin-top:40px;"></div>
 
-    <div class="nft-card">
-      <img src="https://zaruverse.github.io/arexium.jpg" alt="Leader of DAO – Arxium">
-      <h3>Leader of DAO – Arxium</h3>
-      <p>👑 Grants access to DAO chamber + voting rights</p>
-      <p>Contract: <code>0x57664ea40e95636ed7a4df35f4b31e3656a851cd</code></p>
-      <p><a href="https://bscscan.com/address/0x57664ea40e95636ed7a4df35f4b31e3656a851cd" target="_blank">View on BscScan</a></p>
-      <a href="https://zaruverse.github.io/mint?token=arxium" class="mint-button">Mint Arxium</a>
-    </div>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
+
+<script>
+  const CONTRACT_ADDRESS = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd"; // Arxium NFT
+  const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
+
+  const ABI = [
+    { constant: true, inputs: [{ name: "owner", type: "address" }], name: "balanceOf", outputs: [{ name: "", type: "uint256" }], type: "function" },
+    { constant: true, inputs: [{ name: "tokenId", type: "uint256" }], name: "tokenURI", outputs: [{ name: "", type: "string" }], type: "function" },
+    { constant: true, inputs: [{ name: "owner", type: "address" }, { name: "index", type: "uint256" }], name: "tokenOfOwnerByIndex", outputs: [{ name: "", type: "uint256" }], type: "function" },
+    { constant: false, inputs: [{ name: "tokenId", type: "uint256" }], name: "burn", outputs: [], type: "function" }
+  ];
+
+  let web3Modal, provider, web3, userAddress;
+
+  async function connectWallet() {
+    const providerOptions = {
+      walletconnect: {
+        package: window.WalletConnectProvider,
+        options: { rpc: { 56: "https://bsc-dataseed.binance.org/" }, chainId: 56 }
+      }
+    };
+
+    web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+
+    try {
+      provider = await web3Modal.connect();
+      web3 = new Web3(provider);
+      const accounts = await web3.eth.getAccounts();
+      userAddress = accounts[0];
+      document.getElementById("walletStatus").innerText = `✅ Connected: ${short(userAddress)}`;
+      await checkNFTs();
+    } catch (err) {
+      document.getElementById("walletStatus").innerText = "❌ Wallet connection failed.";
+    }
+  }
+
+  function short(addr) {
+    return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "";
+  }
+
+  async function disconnectWallet() {
+    try {
+      if (provider && provider.disconnect) await provider.disconnect();
+    } catch(e) {}
+    provider = undefined;
+    web3 = undefined;
+    userAddress = undefined;
+    document.getElementById("walletStatus").innerText = "🔌 Disconnected.";
+    document.getElementById("nftList").innerHTML = "";
+  }
+
+  async function checkNFTs() {
+    const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+    const balance = await contract.methods.balanceOf(userAddress).call();
+    const container = document.getElementById("nftList");
+    container.innerHTML = "";
+
+    if (Number(balance) === 0) {
+      container.innerHTML = "<p>🚫 No Arxium NFTs detected.</p>";
+      return;
+    }
+
+    for (let i = 0; i < balance; i++) {
+      try {
+        const tokenId = await contract.methods.tokenOfOwnerByIndex(userAddress, i).call();
+        const uri = await contract.methods.tokenURI(tokenId).call();
+        const metadata = await fetch(uri).then(res => res.json());
+
+        const card = document.createElement("div");
+        card.className = "nft-card";
+        card.innerHTML = `
+          <h3>🛡️ Arxium #${tokenId}</h3>
+          <img src="${metadata.image}" alt="Arxium NFT" />
+          <p>${metadata.name || "Unnamed Relic"}</p>
+          <div style="margin-top:20px;">
+            <a href="dao.html" class="btn">⚖️ DAO</a>
+            <a href="staking.html" class="btn">⚔️ Stake</a>
+            <a href="vault.html" class="btn">🔐 Vault</a>
+            <a href="mint.html" class="btn">🎁 Claim</a>
+            <button class="btn" onclick="fetchLore(${tokenId})">📜 Lore</button>
+            <button class="btn" onclick="claimReward(${tokenId})">💰 Reward</button>
+            <button class="btn" onclick="burnNFT(${tokenId})">🔥 Burn</button>
+          </div>
+          <div id="lore-${tokenId}" class="lore"></div>
+        `;
+        container.appendChild(card);
+      } catch (err) {
+        console.error(`Failed to load NFT #${i}`, err);
+      }
+    }
+  }
+
+  async function fetchLore(tokenId) {
+    try {
+      const res = await fetch(IPFS_LORE, { cache: "no-store" });
+      if (!res.ok) throw new Error("IPFS fetch failed");
+      const text = await res.text();
+      typeLore(text, tokenId);
+    } catch (err) {
+      document.getElementById(`lore-${tokenId}`).innerText = "⚠️ Failed to load lore.";
+    }
+  }
+
+  function typeLore(text, tokenId) {
+    const out = document.getElementById(`lore-${tokenId}`);
+    out.innerHTML = "";
+    let i = 0;
+    const speed = 26;
+    const timer = setInterval(() => {
+      out.innerHTML += text[i] || "";
+      i++;
+      if (i >= text.length) clearInterval(timer);
+    }, speed);
+  }
+
+  async function claimReward(tokenId) {
+    alert(`💰 Reward claimed for Arxium #${tokenId} (stub function).`);
+    // Replace with actual staking contract interaction if needed
+  }
+
+  async function burnNFT(tokenId) {
+    if (!confirm(`Are you sure you want to burn Arxium #${tokenId}? This action is irreversible.`)) return;
+    try {
+      const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+      await contract.methods.burn(tokenId).
+            await contract.methods.burn(tokenId).send({ from: userAddress });
+      alert(`🔥 Arxium #${tokenId} burned successfully.`);
+      await checkNFTs(); // Refresh list
+    } catch (err) {
+      alert("❌ Burn failed. You must be the owner.");
+      console.error(err);
+    }
+  }
+</script>
 
 </body>
 </html>
+
