@@ -2,138 +2,178 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse | DAO Council</title>
+  <title>ZARUverse | DAO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/template.css" />
-
-  <!-- Web3Modal -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
   <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ"></script>
 </head>
-<body>
 
-<header>
-  <div class="mobile-header">
-    <a class="brand" href="index.html">ZARUverse</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+<body class="bg-dark text-light">
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold text-center mb-4">⚖️ ZARU DAO</h1>
+    <p class="lead text-center mb-5">Propose. Vote. Execute. Unlock the encrypted realm.</p>
+
+    <div class="text-center mb-4">
+      <button class="btn btn-warning btn-lg" id="connectWallet">🔗 Connect Wallet</button>
+      <p id="walletAddress" class="mt-3"></p>
+    </div>
+
+    <div id="daoArea" style="display:none;">
+      <!-- Create Proposal -->
+      <div class="mb-4">
+        <label for="proposalText" class="form-label">📜 Create a proposal:</label>
+        <input type="text" id="proposalText" class="form-control" placeholder="e.g. Increase staking rewards" />
+        <label for="durationSeconds" class="form-label mt-2">⏱️ Voting duration (seconds):</label>
+        <input type="number" id="durationSeconds" class="form-control" placeholder="e.g. 86400 for 1 day" />
+        <button class="btn btn-success mt-2" id="createProposalBtn">Submit Proposal</button>
+      </div>
+
+      <!-- Vote -->
+      <div class="mb-4">
+        <label for="proposalId" class="form-label">🗳️ Vote on proposal ID:</label>
+        <input type="number" id="proposalId" class="form-control" placeholder="Enter proposal ID" />
+        <div class="d-grid gap-2 mt-2">
+          <button class="btn btn-primary" onclick="vote(true)">✅ Vote YES</button>
+          <button class="btn btn-danger" onclick="vote(false)">❌ Vote NO</button>
+        </div>
+      </div>
+
+      <!-- Execute -->
+      <div class="mb-4">
+        <label for="executeId" class="form-label">⚔️ Execute proposal ID:</label>
+        <input type="number" id="executeId" class="form-control" placeholder="Enter proposal ID to execute" />
+        <button class="btn btn-outline-light mt-2" id="executeBtn">Execute Proposal</button>
+      </div>
+
+      <!-- Lore Unlock -->
+      <div id="loreUnlock" style="display:none; margin-top:30px; text-align:center;">
+        <a class="btn btn-warning" href="lore/arxium-scroll.pdf" target="_blank">📜 Unlock Lore</a>
+      </div>
+
+      <!-- Proposal List -->
+      <div class="mt-5">
+        <h3 class="text-center mb-3">📋 Active Proposals</h3>
+        <div id="proposalList"></div>
+      </div>
+
+      <p id="statusMsg" class="mt-4 text-center"></p>
+    </div>
   </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="signup.html">🧬 Join ZARUverse</a>
-    <a href="mint.html">🪙 Mint</a>
-    <a href="dao.html">⚖️ DAO Council</a>
-    <a href="whitepaper.html">📜 Whitepaper</a>
-    <a href="tokensale.html">💰 Token Sale</a>
-    <a href="https://tofunft.com/collection/zaruverse">🖼️ TofuNFT</a>
-  </nav>
-</header>
 
-<main>
-  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
-  <h1 style="font-size: 36px; font-weight: 900;">ZARUverse DAO Council</h1>
-  <p style="max-width:600px; margin:20px auto; font-size:16px;">
-    Submit proposals, vote, and shape the future of the realm. Only ZARU holders may speak.
-  </p>
-
-  <div id="access-denied" style="display:none; padding:30px;">
-    <h2>🚫 Access Denied</h2>
-    <p>You must hold ZARU Token to participate in DAO proposals.</p>
-    <a class="btn" href="https://tofunft.com/collection/zaruverse" target="_blank">Mint ZARU Token</a>
-  </div>
-
-  <section id="dao-section" style="display:none; max-width:600px; margin:40px auto;">
-    <form id="dao-form">
-      <input type="text" id="wallet" name="wallet" readonly placeholder="Wallet Address" class="btn" style="width:100%; margin-bottom:12px;" />
-      <textarea id="proposal" name="proposal" placeholder="Your proposal..." required style="width:100%; padding:12px; border-radius:10px; background:#111; color:#fff; border:1px solid rgba(255,215,0,0.2);"></textarea>
-      <button type="submit" class="btn primary" style="width:100%; margin-top:12px;">🗳️ Submit Proposal</button>
-    </form>
-    <div id="dao-success" style="display:none; margin-top:20px;">✅ Proposal submitted. The realm hears you.</div>
-  </section>
-</main>
-
-<footer>
-  <div>© ZARUverse. All rights reserved.</div>
-  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-</footer>
-
-<script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('show');
-  }
-
-  const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
-  const zaruTokenABI = [{
-    "constant": true,
-    "inputs": [{"name": "_owner", "type": "address"}],
-    "name": "balanceOf",
-    "outputs": [{"name": "balance", "type": "uint256"}],
-    "type": "function"
-  }];
-
-  async function checkZaruAccess() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider,
-        options: {
-          rpc: { 56: "https://bsc-dataseed.binance.org/" }
-        }
+  <script>
+    const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
+    const zaruTokenABI = [
+      {
+        "inputs": [{"internalType": "string","name": "text","type": "string"},{"internalType": "uint256","name": "duration","type": "uint256"}],
+        "name": "createProposal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"},{"internalType": "bool","name": "support","type": "bool"}],
+        "name": "voteOnProposal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"}],
+        "name": "executeProposal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"}],
+        "name": "getProposal",
+        "outputs": [
+          {"internalType": "string","name": "text","type": "string"},
+          {"internalType": "uint256","name": "yesVotes","type": "uint256"},
+          {"internalType": "uint256","name": "noVotes","type": "uint256"},
+          {"internalType": "uint256","name": "startTime","type": "uint256"},
+          {"internalType": "uint256","name": "duration","type": "uint256"},
+          {"internalType": "bool","name": "executed","type": "bool"}
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "proposalCount",
+        "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [{"internalType": "address","name": "user","type": "address"}],
+        "name": "hasNFT",
+        "outputs": [{"internalType": "bool","name": "","type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
       }
-    };
+    ];
 
-    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-    const instance = await web3Modal.connect();
-    const web3 = new Web3(instance);
-    const accounts = await web3.eth.getAccounts();
-    const userAddress = accounts[0];
-    document.getElementById("wallet").value = userAddress;
+    let web3;
+    let userAddress;
+    let zaruContract;
 
-    const tokenContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
-    const balance = await tokenContract.methods.balanceOf(userAddress).call();
-
-    if (parseInt(balance) > 0) {
-      document.getElementById("dao-section").style.display = "block";
-    } else {
-      document.getElementById("access-denied").style.display = "block";
-    }
-  }
-
-  window.addEventListener("load", () => {
-    checkZaruAccess();
-  });
-
-  document.getElementById("dao-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    grecaptcha.ready(function() {
-      grecaptcha.execute('6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ', {action: 'submit'}).then(function(token) {
-        const formData = new FormData(document.getElementById("dao-form"));
-        formData.append("g-recaptcha-response", token);
-
-        fetch("https://formcarry.com/s/_g23_Fh7JC5", {
-          method: "POST",
-          body: formData
-        })
-        .then(response => {
-          if (response.ok) {
-            document.getElementById("dao-form").style.display = "none";
-            document.getElementById("dao-success").style.display = "block";
-          } else {
-            alert("❌ Submission failed. Try again.");
+    async function connectWallet() {
+      const providerOptions = {
+        walletconnect: {
+          package: window.WalletConnectProvider,
+          options: {
+            rpc: { 56: "https://bsc-dataseed.binance.org/" }
           }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          alert("❌ Network error. Try again.");
-        });
-      });
-    });
-  });
-</script>
+        }
+      };
 
-</body>
-</html>
+      const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+      const instance = await web3Modal.connect();
+      web3 = new Web3(instance);
+      const accounts = await web3.eth.getAccounts();
+      userAddress = accounts[0];
+      zaruContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
+
+      document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
+      document.getElementById("daoArea").style.display = "block";
+      await loadProposals();
+    }
+
+    async function createProposal() {
+      const text = document.getElementById("proposalText").value;
+      const duration = document.getElementById("durationSeconds").value;
+      if (!text || !duration) return alert("❌ Enter text and duration");
+
+      document.getElementById("statusMsg").innerText = "⏳ Creating proposal...";
+      try {
+        await zaruContract.methods.createProposal(text, duration).send({ from: userAddress });
+        document.getElementById("statusMsg").innerText = "✅ Proposal submitted!";
+        await loadProposals();
+      } catch (err) {
+        console.error(err);
+        document.getElementById("statusMsg").innerText = "❌ Proposal failed.";
+      }
+    }
+
+    async function vote(support) {
+      const proposalId = document.getElementById("proposalId").value;
+      if (!proposalId) return alert("❌ Enter proposal ID");
+
+      const proposal = await zaruContract.methods.getProposal(proposalId).call();
+      const now = Math.floor(Date.now() / 1000);
+      const endTime = parseInt(proposal.startTime) + parseInt(proposal.duration);
+      if (now > endTime) return alert("⏳ Voting period has ended");
+
+      const hasNFT = await zaruContract.methods.hasNFT(userAddress).call();
+      if (!hasNFT) return alert("🚫 You must hold the required NFT to vote");
+
+      document.getElementById("statusMsg").innerText = "⏳ Voting...";
+      try {
+        await zaruContract.methods.voteOnProposal(proposalId, support).send({ from: userAddress });
+        document.getElementById("statusMsg").innerText = "✅ Vote submitted!";
+        await loadProposals();
+      } catch (err) {
+        console.error(err);
