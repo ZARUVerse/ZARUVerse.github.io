@@ -1,113 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>ZARUverse Whitepaper</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
   <style>
-    body {
-      background-color: #0f0f0f;
-      color: #ffd700;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      padding: 40px 20px;
+    :root {
+      --black: #0b0b0c; --white: #ffffff; --gold: #ffd700;
+      --light-bg: #f5f5f5; --light-text: #222;
     }
-    header img {
-      height: 80px;
-      margin-bottom: 20px;
+    [data-theme="dark"] {
+      --bg: var(--black); --text: var(--white); --card: rgba(255,255,255,0.04);
+      --hover: var(--gold); --hover-text: var(--black); --border: rgba(255,255,255,0.12);
     }
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    [data-theme="light"] {
+      --bg: var(--light-bg); --text: var(--light-text); --card: #fff;
+      --hover: var(--gold); --hover-text: var(--black); --border: rgba(0,0,0,0.1);
     }
-    .subtitle {
-      font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 30px;
-    }
-    .section {
-      background-color: #111;
-      border: 1px solid #ffd700;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 700px;
-      margin: 30px auto;
-    }
-    .section h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .section p {
-      font-size: 1rem;
-      color: #ccc;
-    }
-    .links {
-      margin-top: 30px;
-      font-size: 0.95rem;
-    }
-    .links a {
-      color: #00c9a7;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .links a:hover {
-      color: #fff;
-    }
+    body { margin:0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 40px 20px; }
+    .container { max-width: 980px; margin: 0 auto; }
+    .top { display:flex; justify-content: space-between; align-items:center; gap:12px; }
+    h1 { font-size: 36px; font-weight: 900; color: var(--hover); margin: 0 0 10px; }
+    h2 { font-size: 22px; color: var(--hover); margin: 28px 0 10px; }
+    p { line-height: 1.7; opacity: .9; margin: 10px 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 16px 0; }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+    @media(min-width: 860px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .theme-toggle { background: var(--hover); color: var(--hover-text); border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
+    .btn { display:inline-block; padding:10px 14px; background: var(--card); border:1px solid var(--border); color: var(--text); text-decoration:none; border-radius:10px; font-weight:600; }
+    .btn:hover { background: var(--hover); color: var(--hover-text); }
+    footer { margin-top: 40px; font-size: 13px; opacity: .65; text-align: center; }
+    ul { margin: 10px 0 0 18px; }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="top">
+      <h1>📄 ZARUverse Whitepaper</h1>
+      <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
+    </div>
 
-  <header>
-    <img src="lion-logo.png" alt="ZARUverse Logo">
-  </header>
+    <div class="card">
+      <h2>Abstract</h2>
+      <p>ZARUverse یک اکوسیستم برند-محور روی BNB Chain است که با دو توکن ZARU و DMD و نقش Relic (Arxium) اداره می‌شود. ZARU نبض تعاملات است؛ DMD تاج حاکمیت. رأی‌دهی در Snapshot و اجرا از طریق قراردادها و سیاست‌های خزانه صورت می‌گیرد.</p>
+    </div>
 
-  <h1>ZARUverse WHITEPAPER</h1>
-  <p class="subtitle">The vision. The myth. The path to the Verse unleashed.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Network</h2>
+        <p>BNB Smart Chain (Chain ID: 56). سازگار با EVM، کارمزد پایین، مناسب برای DeFi/NFT/DAO.</p>
+        <div class="links">
+          <a class="btn" target="_blank" href="https://bscscan.com">BSCScan</a>
+          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Snapshot: zaruverse.bnb</a>
+        </div>
+      </div>
 
-  <div class="section">
-    <h2>Enter the ZARUverse</h2>
-    <p>Weaving myth, NFTs, and DeFi into a woven legend. The Whitepaper of ZARUverse guides the journey of our decentralized realm.</p>
+      <div class="card">
+        <h2>Tokens</h2>
+        <p><strong>ZARU</strong>: توکن Utility برای تعاملات، رأی عمومی، staking و lore unlock.</p>
+        <p><strong>DMD</strong>: توکن Prestige برای رأی طلایی، کنترل خزانه، دسترسی‌های ویژه.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Token contracts</h2>
+      <p><strong>ZARU:</strong> <span class="mono">0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</span></p>
+      <p><a class="btn" target="_blank" href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">View ZARU on BSCScan</a></p>
+      <p><strong>DMD:</strong> <span class="mono">0x8c4C0116d051f6F2EA27e8Fa7614c8f799191ab3</span></p>
+      <p><a class="btn" target="_blank" href="https://bscscan.com/token/0x8c4C0116d051f6F2EA27e8Fa7614c8f799191ab3">View DMD on BSCScan</a></p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Governance</h2>
+        <ul>
+          <li><strong>Model:</strong> Dual-token + Relic gating</li>
+          <li><strong>Voting:</strong> Snapshot (zaruverse.bnb)</li>
+          <li><strong>Weights:</strong> ZARU = رأی عمومی، DMD = رأی طلایی</li>
+          <li><strong>Gating:</strong> Arxium برای فعال‌سازی رأی (در صورت تعریف)</li>
+        </ul>
+        <div class="links" style="margin-top:12px;">
+          <a class="btn" href="governance.html">Governance page</a>
+          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Vote on Snapshot</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Relics</h2>
+        <p>Relicها کلیدهای حاکمیتی‌اند. Arxium رأی را فعال می‌کند؛ Vaultbound حافظه را می‌گشاید. نسل‌های بعدی Relic، دسترسی‌ها و آیین‌های تازه می‌آورند.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Treasury</h2>
+        <ul>
+          <li><strong>Sources:</strong> کارمزدها، فروش NFT/توکن، مشارکت‌ها</li>
+          <li><strong>Uses:</strong> توسعه پروتکل، هنری/برند، نقدینگی، عملیات</li>
+          <li><strong>Controls:</strong> Proposal → Snapshot → Execution policy</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Roadmap</h2>
+        <ul>
+          <li><strong>Phase I:</strong> راه‌اندازی وب + توکن‌ها + Snapshot</li>
+          <li><strong>Phase II:</strong> Relic utilities + staking + lore unlock</li>
+          <li><strong>Phase III:</strong> DAO عملیات خزانه + ادغام‌های صرافی/NFT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Security & audit</h2>
+      <ul>
+        <li><strong>Best practices:</strong> حداقل دسترسی، timelock، چندامضایی برای خزانه</li>
+        <li><strong>Audit:</strong> افزودن گزارش‌های ممیزی پس از انتشار رسمی</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Legal notice</h2>
+      <p>این سند صرفاً اطلاع‌رسانی است و مشاوره مالی/حقوقی نیست. مشارکت در رمزارزها دارای ریسک است. قوانین محل سکونت خود را بررسی کنید.</p>
+    </div>
+
+    <div class="links">
+      <a class="btn" href="index.html">← Home</a>
+      <a class="btn" href="token.html">Tokens</a>
+      <a class="btn" href="governance.html">Governance</a>
+      <a class="btn" href="claim.html">Claim</a>
+    </div>
+
+    <footer>© ZARUverse — written in myth, executed on-chain.</footer>
   </div>
 
-  <div class="section">
-    <h2>Explore the Whitepaper</h2>
-    <p>📜 <a href="#intro">Introduction</a></p>
-    <p>💡 <a href="#tokenomics">Tokenomics</a></p>
-    <p>⚔️ <a href="#dao">DAO Governance</a></p>
-    <p>🔥 <a href="#conclusion">Conclusion</a></p>
-  </div>
-
-  <div class="section" id="intro">
-    <h2>Introduction</h2>
-    <p>ZARU is the mythic token of the Verse. Born from code, designed for viral power, and forged to unlock lore, stake, and govern.</p>
-  </div>
-
-  <div class="section" id="tokenomics">
-    <h2>Tokenomics</h2>
-    <p>Total Supply: 1,000,000,000 ZARU<br>
-    Deflationary model with burn mechanics<br>
-    40% Public Sale, 20% DAO Treasury, 20% Team & Advisors, 10% Liquidity, 10% Lore Unlock</p>
-  </div>
-
-  <div class="section" id="dao">
-    <h2>DAO Governance</h2>
-    <p>Holders of ZARU gain voting rights in the Verse. Proposals include lore expansion, treasury allocation, and ambassador selection.</p>
-  </div>
-
-  <div class="section" id="conclusion">
-    <h2>Conclusion</h2>
-    <p>ZARUverse is not just a token—it's a mythic movement. Join the Verse. Stake the power. Shape the legend.</p>
-  </div>
-
-  <div class="links">
-    <a href="docs.html">📘 Docs</a>
-    <a href="https://zaruverse.gitbook.io">📖 GitBook</a>
-    <a href="mailto:zaru.verse@makise.io">📧 Contact Team</a>
-    <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
-  </div>
-
+  <script>
+    function toggleTheme(){
+      const d=document.documentElement; const n=d.getAttribute('data-theme')==='dark'?'light':'dark';
+      d.setAttribute('data-theme', n); localStorage.setItem('theme', n);
+    }
+    (function(){ const s=localStorage.getItem('theme'); if(s){ document.documentElement.setAttribute('data-theme', s); }})();
+  </script>
 </body>
 </html>
