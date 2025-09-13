@@ -1,38 +1,128 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lore Unlock – ZARUverse</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: #ffd700;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .logo {
-      height: 80px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px gold;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    .coming {
-      font-size: 1.2rem;
-      color: #ffd700;
-    }
-  </style>
+  <title>ZARUverse | Lore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/template.css" />
+
+  <!-- Web3Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
+  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
 </head>
+
 <body>
-  <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
-  <h1>Lore Unlock</h1>
-  <p class="coming">🔒 Coming Soon</p>
+<header>
+  <div class="mobile-header">
+    <a class="brand" href="index.html">ZARUverse</a>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="mint.html">🪙 Mint</a>
+    <a href="vault.html">🔐 Vault</a>
+    <a href="dao.html">⚖️ DAO</a>
+    <a href="membership.html">🧬 Membership</a>
+    <a href="tokensale.html">💰 Token Sale</a>
+    <a href="lore.html">📜 Lore</a>
+  </nav>
+</header>
+
+<main>
+  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
+  <h1 style="font-size: 36px; font-weight: 900;">📜 Lore of ZARUverse</h1>
+  <p style="max-width:600px; margin:20px auto; font-size:16px;">
+    The realm was forged in silence. The Lion rose. The Arxium was minted.  
+    Only those who hold the sigil may unlock the deeper truths.
+  </p>
+
+  <div id="wallet-section" style="margin-top:30px;">
+    <button class="btn primary" id="connect-wallet">🔗 Connect Wallet</button>
+    <p id="wallet-address" style="margin-top:10px;"></p>
+  </div>
+
+  <div id="lore-public" style="margin-top:40px;">
+    <h2>🌕 Public Lore</h2>
+    <p style="max-width:600px; margin:20px auto;">
+      Long before the DAO Council was formed, the ZARU token was whispered into existence by the unseen architects.  
+      The Lion sigil appeared on-chain, and the first Arxium NFT was minted—Leader of the DAO.  
+      But this is only the surface. The deeper scrolls are encrypted.
+    </p>
+  </div>
+
+  <div id="lore-private" style="display:none; margin-top:40px;">
+    <h2>🌑 Hidden Lore (Unlocked)</h2>
+    <p style="max-width:600px; margin:20px auto;">
+      You hold the Arxium. The realm recognizes your authority.  
+      The encrypted scrolls reveal the origin of the DAO, the prophecy of the 7 sigils, and the forbidden vault beneath the chain.  
+      <a class="btn" href="lore/arxium-scroll.pdf" target="_blank">📜 Read Arxium Scroll</a>  
+      <a class="btn" href="vault.html">🔐 Enter Vault</a>
+    </p>
+  </div>
+
+  <div id="lore-denied" style="display:none; margin-top:40px; text-align:center;">
+    <h2>🚫 Lore Locked</h2>
+    <p>You must hold an Arxium NFT to unlock the hidden scrolls.</p>
+    <a class="btn" href="mint.html">🪙 Mint Arxium NFT</a>
+  </div>
+</main>
+
+<footer>
+  <div>© ZARUverse. All rights reserved.</div>
+  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('show');
+  }
+
+  const contractAddress = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
+  const contractABI = [
+    {
+      "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+      "name": "balanceOf",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
+
+  let web3;
+  let userAddress;
+
+  async function connectWallet() {
+    const providerOptions = {
+      walletconnect: {
+        package: window.WalletConnectProvider,
+        options: {
+          rpc: { 56: "https://bsc-dataseed.binance.org/" }
+        }
+      }
+    };
+
+    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+    const instance = await web3Modal.connect();
+    web3 = new Web3(instance);
+    const accounts = await web3.eth.getAccounts();
+    userAddress = accounts[0];
+    document.getElementById("wallet-address").innerText = `Connected: ${userAddress}`;
+
+    const contract = new web3.eth.Contract(contractABI, contractAddress);
+    const balance = await contract.methods.balanceOf(userAddress).call();
+
+    if (parseInt(balance) > 0) {
+      document.getElementById("lore-private").style.display = "block";
+    } else {
+      document.getElementById("lore-denied").style.display = "block";
+    }
+  }
+
+  document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+</script>
+
 </body>
 </html>
