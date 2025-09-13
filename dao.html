@@ -1,38 +1,133 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DAO Voting – ZARUverse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: #ffd700;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .logo {
-      height: 80px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px gold;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    .coming {
-      font-size: 1.2rem;
-      color: #ffd700;
-    }
-  </style>
+  <title>ZARUverse DAO Portal</title>
+
+  <!-- Fonts + Branding -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/template.css" />
+
+  <!-- reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ"></script>
+
+  <!-- Web3Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
+  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
 </head>
+
 <body>
-  <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Lion Logo" class="logo">
-  <h1>DAO Voting</h1>
-  <p class="coming">🗳 Coming Soon</p>
+  <header>
+    <!-- Optional: Navbar from template.html -->
+  </header>
+
+  <main>
+    <section id="dao-section" style="display:none;">
+      <h1 style="text-align:center;">🗳️ ZARUverse DAO Portal</h1>
+      <p style="text-align:center;">Submit proposals, vote, and shape the future of the realm.</p>
+
+      <form id="dao-form">
+        <div class="formcarry-block">
+          <label for="wallet">Wallet Address</label>
+          <input type="text" name="wallet" id="wallet" readonly />
+        </div>
+
+        <div class="formcarry-block">
+          <label for="proposal">Your Proposal</label>
+          <textarea name="proposal" id="proposal" placeholder="Describe your idea or vote..." required></textarea>
+        </div>
+
+        <div class="formcarry-block">
+          <button type="submit">Submit Proposal</button>
+        </div>
+      </form>
+
+      <div id="dao-success" style="display:none; text-align:center; padding:20px;">
+        ✅ Proposal submitted. The realm hears you.
+      </div>
+    </section>
+
+    <div id="access-denied" style="display:none; text-align:center; padding:40px;">
+      <h2>🚫 Access Denied</h2>
+      <p>You must hold ZARU Token to participate in DAO proposals.</p>
+      <a href="https://tofunft.com/collection/zaruverse" target="_blank">Mint ZARU Token</a>
+    </div>
+  </main>
+
+  <footer>
+    <!-- Optional: Footer from template.html -->
+  </footer>
+
+  <script>
+    const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
+    const zaruTokenABI = [{
+      "constant": true,
+      "inputs": [{"name": "_owner", "type": "address"}],
+      "name": "balanceOf",
+      "outputs": [{"name": "balance", "type": "uint256"}],
+      "type": "function"
+    }];
+
+    async function checkZaruAccess() {
+      const providerOptions = {
+        walletconnect: {
+          package: window.WalletConnectProvider,
+          options: {
+            rpc: { 56: "https://bsc-dataseed.binance.org/" }
+          }
+        }
+      };
+
+      const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
+      const instance = await web3Modal.connect();
+      const web3 = new Web3(instance);
+      const accounts = await web3.eth.getAccounts();
+      const userAddress = accounts[0];
+      document.getElementById("wallet").value = userAddress;
+
+      const tokenContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
+      const balance = await tokenContract.methods.balanceOf(userAddress).call();
+
+      if (parseInt(balance) > 0) {
+        document.getElementById("dao-section").style.display = "block";
+      } else {
+        document.getElementById("access-denied").style.display = "block";
+      }
+    }
+
+    window.addEventListener("load", () => {
+      checkZaruAccess();
+    });
+
+    document.getElementById("dao-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ', {action: 'submit'}).then(function(token) {
+          const formData = new FormData(document.getElementById("dao-form"));
+          formData.append("g-recaptcha-response", token);
+
+          fetch("https://formcarry.com/s/_g23_Fh7JC5", {
+            method: "POST",
+            body: formData
+          })
+          .then(response => {
+            if (response.ok) {
+              document.getElementById("dao-form").style.display = "none";
+              document.getElementById("dao-success").style.display = "block";
+            } else {
+              alert("❌ Submission failed. Try again.");
+            }
+          })
+          .catch(error => {
+            console.error("Error:", error);
+            alert("❌ Network error. Try again.");
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
