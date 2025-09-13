@@ -1,347 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse | Claim the Relic</title>
+  <title>ZARUverse Gateway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
   <style>
     :root {
       --black: #0b0b0c;
+      --white: #ffffff;
       --gold: #ffd700;
-      --gray: #e8e8e8;
       --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
+    }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: var(--deep);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
     }
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: var(--black);
-      color: var(--gray);
-    }
-    header {
-      background: var(--black);
-      border-bottom: 1px solid rgba(255,215,0,.12);
-    }
-    .mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-    }
-    .brand {
-      font-weight: 800;
-      color: var(--gold);
-      font-size: 20px;
-      text-decoration: none;
-    }
-    .hamburger {
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: var(--gold);
-      cursor: pointer;
-    }
-    .mobile-menu {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      padding: 0;
-      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-      background: var(--deep);
-      border-top: 1px solid rgba(255,215,0,.12);
-      display: flex;
-      flex-direction: column;
-    }
-    .mobile-menu.show {
-      max-height: 1000px;
-      opacity: 1;
-      padding: 10px 0;
-    }
-    .mobile-menu a {
-      padding: 12px 20px;
-      font-size: 16px;
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,215,0,.08);
-    }
-    main {
-      background: url('zaru-lion.jpg') center/cover no-repeat;
-      padding: 80px 20px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
       text-align: center;
-      min-height: 100vh;
-      position: relative;
-      color: #000;
+      transition: background 0.3s ease, color 0.3s ease;
     }
-    main::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.28);
-      pointer-events: none;
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
     }
-    main > * {
-      position: relative;
-      z-index: 1;
+    p {
+      font-size: 16px;
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: var(--hover);
+      margin-bottom: 12px;
+    }
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .link-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    .link-list a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      font-weight: bold;
+      box-shadow: 0 0 12px rgba(255,215,0,0.3);
+    }
+    .link-list img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: invert(100%);
     }
     footer {
-      padding: 40px 20px;
-      border-top: 1px solid rgba(255,215,0,.12);
-      text-align: center;
-      font-size: 14px;
-      color: #aaa;
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
     }
-    .btn {
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.2);
-      color: #111;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(2px);
-      cursor: pointer;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      margin: 6px;
-    }
-    .btn.primary {
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      font-weight: 900;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0.4); }
-      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,215,0,0.6); }
-      100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0.4); }
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .link-list a { font-size: 14px; padding: 10px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="mobile-header">
-    <a class="brand" href="https://zaruverse.github.io">ZARUverse</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+
+<h1>🛡️ ZARUverse Gateway</h1>
+<p>Welcome to the decentralized realm of branded crypto ecosystems. Choose your path.</p>
+
+<div class="section">
+  <h2>🌐 Main & Ecosystem</h2>
+  <div class="link-list">
+    <a href="https://zaruverse.github.io"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/internetarchive.svg" alt="">Main Site</a>
+    <a href="https://zaruverse.github.io/philosophy.html"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/thoughtworks.svg" alt="">Philosophy (Coming Soon)</a>
+    <a href="https://zaruverse.github.io/technology.html"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/gnome.svg" alt="">Technology (Coming Soon)</a>
+    <a href="https://zaruverse.github.io/governance.html"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/civicrm.svg" alt="">Governance (Coming Soon)</a>
+    <a href="https://zaruverse.github.io/whitepaper.html">📜 Whitepaper</a>
+    <a href="https://zaruverse.github.io/template.html">🧬 Template</a>
+    <a href="https://zaruverse.github.io/membership.html">🎟️ Membership</a>
+    <a href="https://zaruverse.github.io/nft.html">🖼️ NFT</a>
+    <a href="https://zaruverse.github.io/staking.html">⚔️ Staking</a>
+    <a href="https://zaruverse.github.io/lore.html">📖 Lore</a>
+    <a href="https://zaruverse.github.io/vault.html">🔐 Vault</a>
+    <a href="https://zaruverse.github.io/mint.html">🎁 Mint</a>
+    <a href="https://zaruverse.github.io/dao.html">⚖️ DAO</a>
+    <a href="https://zaruverse.github.io/tokensale.html">💰 Token Sale</a>
   </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <!-- Internal Pages -->
-    <a href="staking.html">⚔️ Staking</a>
-    <a href="dao.html">⚖️ DAO</a>
-    <a href="mint.html">🪙 Mint</a>
-    <a href="tokensale.html">💳 Token Sale</a>
-    <a href="vault.html">🔐 Vault</a>
-    <a href="lore.html">📖 Lore</a>
-    <a href="whitepaper.html">📜 Whitepaper</a>
-    <a href="template.html">📐 Template</a>
-    <a href="membership.html">🎟️ Membership</a>
-    <a href="docs">📚 Docs</a>
-    <a href="https://zaruverse.gitbook.com">📘 GitBook</a>
+</div>
 
-    <!-- Social & Community -->
-    <a href="https://x.com/zaruverse">🐦 X (Twitter)</a>
-    <a href="https://facebook.com/zaruverse">📘 Facebook</a>
-    <a href="https://instagram.com/zaruverse">📸 Instagram</a>
-    <a href="https://youtube.com/zaruverse">📺 YouTube</a>
-    <a href="https://reddit.com/u/zaruverse">👽 Reddit</a>
-    <a href="https://hey.xyz/u/zaruverse">🌐 hey.xyz</a>
-    <a href="https://www.linkdin.com/in/zaruverse">💼 LinkedIn</a>
-    <a href="https://discord.gg/EWVcrwwJ">💬 Discord</a>
-    <a href="https://t.me/zaruverse">📲 Telegram</a>
-    <a href="https://t.me/zaruversebot/app">🤖 Telegram Bot</a>
-    <a href="https://t.me/zaru-eco">🌱 Zaru Eco</a>
-
-    <!-- Technical & Resources -->
-    <a href="https://github.com/zaruverse">💻 GitHub</a>
-    <a href="https://github.com/zaruverse/zarutoken-contract">📦 ZARU Token Contract</a>
-    <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">📄 Whitepaper PDF</a>
-    <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">🗣️ Bitcointalk</a>
-    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">🔄 Swap Token</a>
-    <a href="https://docs.google.com/document/d/14BlP3MmsBDyah9iWRO1pKEQBdXeXw3PP0R3Ajd9W1ZI/edit?usp=drivesdk">📄 Google Docs</a>
-    <a href="mailto:zaru.verse@makese.io">📩 Contact</a>
-  </nav>
-</header>
-
-<main>
-  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
-
-  <h1 style="font-size: 36px; font-weight: 900;">Claim the Relic. Unlock the Lore.</h1>
-  <p style="max-width:600px; margin:20px auto; font-size:16px;">
-    Arxium isn’t just an NFT. It’s your command seat in the DAO. Your key to encrypted prophecy. Your symbol of power.
-  </p>
-
-  <p style="font-size:18px; font-weight:700; color:#000; margin-top:40px;">
-    Only holders of Arxium command the prophecy. Mint yours. Rule the realm.
-  </p>
-
-  <div style="margin: 30px 0;">
-    <a href="staking.html" class="btn">⚔️ Stake ZARU</a>
-    <a href="dao.html" class="btn">⚖️ Enter DAO</a>
-    <a href="mint.html" class="btn">🪙 Mint Tokens</a>
-    <a href="tokensale.html" class="btn">💳 Buy ZARU</a>
-    <a href="vault.html" class="btn">🔐 Vault</a>
-    <a href="lore.html" class="btn">📖 Lore</a>
-        <a href="whitepaper.html" class="btn">📜 Whitepaper</a>
-    <a href="https://github.com/zaruverse/zarutoken-contract" class="btn">💻 Token Contract</a>
-    <a href="https://youtube.com/zaruverse" class="btn">📺 YouTube</a>
-    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" class="btn">🔄 Swap Token</a>
+<div class="section">
+  <h2>📡 Social Channels</h2>
+  <div class="link-list">
+    <a href="https://facebook.com/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="">Facebook</a>
+    <a href="https://x.com/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/x.svg" alt="">X (Twitter)</a>
+    <a href="https://instagram.com/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/instagram.svg" alt="">Instagram</a>
+    <a href="https://youtube.com/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/youtube.svg" alt="">YouTube</a>
+    <a href="https://reddit.com/u/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/reddit.svg" alt="">Reddit</a>
+    <a href="https://hey.xyz/u/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/hey.svg" alt="">Hey.xyz</a>
+    <a href="https://www.linkdin.com/in/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/linkedin.svg" alt="">LinkedIn</a>
   </div>
+</div>
 
-  <div style="margin-top:60px;">
-    <h2 style="color:#000;">🔓 Unlock the Lore</h2>
-    <p id="walletStatus">Connect your wallet to verify ownership of Arxium NFT.</p>
-    <button onclick="connectWallet()" class="btn primary">🔗 Connect Wallet</button>
-    <button onclick="disconnectWallet()" class="btn">⛓ Disconnect</button>
-    <div id="loreOutput" style="margin-top:30px; font-size:16px; max-width:600px; margin-left:auto; margin-right:auto; white-space:pre-wrap;"></div>
+<div class="section">
+  <h2>💬 Telegram & Discord</h2>
+  <div class="link-list">
+    <a href="https://t.me/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/telegram.svg" alt="">Telegram Channel</a>
+    <a href="https://t.me/zaruversebot/app"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/telegram.svg" alt="">Telegram Bot</a>
+    <a href="https://t.me/zaru-eco"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/telegram.svg" alt="">Telegram Eco</a>
+    <a href="https://discord.gg/EWVcrwwJ"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/discord.svg" alt="">Discord</a>
   </div>
-</main>
+</div>
 
-<footer>
-  <div>© ZARUverse. All rights reserved.</div>
-  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-</footer>
+<div class="section">
+  <h2>🧠 Dev & Token</h2>
+  <div class="link-list">
+    <a href="https://github.com/zaruverse"><img src="https://cdn
+    <a href="https://github.com/zaruverse"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg" alt="">GitHub</a>
+    <a href="https://github.com/zaruverse/zarutoken-contract"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/ethereum.svg" alt="">ZARU Token Contract</a>
+    <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/adobeacrobatreader.svg" alt="">Whitepaper PDF</a>
+    <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/coinmarketcap.svg" alt="">GeckoTerminal Pool</a>
+    <a href="https://bitcointalk.org/index.php?topic=5558498.new#new"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/bitcoincash.svg" alt="">Bitcointalk Thread</a>
+    <a href="mailto:zaru.verse@makese.io"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/maildotru.svg" alt="">Email: zaru.verse@makese.io</a>
+  </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
+<div class="section">
+  <h2>📚 Docs & Resources</h2>
+  <div class="link-list">
+    <a href="https://zaruverse.github.io/docs"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/readthedocs.svg" alt="">Docs</a>
+    <a href="https://zaruverse.gitbook.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/gitbook.svg" alt="">GitBook</a>
+    <a href="https://docs.google.com/document/d/14BlP3MmsBDyah9iWRO1pKEQBdXeXw3PP0R3Ajd9W1ZI/edit?usp=drivesdk"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/googledocs.svg" alt="">Google Docs</a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🖼️ Branding</h2>
+  <div class="link-list">
+    <a href="https://i.postimg.cc/fL1KKjk0/output-onlinepngtools-1.png"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/png.svg" alt="">Logo PNG</a>
+  </div>
+</div>
+
+<footer>© ZARUverse — forged for the uncrowned kings.</footer>
 
 <script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('show');
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
   }
 
-  const CONTRACT_ADDRESS = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
-  const ABI = [
-    {
-      constant: true,
-      inputs: [{ name: "owner", type: "address" }],
-      name: "balanceOf",
-      outputs: [{ name: "", type: "uint256" }],
-      type: "function"
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
     }
-  ];
-  const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
-
-  let web3Modal, provider, web3, userAddress;
-
-  async function connectWallet() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider,
-        options: {
-          rpc: { 56: "https://bsc-dataseed.binance.org/" },
-          chainId: 56
-        }
-      }
-    };
-
-    web3Modal = new window.Web3Modal.default({
-      cacheProvider: false,
-      providerOptions
-    });
-
-    try {
-      provider = await web3Modal.connect();
-      web3 = new Web3(provider);
-
-      provider.on && provider.on('accountsChanged', (accounts) => handleAccountsChanged(accounts));
-      provider.on && provider.on('chainChanged', (chainId) => handleChainChanged(chainId));
-      provider.on && provider.on('disconnect', () => disconnectWallet());
-
-      const accounts = await web3.eth.getAccounts();
-      handleAccountsChanged(accounts);
-    } catch (err) {
-      setStatus("❌ Wallet connection failed.");
-    }
-  }
-
-  function setStatus(text) {
-    document.getElementById("walletStatus").innerText = text;
-  }
-
-  function handleAccountsChanged(accounts) {
-    if (!accounts || !accounts.length) {
-      userAddress = undefined;
-      setStatus("🪪 Wallet connected. No account selected.");
-      return;
-    }
-    userAddress = accounts[0];
-    setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain expected`);
-    checkOwnership();
-  }
-
-  async function handleChainChanged(chainIdHex) {
-    const chainId = parseInt(chainIdHex, 16);
-    if (chainId !== 56) {
-      setStatus(`⚠️ Wrong network (ChainId ${chainId}). Switch to BNB Chain (56).`);
-    } else {
-      setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain`);
-      checkOwnership();
-    }
-  }
-
-  function short(addr) {
-    return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "";
-  }
-
-  async function disconnectWallet() {
-    try {
-      if (provider && provider.disconnect) await provider.disconnect();
-    } catch(e) {}
-    provider = undefined;
-    web3 = undefined;
-    userAddress = undefined;
-    setStatus("🔌 Disconnected. Connect to unlock the lore.");
-    document.getElementById("loreOutput").innerText = "";
-  }
-
-  async function checkOwnership() {
-    try {
-      const netId = await web3.eth.getChainId();
-      if (netId !== 56) {
-        setStatus(`⚠️ Wrong network (ChainId ${netId}). Please switch to BNB Chain (56).`);
-        return;
-      }
-      const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-      const balance = await contract.methods.balanceOf(userAddress).call();
-      if (Number(balance) > 0) {
-        setStatus(`🛡️ Holder verified — ${short(userAddress)} | Loading lore...`);
-        document.querySelector('.btn.primary').innerText = "✅ You Hold Arxium";
-        fetchLore();
-      } else {
-        document.getElementById("loreOutput").innerText =
-          "🚫 No Arxium detected. Mint the relic to unlock encrypted prophecy.";
-        document.querySelector('.btn.primary').innerText = "🛡️ Mint Arxium Now";
-      }
-    } catch (err) {
-      document.getElementById("loreOutput").innerText = "⚠️ Verification failed. Check contract address/ABI/network.";
-    }
-  }
-
-  async function fetchLore() {
-    try {
-      const res = await fetch(IPFS_LORE, { cache: "no-store" });
-      if (!res.ok) throw new Error("IPFS fetch failed");
-      const text = await res.text();
-      typeLore(text);
-    } catch (err) {
-      document.getElementById("loreOutput").innerText = "⚠️ Failed to load lore from IPFS.";
-    }
-  }
-
-  function typeLore(text) {
-    const out = document.getElementById("loreOutput");
-    out.innerHTML = "";
-    let i = 0;
-    const speed = 26;
-    const timer = setInterval(() => {
-      out.innerHTML += text[i] || "";
-      i++;
-      if (i >= text.length) clearInterval(timer);
-    }, speed);
-  }
+  })();
 </script>
 
 </body>
 </html>
-
