@@ -1,242 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse | DAO</title>
+  <title>ZARUverse DAO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
-  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
+  <meta name="theme-color" content="#0b0b0c" />
+  <style>
+    :root {
+      --black: #0b0b0c;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
+    }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: rgba(255,255,255,0.04);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.7);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.7);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('zaru-lion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text);
+      padding: 40px 20px;
+      text-align: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--hover);
+      margin-top: 40px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 800px;
+      margin: 12px auto;
+      line-height: 1.6;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .dao-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .dao-card h3 {
+      color: var(--hover);
+      margin-top: 0;
+    }
+    .dao-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dao-card li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 15px;
+    }
+    .dao-card li:last-child {
+      border-bottom: none;
+    }
+    .back-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .back-links a {
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .back-links a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      box-shadow: 0 0 12px rgba(255,215,0,0.28);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-dark text-light">
-  <div class="container py-5">
-    <h1 class="display-4 fw-bold text-center mb-4">⚖️ ZARU DAO</h1>
-    <p class="lead text-center mb-5">Propose. Vote. Execute. Unlock the encrypted realm.</p>
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
 
-    <div class="text-center mb-4">
-      <button class="btn btn-warning btn-lg" id="connectWallet">🔗 Connect Wallet</button>
-      <p id="walletAddress" class="mt-3"></p>
-    </div>
+<h1>⚖️ ZARUverse DAO</h1>
+<p>Governance in ZARUverse is not delegated—it is earned. Holders of Arxium relics shape the future through vote, lore, and sovereign will.</p>
 
-    <div id="daoArea" style="display:none;">
-      <!-- Create Proposal -->
-      <div class="mb-4">
-        <label for="proposalText" class="form-label">📜 Create a proposal:</label>
-        <input type="text" id="proposalText" class="form-control" placeholder="e.g. Increase staking rewards" />
-        <label for="durationSeconds" class="form-label mt-2">⏱️ Voting duration (seconds):</label>
-        <input type="number" id="durationSeconds" class="form-control" placeholder="e.g. 86400 for 1 day" />
-        <button class="btn btn-success mt-2" id="createProposalBtn">Submit Proposal</button>
-      </div>
+<div class="dao-card">
+  <h3>🧬 DAO Mechanics</h3>
+  <ul>
+    <li>✅ Voting rights gated by Arxium – Leader of DAO</li>
+    <li>📜 Proposals submitted via on-chain interface (coming soon)</li>
+    <li>🗳️ Snapshot-based voting with relic verification</li>
+    <li>⛓️ Governance actions: treasury, lore unlocks, relic minting</li>
+    <li>🔐 Role-based access for proposal creation and execution</li>
+  </ul>
+</div>
 
-      <!-- Vote -->
-      <div class="mb-4">
-        <label for="proposalId" class="form-label">🗳️ Vote on proposal ID:</label>
-        <input type="number" id="proposalId" class="form-control" placeholder="Enter proposal ID" />
-        <div class="d-grid gap-2 mt-2">
-          <button class="btn btn-primary" onclick="vote(true)">✅ Vote YES</button>
-          <button class="btn btn-danger" onclick="vote(false)">❌ Vote NO</button>
-        </div>
-      </div>
+<h2>👑 Arxium Relic</h2>
+<p>Only holders of Arxium may vote. This relic is the crown—not given, but claimed.</p>
+<a href="https://web3.okx.com/ul/RpJofDq" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:#ffd700;color:#000;border-radius:8px;font-weight:bold;text-decoration:none;">View Arxium on OKX</a>
 
-      <!-- Execute -->
-      <div class="mb-4">
-        <label for="executeId" class="form-label">⚔️ Execute proposal ID:</label>
-        <input type="number" id="executeId" class="form-control" placeholder="Enter proposal ID to execute" />
-        <button class="btn btn-outline-light mt-2" id="executeBtn">Execute Proposal</button>
-      </div>
+<div class="back-links">
+  <a href="index.html">← Gateway</a>
+  <a href="nft.html">🖼️ NFTs</a>
+  <a href="claim.html">🎁 Claim</a>
+  <a href="lore.html">📖 Lore</a>
+  <a href="technology.html">⚙️ Tech</a>
+</div>
 
-      <!-- Lore Unlock -->
-      <div id="loreUnlock" style="display:none; margin-top:30px; text-align:center;">
-        <a class="btn btn-warning" href="lore/arxium-scroll.pdf" target="_blank">📜 Unlock Lore</a>
-      </div>
+<footer>© ZARUverse — governed by the uncrowned.</footer>
 
-      <!-- Proposal List -->
-      <div class="mt-5">
-        <h3 class="text-center mb-3">📋 Active Proposals</h3>
-        <div id="proposalList"></div>
-      </div>
-
-      <p id="statusMsg" class="mt-4 text-center"></p>
-    </div>
-  </div>
-
-  <script>
-    const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
-    const zaruTokenABI = [
-      {
-        "inputs": [{"internalType": "string","name": "text","type": "string"},{"internalType": "uint256","name": "duration","type": "uint256"}],
-        "name": "createProposal",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"},{"internalType": "bool","name": "support","type": "bool"}],
-        "name": "voteOnProposal",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"}],
-        "name": "executeProposal",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [{"internalType": "uint256","name": "id","type": "uint256"}],
-        "name": "getProposal",
-        "outputs": [
-          {"internalType": "string","name": "text","type": "string"},
-          {"internalType": "uint256","name": "yesVotes","type": "uint256"},
-          {"internalType": "uint256","name": "noVotes","type": "uint256"},
-          {"internalType": "uint256","name": "startTime","type": "uint256"},
-          {"internalType": "uint256","name": "duration","type": "uint256"},
-          {"internalType": "bool","name": "executed","type": "bool"}
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "proposalCount",
-        "outputs": [{"internalType": "uint256","name": "","type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [{"internalType": "address","name": "user","type": "address"}],
-        "name": "hasNFT",
-        "outputs": [{"internalType": "bool","name": "","type": "bool"}],
-        "stateMutability": "view",
-        "type": "function"
-      }
-    ];
-
-    let web3;
-    let userAddress;
-    let zaruContract;
-
-    async function connectWallet() {
-      const providerOptions = {
-        walletconnect: {
-          package: window.WalletConnectProvider,
-          options: {
-            rpc: { 56: "https://bsc-dataseed.binance.org/" }
-          }
-        }
-      };
-
-      const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-      const instance = await web3Modal.connect();
-      web3 = new Web3(instance);
-      const accounts = await web3.eth.getAccounts();
-      userAddress = accounts[0];
-      zaruContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
-
-      document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
-      document.getElementById("daoArea").style.display = "block";
-      await loadProposals();
+<script>
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
     }
+  })();
+</script>
 
-    async function createProposal() {
-      const text = document.getElementById("proposalText").value;
-      const duration = document.getElementById("durationSeconds").value;
-      if (!text || !duration) return alert("❌ Enter text and duration");
-
-      document.getElementById("statusMsg").innerText = "⏳ Creating proposal...";
-      try {
-        await zaruContract.methods.createProposal(text, duration).send({ from: userAddress });
-        document.getElementById("statusMsg").innerText = "✅ Proposal submitted!";
-        await loadProposals();
-      } catch (err) {
-        console.error(err);
-        document.getElementById("statusMsg").innerText = "❌ Proposal failed.";
-      }
-    }
-
-    async function vote(support) {
-      const proposalId = document.getElementById("proposalId").value;
-      if (!proposalId) return alert("❌ Enter proposal ID");
-
-      const proposal = await zaruContract.methods.getProposal(proposalId).call();
-      const now = Math.floor(Date.now() / 1000);
-      const endTime = parseInt(proposal.startTime) + parseInt(proposal.duration);
-      if (now > endTime) return alert("⏳ Voting period has ended");
-
-      const hasNFT = await zaruContract.methods.hasNFT(userAddress).call();
-      if (!hasNFT) return alert("🚫 You must hold the required NFT to vote");
-
-      document.getElementById("statusMsg").innerText = "⏳ Voting...";
-      try {
-        await zaruContract.methods.voteOnProposal(proposalId, support).send({ from: userAddress });
-        document.getElementById("statusMsg").innerText = "✅ Vote submitted!";
-        await loadProposals();
-      } catch (err) {
-        console.error(err);
-                console.error(err);
-        document.getElementById("statusMsg").innerText = "❌ Voting failed.";
-      }
-    }
-
-    async function executeProposal() {
-      const proposalId = document.getElementById("executeId").value;
-      if (!proposalId) return alert("❌ Enter proposal ID");
-
-      document.getElementById("statusMsg").innerText = "⏳ Executing proposal...";
-      try {
-        await zaruContract.methods.executeProposal(proposalId).send({ from: userAddress });
-        document.getElementById("statusMsg").innerText = "✅ Proposal executed!";
-        
-        const proposal = await zaruContract.methods.getProposal(proposalId).call();
-        if (proposal.executed) {
-          document.getElementById("loreUnlock").style.display = "block";
-        }
-
-        await loadProposals();
-      } catch (err) {
-        console.error(err);
-        document.getElementById("statusMsg").innerText = "❌ Execution failed.";
-      }
-    }
-
-    async function loadProposals() {
-      const count = await zaruContract.methods.proposalCount().call();
-      const container = document.getElementById("proposalList");
-      container.innerHTML = "";
-
-      for (let i = 0; i < count; i++) {
-        try {
-          const p = await zaruContract.methods.getProposal(i).call();
-          const endTime = parseInt(p.startTime) + parseInt(p.duration);
-          const now = Math.floor(Date.now() / 1000);
-          const status = p.executed ? "⚔️ Executed" : (now > endTime ? "⏳ Expired" : "🗳️ Active");
-
-          const div = document.createElement("div");
-          div.className = "card bg-secondary text-light mb-3";
-          div.innerHTML = `
-            <div class="card-body">
-              <h5 class="card-title">📜 Proposal #${i}</h5>
-              <p>${p.text}</p>
-              <p>✅ Yes: ${p.yesVotes} | ❌ No: ${p.noVotes}</p>
-              <p>Status: ${status}</p>
-              <p>Ends: ${new Date(endTime * 1000).toLocaleString()}</p>
-            </div>
-          `;
-          container.appendChild(div);
-        } catch (err) {
-          console.error(`Failed to load proposal ${i}`, err);
-        }
-      }
-    }
-
-    document.getElementById("connectWallet").addEventListener("click", connectWallet);
-    document.getElementById("createProposalBtn").addEventListener("click", createProposal);
-    document.getElementById("executeBtn").addEventListener("click", executeProposal);
-  </script>
 </body>
 </html>
-
