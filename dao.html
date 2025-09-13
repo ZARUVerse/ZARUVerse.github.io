@@ -177,3 +177,66 @@
         await loadProposals();
       } catch (err) {
         console.error(err);
+                console.error(err);
+        document.getElementById("statusMsg").innerText = "❌ Voting failed.";
+      }
+    }
+
+    async function executeProposal() {
+      const proposalId = document.getElementById("executeId").value;
+      if (!proposalId) return alert("❌ Enter proposal ID");
+
+      document.getElementById("statusMsg").innerText = "⏳ Executing proposal...";
+      try {
+        await zaruContract.methods.executeProposal(proposalId).send({ from: userAddress });
+        document.getElementById("statusMsg").innerText = "✅ Proposal executed!";
+        
+        const proposal = await zaruContract.methods.getProposal(proposalId).call();
+        if (proposal.executed) {
+          document.getElementById("loreUnlock").style.display = "block";
+        }
+
+        await loadProposals();
+      } catch (err) {
+        console.error(err);
+        document.getElementById("statusMsg").innerText = "❌ Execution failed.";
+      }
+    }
+
+    async function loadProposals() {
+      const count = await zaruContract.methods.proposalCount().call();
+      const container = document.getElementById("proposalList");
+      container.innerHTML = "";
+
+      for (let i = 0; i < count; i++) {
+        try {
+          const p = await zaruContract.methods.getProposal(i).call();
+          const endTime = parseInt(p.startTime) + parseInt(p.duration);
+          const now = Math.floor(Date.now() / 1000);
+          const status = p.executed ? "⚔️ Executed" : (now > endTime ? "⏳ Expired" : "🗳️ Active");
+
+          const div = document.createElement("div");
+          div.className = "card bg-secondary text-light mb-3";
+          div.innerHTML = `
+            <div class="card-body">
+              <h5 class="card-title">📜 Proposal #${i}</h5>
+              <p>${p.text}</p>
+              <p>✅ Yes: ${p.yesVotes} | ❌ No: ${p.noVotes}</p>
+              <p>Status: ${status}</p>
+              <p>Ends: ${new Date(endTime * 1000).toLocaleString()}</p>
+            </div>
+          `;
+          container.appendChild(div);
+        } catch (err) {
+          console.error(`Failed to load proposal ${i}`, err);
+        }
+      }
+    }
+
+    document.getElementById("connectWallet").addEventListener("click", connectWallet);
+    document.getElementById("createProposalBtn").addEventListener("click", createProposal);
+    document.getElementById("executeBtn").addEventListener("click", executeProposal);
+  </script>
+</body>
+</html>
+
