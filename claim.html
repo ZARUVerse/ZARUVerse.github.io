@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZARUverse Claim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <style>
+    :root {
+      --black: #0b0b0c;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
+    }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: rgba(255,255,255,0.04);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.7);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.7);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('zaru-lion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text);
+      padding: 40px 20px;
+      text-align: center;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--hover);
+      margin-top: 40px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 800px;
+      margin: 12px auto;
+      line-height: 1.6;
+    }
+    .relic {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin: 20px auto;
+      max-width: 700px;
+    }
+    .relic img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255,215,0,0.3);
+    }
+    .relic h3 {
+      color: var(--hover);
+      margin-top: 12px;
+    }
+    .relic p {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+    .relic a {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .back-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .back-links a {
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .back-links a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      box-shadow: 0 0 12px rgba(255,215,0,0.28);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+    #walletStatus {
+      white-space: pre-wrap;
+      font-size: 14px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+
+<h1>🎁 Claim Your Relics</h1>
+<p>Holding a verified relic unlocks access to governance, vaults, and hidden lore. Connect your wallet and claim your place in the myth.</p>
+
+<h2>Available Relics</h2>
+
+<div class="relic">
+  <img src="https://i.postimg.cc/wBqQk23x/IMG-0647.jpg" alt="Arxium – Leader of DAO" />
+  <h3>Arxium – Leader of DAO</h3>
+  <p>Unlocks voting rights in the DAO and access to governance panels. This relic is bound to sovereign will.</p>
+  <a href="https://web3.okx.com/ul/RpJofDq" target="_blank">Claim on OKX</a>
+</div>
+
+<div class="relic">
+  <img src="https://i.postimg.cc/9MzP6fGv/IMG-0645.jpg" alt="Vaultbound Relic" />
+  <h3>Vaultbound Relic</h3>
+  <p>Unlocks access to the Vault and hidden lore. This relic remembers what the chain cannot speak.</p>
+  <a href="https://web3.okx.com/ul/phpMrqL" target="_blank">Claim on OKX</a>
+</div>
+
+<h2>🔍 Check Your Relic</h2>
+<p>Connect your wallet to verify if you hold a verified relic.</p>
+<button onclick="connectWallet()" style="padding:10px 20px;background:#ffd700;color:#000;border:none;border-radius:8px;font-weight:bold;">Connect Wallet</button>
+<p id="walletStatus"></p>
+
+<h2>🧬 How Claiming Works</h2>
+<p>Each relic is minted and listed on OKX NFT Marketplace. Once claimed and held in your wallet, it activates specific privileges across ZARUverse:</p>
+<ul style="list-style:none;padding:0;max-width:700px;margin:0 auto;">
+  <li>✅ Arxium → DAO voting, governance unlock</li>
+  <li>🔐 Vaultbound → Vault access, lore unlock</li>
+</ul>
+
+<div class="back-links">
+  <a href="index.html">← Gateway</a>
+  <a href="nft.html">🖼️ NFTs</a>
+  <a href="lore.html">📖 Lore</a>
+  <a href="dao.html">⚖️ DAO</a>
+</div>
+
+<footer>© ZARUverse — relics claimed by the uncrowned.</footer>
+
+<script>
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+
+  async function connectWallet() {
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const userAddress = accounts[0];
+        document.getElementById("walletStatus").innerText = `✅ Connected: ${userAddress}\nCheck your NFTs on OKX manually.`;
+      } catch (err) {
+        document.getElementById("walletStatus").innerText = `❌ Wallet connection failed.`;
+      }
+    } else {
+      document.getElementById("walletStatus").innerText = `⚠️ No wallet detected. Use MetaMask or OKX Wallet.`;
+    }
+  }
+</script>
+
+</body>
+</html>
