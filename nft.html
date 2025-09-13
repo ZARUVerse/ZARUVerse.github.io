@@ -6,104 +6,230 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0b0c" />
   <style>
+    :root {
+      --black: #0b0b0c;
+      --deep: #111;
+      --gold: #ffd700;
+      --gray: #e8e8e8;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #0b0b0c;
-      color: #e8e8e8;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      background: var(--black);
+      color: var(--gray);
       text-align: center;
       padding: 40px 20px;
     }
     h1 {
       font-size: 32px;
       font-weight: 900;
-      color: #ffd700;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .sub {
+      opacity: .8;
       margin-bottom: 20px;
     }
     .btn {
       padding: 10px 16px;
       border-radius: 10px;
       border: none;
-      background: #ffd700;
-      color: #0b0b0c;
-      font-weight: 700;
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 800;
       cursor: pointer;
       margin: 6px;
       text-decoration: none;
       display: inline-block;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,215,0,.25); }
+    .btn.ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(255,215,0,.4);
+    }
+    #nftList {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 30px auto 0;
     }
     .nft-card {
-      margin-bottom: 40px;
-      padding: 20px;
-      background: #111;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255,215,0,0.2);
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 18px;
+      background: var(--deep);
+      border-radius: 14px;
+      box-shadow: 0 0 12px rgba(255,215,0,0.12);
+      text-align: left;
+    }
+    .nft-card h3 {
+      margin: 0 0 10px 0;
+      color: var(--gold);
+      font-size: 18px;
     }
     .nft-card img {
-      max-width: 100%;
+      width: 100%;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255,215,0,0.4);
+      box-shadow: 0 0 12px rgba(255,215,0,0.20);
+      background: #000;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .meta {
+      font-size: 14px;
+      opacity: .9;
+      margin: 10px 0 2px 0;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
     }
     .lore {
-      margin-top: 20px;
+      margin-top: 14px;
       font-size: 14px;
       white-space: pre-wrap;
+      line-height: 1.5;
+      background: rgba(255,215,0,0.06);
+      border: 1px solid rgba(255,215,0,0.15);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .notice {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: .8;
+    }
+    footer {
+      margin-top: 40px;
+      opacity: .7;
+      font-size: 13px;
     }
   </style>
 </head>
 <body>
 
-<h1>🛡️ Your Arxium NFTs</h1>
-<p id="walletStatus">Connect your wallet to view your relics.</p>
-<button class="btn" onclick="connectWallet()">🔗 Connect Wallet</button>
-<button class="btn" onclick="disconnectWallet()">⛓ Disconnect</button>
+<h1>🛡️ Your NFT Relics</h1>
+<p class="sub" id="walletStatus">Connect your wallet on BNB Chain to view your relics.</p>
+<div>
+  <button class="btn" onclick="connectWallet()">🔗 Connect Wallet</button>
+  <button class="btn ghost" onclick="disconnectWallet()">⛓ Disconnect</button>
+  <a class="btn ghost" href="dao.html">⚖️ DAO</a>
+  <a class="btn ghost" href="vault.html">🔐 Vault</a>
+  <a class="btn ghost" href="staking.html">⚔️ Staking</a>
+  <a class="btn ghost" href="mint.html">🎁 Claim</a>
+</div>
 
-<div id="nftList" style="margin-top:40px;"></div>
+<div id="nftList"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<footer>© ZARUverse — forged for the uncrowned kings.</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.4/dist/web3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/index.js"></script>
 
 <script>
-  const CONTRACT_ADDRESS = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd"; // Arxium NFT
+  // Config
+  const BNB_CHAIN_ID = 56;
+  const RPCS = { 56: "https://bsc-dataseed.binance.org/" };
   const IPFS_LORE = "https://ipfs.io/ipfs/bafkreias7mdy6vti7xopxdrpaikwmpnrxjubcjojdzk2pwqksvstzf2bty";
 
-  const ABI = [
-    { constant: true, inputs: [{ name: "owner", type: "address" }], name: "balanceOf", outputs: [{ name: "", type: "uint256" }], type: "function" },
-    { constant: true, inputs: [{ name: "tokenId", type: "uint256" }], name: "tokenURI", outputs: [{ name: "", type: "string" }], type: "function" },
-    { constant: true, inputs: [{ name: "owner", type: "address" }, { name: "index", type: "uint256" }], name: "tokenOfOwnerByIndex", outputs: [{ name: "", type: "uint256" }], type: "function" },
+  // Standard minimal ERC-721 (Enumerable) ABI + optional burn
+  const standardERC721ABI = [
+    { constant: true,  inputs: [{ name: "owner", type: "address" }], name: "balanceOf", outputs: [{ name: "", type: "uint256" }], type: "function" },
+    { constant: true,  inputs: [{ name: "owner", type: "address" }, { name: "index", type: "uint256" }], name: "tokenOfOwnerByIndex", outputs: [{ name: "", type: "uint256" }], type: "function" },
+    { constant: true,  inputs: [{ name: "tokenId", type: "uint256" }], name: "tokenURI", outputs: [{ name: "", type: "string" }], type: "function" },
     { constant: false, inputs: [{ name: "tokenId", type: "uint256" }], name: "burn", outputs: [], type: "function" }
   ];
 
+  // Multi-collection support
+  const contracts = [
+    {
+      name: "Arxium",
+      address: "0x57664ea40e95636ed7a4df35f4b31e3656a851cd",
+      abi: standardERC721ABI
+    },
+    {
+      name: "ZARU Relic",
+      address: "0x5f2a2d30559a7b8f12823a953cb3d1b3484b5339",
+      abi: standardERC721ABI
+    }
+  ];
+
+  // Optional staking integration per collection (fill when available)
+  const STAKING_ADDRESSES = {
+    // "Arxium": "0x...", 
+    // "ZARU Relic": "0x..."
+  };
+  const stakingABI = [
+    // Example placeholders — replace with your real staking ABI:
+    // { constant: false, inputs: [{name:"tokenId",type:"uint256"}], name:"claimReward", outputs:[], type:"function" },
+    // { constant: false, inputs: [{name:"tokenId",type:"uint256"}], name:"stake", outputs:[], type:"function" },
+    // { constant: false, inputs: [{name:"tokenId",type:"uint256"}], name:"unstake", outputs:[], type:"function" }
+  ];
+
   let web3Modal, provider, web3, userAddress;
+
+  function short(addr) {
+    return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "";
+  }
+  function setStatus(text) {
+    document.getElementById("walletStatus").innerText = text;
+  }
 
   async function connectWallet() {
     const providerOptions = {
       walletconnect: {
         package: window.WalletConnectProvider,
-        options: { rpc: { 56: "https://bsc-dataseed.binance.org/" }, chainId: 56 }
+        options: { rpc: RPCS, chainId: BNB_CHAIN_ID }
       }
     };
-
     web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
 
     try {
       provider = await web3Modal.connect();
+      provider.on && provider.on('accountsChanged', onAccountsChanged);
+      provider.on && provider.on('chainChanged', onChainChanged);
+      provider.on && provider.on('disconnect', () => disconnectWallet());
+
       web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
-      userAddress = accounts[0];
-      document.getElementById("walletStatus").innerText = `✅ Connected: ${short(userAddress)}`;
-      await checkNFTs();
-    } catch (err) {
-      document.getElementById("walletStatus").innerText = "❌ Wallet connection failed.";
+      await onAccountsChanged(accounts);
+
+      const chainId = await web3.eth.getChainId();
+      if (chainId !== BNB_CHAIN_ID) {
+        setStatus(`⚠️ Wrong network (ChainId ${chainId}). Switch to BNB Chain (56).`);
+        return;
+      }
+      await loadAllNFTs();
+    } catch (e) {
+      setStatus("❌ Wallet connection failed.");
     }
   }
 
-  function short(addr) {
-    return addr ? addr.slice(0,6) + "..." + addr.slice(-4) : "";
+  async function onAccountsChanged(accounts) {
+    if (!accounts || !accounts.length) {
+      userAddress = undefined;
+      setStatus("🪪 Wallet connected. No account selected.");
+      document.getElementById("nftList").innerHTML = "";
+      return;
+    }
+    userAddress = accounts[0];
+    setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain expected`);
+  }
+
+  async function onChainChanged(chainIdHex) {
+    const chainId = parseInt(chainIdHex, 16);
+    if (chainId !== BNB_CHAIN_ID) {
+      setStatus(`⚠️ Wrong network (ChainId ${chainId}). Switch to BNB Chain (56).`);
+      document.getElementById("nftList").innerHTML = "";
+      return;
+    }
+    setStatus(`✅ Connected: ${short(userAddress)} | BNB Chain`);
+    await loadAllNFTs();
   }
 
   async function disconnectWallet() {
@@ -113,94 +239,140 @@
     provider = undefined;
     web3 = undefined;
     userAddress = undefined;
-    document.getElementById("walletStatus").innerText = "🔌 Disconnected.";
+    setStatus("🔌 Disconnected.");
     document.getElementById("nftList").innerHTML = "";
   }
 
-  async function checkNFTs() {
-    const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-    const balance = await contract.methods.balanceOf(userAddress).call();
+  function getContractByName(name) {
+    const conf = contracts.find(c => c.name === name);
+    if (!conf) throw new Error("Unknown collection: " + name);
+    return new web3.eth.Contract(conf.abi, conf.address);
+  }
+
+  async function loadAllNFTs() {
+    if (!web3 || !userAddress) return;
     const container = document.getElementById("nftList");
     container.innerHTML = "";
 
-    if (Number(balance) === 0) {
-      container.innerHTML = "<p>🚫 No Arxium NFTs detected.</p>";
-      return;
+    for (const set of contracts) {
+      let balance = "0";
+      try {
+        const contract = new web3.eth.Contract(set.abi, set.address);
+        balance = await contract.methods.balanceOf(userAddress).call();
+      } catch (err) {
+        console.warn(`Balance check failed for ${set.name}`, err);
+        continue;
+      }
+
+      if (Number(balance) === 0) continue;
+
+      for (let i = 0; i < Number(balance); i++) {
+        try {
+          const contract = new web3.eth.Contract(set.abi, set.address);
+          const tokenId = await contract.methods.tokenOfOwnerByIndex(userAddress, i).call();
+          const uri = await contract.methods.tokenURI(tokenId).call();
+
+          // Handle ipfs:// URIs
+          const metaURL = uri.startsWith("ipfs://") ? uri.replace("ipfs://", "https://ipfs.io/ipfs/") : uri;
+          const metadata = await fetch(metaURL, { cache: "no-store" }).then(res => res.json()).catch(() => ({}));
+
+          const imageURLRaw = metadata.image || metadata.image_url || "";
+          const imageURL = imageURLRaw.startsWith("ipfs://")
+            ? imageURLRaw.replace("ipfs://", "https://ipfs.io/ipfs/")
+            : imageURLRaw;
+
+          const card = document.createElement("div");
+          card.className = "nft-card";
+          card.innerHTML = `
+            <h3>🛡️ ${set.name} #${tokenId}</h3>
+            <img src="${imageURL || ''}" alt="${set.name} NFT" onerror="this.src=''; this.style.background='#000';" />
+            <div class="meta">${metadata.name || "Unnamed Relic"}</div>
+            <div class="meta" style="opacity:.7;">${metadata.description ? metadata.description.substring(0,120) + "…" : ""}</div>
+            <div class="row">
+              <a href="dao.html" class="btn">⚖️ DAO</a>
+              <a href="staking.html" class="btn">⚔️ Stake</a>
+              <a href="vault.html" class="btn">🔐 Vault</a>
+              <a href="mint.html" class="btn">🎁 Claim</a>
+              <button class="btn" onclick="fetchLore(${tokenId}, '${set.name}')">📜 Lore</button>
+              <button class="btn" onclick="claimReward(${tokenId}, '${set.name}')">💰 Reward</button>
+              <button class="btn" onclick="burnNFT(${tokenId}, '${set.name}')">🔥 Burn</button>
+            </div>
+            <div id="lore-${cssSafe(set.name)}-${tokenId}" class="lore" style="display:none;"></div>
+            <div class="notice">Contract: ${short(set.address)}</div>
+          `;
+          container.appendChild(card);
+        } catch (err) {
+          console.error(`Failed to load ${set.name} NFT index ${i}`, err);
+        }
+      }
     }
 
-    for (let i = 0; i < balance; i++) {
-      try {
-        const tokenId = await contract.methods.tokenOfOwnerByIndex(userAddress, i).call();
-        const uri = await contract.methods.tokenURI(tokenId).call();
-        const metadata = await fetch(uri).then(res => res.json());
-
-        const card = document.createElement("div");
-        card.className = "nft-card";
-        card.innerHTML = `
-          <h3>🛡️ Arxium #${tokenId}</h3>
-          <img src="${metadata.image}" alt="Arxium NFT" />
-          <p>${metadata.name || "Unnamed Relic"}</p>
-          <div style="margin-top:20px;">
-            <a href="dao.html" class="btn">⚖️ DAO</a>
-            <a href="staking.html" class="btn">⚔️ Stake</a>
-            <a href="vault.html" class="btn">🔐 Vault</a>
-            <a href="mint.html" class="btn">🎁 Claim</a>
-            <button class="btn" onclick="fetchLore(${tokenId})">📜 Lore</button>
-            <button class="btn" onclick="claimReward(${tokenId})">💰 Reward</button>
-            <button class="btn" onclick="burnNFT(${tokenId})">🔥 Burn</button>
-          </div>
-          <div id="lore-${tokenId}" class="lore"></div>
-        `;
-        container.appendChild(card);
-      } catch (err) {
-        console.error(`Failed to load NFT #${i}`, err);
-      }
+    if (!container.children.length) {
+      container.innerHTML = `<div class="nft-card" style="text-align:center;">🚫 No NFTs detected across your collections.</div>`;
     }
   }
 
-  async function fetchLore(tokenId) {
+  function cssSafe(name) {
+    return name.replace(/[^a-z0-9]/gi, "_");
+  }
+
+  async function fetchLore(tokenId, setName) {
+    const targetId = `lore-${cssSafe(setName)}-${tokenId}`;
+    const box = document.getElementById(targetId);
+    if (!box) return;
+    box.style.display = "block";
+    box.innerText = "Loading lore...";
     try {
       const res = await fetch(IPFS_LORE, { cache: "no-store" });
       if (!res.ok) throw new Error("IPFS fetch failed");
       const text = await res.text();
-      typeLore(text, tokenId);
+      typeLore(text, box);
     } catch (err) {
-      document.getElementById(`lore-${tokenId}`).innerText = "⚠️ Failed to load lore.";
+      box.innerText = "⚠️ Failed to load lore from IPFS.";
     }
   }
 
-  function typeLore(text, tokenId) {
-    const out = document.getElementById(`lore-${tokenId}`);
-    out.innerHTML = "";
+  function typeLore(text, el) {
+    el.innerHTML = "";
     let i = 0;
-    const speed = 26;
+    const speed = 22;
     const timer = setInterval(() => {
-      out.innerHTML += text[i] || "";
+      el.innerHTML += text[i] || "";
       i++;
       if (i >= text.length) clearInterval(timer);
     }, speed);
   }
 
-  async function claimReward(tokenId) {
-    alert(`💰 Reward claimed for Arxium #${tokenId} (stub function).`);
-    // Replace with actual staking contract interaction if needed
+  async function claimReward(tokenId, setName) {
+    try {
+      const addr = STAKING_ADDRESSES[setName];
+      if (!addr || !stakingABI.length) {
+        alert("Reward contract not configured yet. This is a placeholder.");
+        return;
+      }
+      const staking = new web3.eth.Contract(stakingABI, addr);
+      await staking.methods.claimReward(tokenId).send({ from: userAddress });
+      alert(`💰 Reward claimed for ${setName} #${tokenId}`);
+    } catch (err) {
+      console.error(err);
+      alert("❌ Claim failed.");
+    }
   }
 
-  async function burnNFT(tokenId) {
-    if (!confirm(`Are you sure you want to burn Arxium #${tokenId}? This action is irreversible.`)) return;
+  async function burnNFT(tokenId, setName) {
+    if (!confirm(`Are you sure you want to burn ${setName} #${tokenId}? This action is irreversible.`)) return;
     try {
-      const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
-      await contract.methods.burn(tokenId).
-            await contract.methods.burn(tokenId).send({ from: userAddress });
-      alert(`🔥 Arxium #${tokenId} burned successfully.`);
-      await checkNFTs(); // Refresh list
+      const contract = getContractByName(setName);
+      // Not all ERC-721s implement burn. If not, this will fail.
+      await contract.methods.burn(tokenId).send({ from: userAddress });
+      alert(`🔥 ${setName} #${tokenId} burned successfully.`);
+      await loadAllNFTs();
     } catch (err) {
-      alert("❌ Burn failed. You must be the owner.");
       console.error(err);
+      alert("❌ Burn failed. The contract may not support burn or you are not the owner.");
     }
   }
 </script>
 
 </body>
 </html>
-
