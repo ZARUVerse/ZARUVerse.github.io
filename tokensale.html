@@ -1,244 +1,127 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZARU (ZARU) Token Sale</title>
-      <script>
-          // Your Reown project ID (use your own project ID - get it for free at https://cloud.reown.com/). Reown (ex-web3modal / walletconnect) lets your users connect to your page with their wallets.
-          const projectId = '9332014bbcedde12a87a2deb0e57c147'
-          // Metadata for reown - please set correct domain to prevent CORS issues
-          const metadata = {
-              name: 'ZARU (ZARU)',
-              description: 'ZARU (ZARU) Token Sale',
-              url: 'https://zaruverse.github.io', // origin must match your domain & subdomain
-              icons: ['https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png'] // logo
-          }
-          // Your tokens sale contract address and chain ID
-          const ca = '0xAAbd6b3a3e0A49B22CE1701810DFA97738D12468';
-          const net = 56;
-      </script>
-    <script type="module" crossorigin="anonymous" src="https://dappbuilder.org/ext/assets/tokensaleuiv1.js"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <title>ZARU Token Sale | Claim Your Power</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <div class="container">
-      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-              <!--You can remove class "projectlogo" from images so that they are not loaded from chain-->
-              <img src="https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png" alt="ZARU (ZARU) Token" height="35" class="projectlogo d-inline-block align-text-top align-self-center">
-              <span class="fs-2">&nbsp;Token sale&nbsp;</span>
-          </a>
+  <!-- Web3Modal (Reown) -->
+  <script>
+    const projectId = '9332014bbcedde12a87a2deb0e57c147';
+    const metadata = {
+      name: 'ZARU Token Sale',
+      description: 'Claim your piece of the myth',
+      url: 'https://zaruverse.github.io',
+      icons: ['https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png']
+    };
+    const ca = '0xAAbd6b3a3e0A49B22CE1701810DFA97738D12468';
+    const net = 56;
+  </script>
+  <script type="module" src="https://dappbuilder.org/ext/assets/tokensaleuiv1.js"></script>
+</head>
 
-          <ul class="nav nav-pills">
-    <li class="nav-item"><a class="nav-link" href="#buy" aria-current="page">Buy token</a></li>
-    
-    <li class="nav-item">
-        <!--This is the Wallet Connect button. You can place it anywhere, several buttons are allowed also. Please leave at least one on the page.-->
-        <w3m-button />
-    </li>
-</ul>
+<body>
+<div class="container py-4">
+  <header class="d-flex justify-content-between align-items-center mb-4">
+    <a href="index.html" class="d-flex align-items-center text-decoration-none">
+      <img src="https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png" height="40" class="me-2" />
+      <span class="fs-3 fw-bold">ZARU Token Sale</span>
+    </a>
+    <w3m-button />
+  </header>
 
-      </header>
+  <div class="alert alert-primary" id="loadmain" style="display:none;">
+    <span class="spinner-grow spinner-grow-sm"></span> Loading token sale data...
   </div>
 
-  <!--Loading alert at the top of the page-->
-  <div id="loadmain" class="alert alert-primary" role="alert" style="display: none">
-      <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span> Loading token sale data... please wait...
+  <div class="alert alert-warning" id="wrongnetmain" style="display:none;">
+    Please switch to BNB Smart Chain <button id="switch" class="btn btn-sm btn-dark">Switch</button>
   </div>
 
-  <!--Alert for token sale admin in case there are not enough tokens on the token sale contract balance-->
-  <div id="supply" class="alert alert-danger" role="alert" style="display: none">
-      For token sale admin: please supply tokens to the token sale contract (check token sale admin panel).
-  </div>
+  <div class="row g-5">
+    <div class="col-lg-6">
+      <img src="https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png" class="img-fluid mb-3" />
+      <h1 class="display-5 fw-bold">🔱 Why ZARU?</h1>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">🔥 Deflationary supply with real utility</li>
+        <li class="list-group-item">🧬 Access to mythic NFTs and DAO governance</li>
+        <li class="list-group-item">📈 Embedded referral system for viral growth</li>
+        <li class="list-group-item">✅ Branded smart contracts with verified credibility</li>
+      </ul>
 
-  <div id="wrongnetmain" class="alert alert-warning" role="alert" style="display: none">
-      Please switch to BNB Smart Chain <button id="switch" class="btn btn-primary">Switch</button>
-  </div>
+      <p class="lead">💡 Enter your wallet address below to generate your personalized purchase link via BuyToken.net.  
+      Your referral is embedded. Your access is direct. Your power is earned.</p>
 
-  <!--Area with token logo, token name, description, socials and token sale information.
-  Data is loaded from chain but you can hardcode it by removing the ids or classes where applicable.
-  Leave the ids of the contract address fields because they are used for COPY functionality (of course if you need it)-->
-  
-  <div class="container col-xl-10 col-xxl-8 px-4 py-2">
-      <div class="row align-items-start g-5 py-2">
-          <div class="col-lg-7 text-center text-lg-start">
-              <!--You can remove class "projectlogo" from images so that they are not loaded from chain-->
-              <img src="https://i.postimg.cc/02g7K5fF/zaru-lion-logo.png" class="img-thumbnail projectlogo" style="max-height: 200px">
-              <h1 class="display-5 fw-bold lh-1 text-body-emphasis mb-3">ZARU (ZARU)</h1>
-              <p class="text-break">
-                  <span id="address">0xdAC6F0ec5901b3877DC6dB23C3882267Ba9FabF6</span>&nbsp;<i id="copy" class="bi bi-clipboard text-primary" data-toggle="tooltip" title="Copy to clipboard" style="cursor: pointer"></i>
-                  <a target="_blank" href="https://bscscan.com/token/0xdAC6F0ec5901b3877DC6dB23C3882267Ba9FabF6"><i id="open" class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View on tracker" style="cursor: pointer"></i></a>
-                  <br /><span class="text-danger">Do not send funds to the token address!</span>
-              </p>
-              
-              <!-- Description text -->
-              <p id="desc" class="col-lg-10" style="white-space: pre-line">
-🛒 ZARU Token Sale — Claim Your Piece of the Myth
-
-Welcome to the official ZARU token sale.  
-ZARU is the native token of the ZARUverse ecosystem—built on BNB Chain, backed by lore, and designed for staking, voting, and unlocking encrypted content.
-
-🔱 Why ZARU?  
-- Deflationary supply with real utility  
-- Access to mythic NFTs and DAO governance  
-- Embedded referral system for viral growth  
-- Branded smart contracts with verified credibility
-
-💡 Enter your wallet address below to generate your personalized purchase link via BuyToken.net.  
-Your referral is embedded. Your access is direct. Your power is earned.
-
-🌐 Powered by BNB Chain  </p>
-              
-              <!--Social icons and links-->
-              <ul class="nav nav-pills d-flex mx-auto">
-                  <li id="www" class="nav-item" style="display: none">
-                      <a id="wwwlink" target="_blank" href="🔗 https://zaruverse.github.io" class="nav-link">
-                          <i class="bi bi-globe" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="fb" class="nav-item" style="display: none">
-                      <a id="fblink" target="_blank" href="🔗 https://facebook.com/zaruverse" class="nav-link">
-                          <i class="bi bi-facebook" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="tg" class="nav-item" style="display: none">
-                      <a id="tglink" target="_blank" href="🔗 https://t.me/zaruverse" class="nav-link">
-                          <i class="bi bi-telegram" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="tw" class="nav-item" style="display: none">
-                      <a id="twlink" target="_blank" href="🔗 https://x.com/zaruverse" class="nav-link">
-                          <i class="bi bi-twitter" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="insta" class="nav-item" style="display: none">
-                      <a id="instalink" target="_blank" href="🔗 https://instagram.com/zaruverse" class="nav-link">
-                          <i class="bi bi-instagram" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="github" class="nav-item" style="display: none">
-                      <a id="githublink" target="_blank" href="🔗 https://github.com/zaruverse" class="nav-link">
-                          <i class="bi bi-github" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="yt" class="nav-item" style="display: none">
-                      <a id="ytlink" target="_blank" href="🔗 https://youtube.com/zaruverse" class="nav-link">
-                          <i class="bi bi-youtube" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="link1" class="nav-item" style="display: none">
-                      <a id="link1link" target="_blank" href="https://geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6" class="nav-link">
-                          <i class="bi bi-box-arrow-up-right" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-                  <li id="link2" class="nav-item" style="display: none">
-                      <a id="link2link" target="_blank" href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6, https://imgur.com/gallery/lLaH1jE" class="nav-link">
-                          <i class="bi bi-box-arrow-up-right" style="font-size: 1.7rem;"></i>
-                      </a>
-                  </li>
-              </ul>
-
-              <h3 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">Token sale info</h3>
-              
-              
-              
-              
-              <div class="text-center">
-    Tokens are sent to investors instantly when they invest
-              </div>
-              
-              <div class="text-break text-center">
-                  Token sale contract:
-                  <span id="address2">0xAAbd6b3a3e0A49B22CE1701810DFA97738D12468</span>&nbsp;<i id="copy2" class="bi bi-clipboard text-primary" data-toggle="tooltip" title="Copy to clipboard" style="cursor: pointer"></i>
-                  <a target="_blank" href="https://bscscan.com/address/0xAAbd6b3a3e0A49B22CE1701810DFA97738D12468"><i id="open2" class="bi bi-box-arrow-up-right" data-toggle="tooltip" title="View on tracker" style="cursor: pointer"></i></a>
-                  <br/>
-                  <span class="text-danger">Do not send funds or tokens directly to the token sale contract! Use this UI to buy tokens properly.</span>
-              </div>
-              
-          </div>
-
-          <!--Token sale status area, statuses are shown/hidden according to the actual on-chain data loaded-->
-
-          <div id="buy" class="col-md-10 text-center text-lg-start col-lg-5">
-              <h3 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">Token sale status</h3>
-              <h3 id="loading" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3"><span class="badge text-bg-primary"><span class="spinner-grow" aria-hidden="true"></span> loading status...</span></h3>
-              <h3 id="live" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-success">LIVE</span></h3>
-              <h3 id="livetime" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-success">Ends in <span id="timer2"></span></span></h3>
-              <h3 id="upcoming" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-primary">Starts in <span id="timer"></span></span></h3>
-              <h3 id="fail" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-secondary">Failed</span></h3>
-              <h3 id="cancel" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-secondary">Canceled</span></h3>
-              <h3 id="finished" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-secondary">Finished</span></h3>
-              <h3 id="success" class="statuses display-6 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-success">SUCCESS</span></h3>
-              <h4 id="scfilled" class="statuses display-7 fw-bold lh-1 text-body-emphasis mb-3" style="display: none"><span class="badge text-bg-success">Softcap filled</span></h4>
-              <!--Progress bar is visible for token sales with hardcap-->
-              <div id="progress-outer" class="progress" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="height: 20px; display: none">
-                  <div id="progress-inner" class="progress-bar" style="width: 0%"></div>
-              </div>
-              <div class="text-center">
-                  Raised: <span id="raised"></span>USDT
-              </div>
-              
-              
-              <!--Buy tokens area-->
-
-              <h3 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">Buy tokens</h3>
-              
-              <!-- Tokens rate/price -->
-              <h4 class="display-7 fw-bold lh-1 text-body-emphasis mb-3 text-center">
-  1 ZARU = 2.5 USDT
-              </h4>
-
-              <label for="amount" class="form-label">Input investment amount<span id="mymax"></span>:</label>
-              <!--Keep the ID "amount" unchanged-->
-              <div class="input-group mb-3">
-                  <input type="number" min="0" step="0.1" class="form-control text-center" id="amount" aria-describedby="helper">
-                  <span class="input-group-text">USDT</span>
-              </div>
-              <div class="form-text" id="helper">You will get: <span id="qty">...</span>ZARU</div>
-              
-              <!--Keep the required buttons IDs unchanged-->
-              <div class="d-grid gap-2">
-                  <button id="buybtn" class="butns btn btn-primary btn-lg" type="button">Buy</button>
-                  <button id="approvebtn" class="butns btn btn-primary btn-lg" type="button" style="display: none">Approve</button>
-              </div>
-              <div id="wrongnetbuy" class="alert alert-warning" role="alert" style="display: none">
-                  Please switch to BNB Smart Chain
-              </div>
-
-              <!--User area-->
-              <h3 class="display-6 fw-bold lh-1 text-body-emphasis mb-3">My tokens</h3>
-
-              <div class="alert alert-warning disconnected" role="alert" style="display: none">
-                  Please connect wallet
-              </div>
-
-              <div class="connected" role="alert" style="display: none">
-                  <div class="hstack">
-                      <div>Invested: <span id="myinvested"></span>USDT</div>
-                      <div class="ms-auto">Purchased: <span class="mypurchased"></span>ZARU</div>
-                  </div>
-                  
-                  
-              </div>
-              
-              
-          </div>
+      <div class="input-group mb-3">
+        <input type="text" id="referralWallet" class="form-control" placeholder="Your wallet address" />
+        <button class="btn btn-outline-primary" onclick="generateReferral()">Generate Link</button>
       </div>
+      <div id="referralLink" class="text-success fw-bold"></div>
+
+      <p class="mt-4">🌐 Powered by BNB Chain</p>
+
+      <div class="d-flex flex-wrap gap-3 mt-3">
+        <a href="https://t.me/zaruverse" target="_blank"><i class="bi bi-telegram fs-3"></i></a>
+        <a href="https://x.com/zaruverse" target="_blank"><i class="bi bi-twitter fs-3"></i></a>
+        <a href="https://instagram.com/zaruverse" target="_blank"><i class="bi bi-instagram fs-3"></i></a>
+        <a href="https://github.com/zaruverse" target="_blank"><i class="bi bi-github fs-3"></i></a>
+        <a href="https://youtube.com/zaruverse" target="_blank"><i class="bi bi-youtube fs-3"></i></a>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h2 class="fw-bold">📊 Token Sale Status</h2>
+      <div id="statusArea">
+        <h3 id="loading" class="badge bg-primary">Loading status...</h3>
+        <h3 id="live" class="badge bg-success" style="display:none;">LIVE</h3>
+        <h3 id="upcoming" class="badge bg-info" style="display:none;">Starts in <span id="timer"></span></h3>
+        <h3 id="livetime" class="badge bg-success" style="display:none;">Ends in <span id="timer2"></span></h3>
+        <h3 id="finished" class="badge bg-secondary" style="display:none;">Finished</h3>
+      </div>
+
+      <div class="progress my-3" id="progress-outer" style="height: 20px; display:none;">
+        <div id="progress-inner" class="progress-bar" style="width: 0%"></div>
+      </div>
+      <p>Raised: <span id="raised">...</span> USDT</p>
+
+      <h3 class="fw-bold mt-4">🛒 Buy Tokens</h3>
+      <p>Rate: <strong>1 ZARU = 2.5 USDT</strong></p>
+      <label for="amount" class="form-label">Investment Amount:</label>
+      <div class="input-group mb-3">
+        <input type="number" id="amount" class="form-control" min="0" step="0.1" />
+        <span class="input-group-text">USDT</span>
+      </div>
+      <p>You will receive: <span id="qty">...</span> ZARU</p>
+
+      <div class="d-grid gap-2">
+        <button id="buybtn" class="btn btn-success">Buy</button>
+        <button id="approvebtn" class="btn btn-warning" style="display:none;">Approve</button>
+      </div>
+
+      <h3 class="fw-bold mt-4">👤 My Tokens</h3>
+      <div class="alert alert-warning disconnected" style="display:none;">Please connect wallet</div>
+      <div class="connected" style="display:none;">
+        <p>Invested: <span id="myinvested">...</span> USDT</p>
+        <p>Purchased: <span class="mypurchased">...</span> ZARU</p>
+      </div>
+    </div>
   </div>
-  
-  null
+</div>
 
-  <!-- Footer -->
-  <footer class="text-center text-lg-center">
-      <!--You can use this footer or delete it-->
-  </footer>
-
-  </body>
+<script>
+  function generateReferral() {
+    const addr = document.getElementById("referralWallet").value;
+    if (addr.length === 42) {
+      const link = `https://buytoken.net/zaru?ref=${addr}`;
+      document.getElementById("referralLink").innerText = `🔗 ${link}`;
+    } else {
+      document.getElementById("referralLink").innerText = "❌ Invalid wallet address";
+    }
+  }
+</script>
+</body>
 </html>
-  
