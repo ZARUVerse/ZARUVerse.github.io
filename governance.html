@@ -101,6 +101,42 @@
     .gov-card li:last-child {
       border-bottom: none;
     }
+    .snapshot-link {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      max-width: 700px;
+      margin: 30px auto;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+    }
+    form button {
+      padding: 10px 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
     .back-links {
       margin-top: 30px;
       display: flex;
@@ -148,12 +184,16 @@
   </ul>
 </div>
 
-<h2>👑 Role of Relics</h2>
-<p>Relics are not collectibles—they are sovereign keys. Arxium activates governance. Vaultbound unlocks memory. Future relics will shape new rituals.</p>
+<h2>🗳️ Active Proposals</h2>
+<p>Vote on current proposals via Snapshot. Your relic is your voice.</p>
+<a class="snapshot-link" href="https://snapshot.org/#/zaruverse.bnb" target="_blank">View & Vote on Snapshot</a>
 
-<h2>📜 Governance Flow</h2>
-<p>Relic → Vote → Proposal → Execution → Lore → Chain</p>
-<p>Each vote echoes through the myth. Each proposal reshapes the realm.</p>
+<h2>📤 Submit a Proposal</h2>
+<form action="https://snapshot.org/#/zaruverse.bnb" method="get" target="_blank">
+  <input type="text" placeholder="Proposal Title" required />
+  <textarea rows="5" placeholder="Proposal Description" required></textarea>
+  <button type="submit">Submit to Snapshot</button>
+</form>
 
 <div class="back-links">
   <a href="index.html">← Gateway</a>
