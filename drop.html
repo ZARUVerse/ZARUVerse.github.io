@@ -9,17 +9,17 @@
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('zaru-lion.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      background: #0b0b0c;
       color: #ffd700;
       text-align: center;
       padding: 40px 20px;
+      overflow-x: hidden;
     }
     h1 {
       font-size: 32px;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
     }
     p {
       font-size: 15px;
@@ -39,6 +39,8 @@
       text-decoration: none;
       display: inline-block;
       font-weight: bold;
+      position: relative;
+      z-index: 2;
     }
     button:hover, a.download:hover {
       background: #ffae00;
@@ -47,27 +49,73 @@
       margin-top: 20px;
       font-size: 14px;
       color: #ccc;
+      position: relative;
+      z-index: 2;
     }
     footer {
       margin-top: 60px;
       font-size: 12px;
       color: #888;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 🔥 Flame background effect */
+    .flame-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.1) 0%, transparent 70%);
+      animation: flicker 2s infinite ease-in-out;
+    }
+    @keyframes flicker {
+      0% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.02); }
+      100% { opacity: 0.8; transform: scale(1); }
+    }
+
+    /* 🔥 Button flame pulse */
+    button::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(255,165,0,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite ease-in-out;
+      z-index: -1;
+    }
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+      50% { transform: translateX(-50%) scale(1.2); opacity: 0.3; }
+      100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
     }
   </style>
 </head>
 <body>
 
+<div class="flame-bg"></div>
+
 <h1>🔥 Flame of Genesis</h1>
 <p>Summon your mythic NFT. This isn’t just code—it’s ritual.</p>
 
-<button onclick="mintFlame()">Mint Flame</button>
-<button onclick="redeemFlame()">Redeem Flame</button>
+<button onclick="connectWallet()">🦊 Connect Wallet</button>
+<button onclick="mintFlame()">🔥 Mint Flame</button>
+<button onclick="redeemFlame()">🗝️ Redeem Flame</button>
 
 <a class="download" href="https://github.com/ZARUVerse/ZARUVerse.github.io/releases/download/app/zaruverse.apk" download>
   📲 Download ZARUverse App
 </a>
 
 <div class="status" id="status">Wallet not connected</div>
+<div class="status" id="supply">Flames minted: —</div>
 
 <footer>© 2025 Makese | ZARUverse – Mythic Infrastructure for Viral Ecosystems</footer>
 
@@ -76,32 +124,51 @@
   const contractAddress = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
   const abi = [
     { "inputs": [], "name": "mint", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
-    { "inputs": [], "name": "redeem", "outputs": [], "stateMutability": "nonpayable", "type": "function" }
+    { "inputs": [], "name": "redeem", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+    { "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }
   ];
 
-  async function connect() {
+  let provider, signer, contract;
+
+  async function connectWallet() {
     if (typeof window.ethereum === 'undefined') {
       document.getElementById('status').textContent = "🦊 MetaMask not found";
-      return null;
+      return;
     }
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    signer = provider.getSigner();
     const network = await provider.getNetwork();
+
     if (network.chainId !== 56) {
-      document.getElementById('status').textContent = "⚠️ Please switch to BNB Chain";
-      return null;
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x38' }]
+        });
+        document.getElementById('status').textContent = "✅ Switched to BNB Chain";
+      } catch (err) {
+        document.getElementById('status').textContent = "⚠️ Please switch to BNB Chain manually";
+        return;
+      }
+    } else {
+      document.getElementById('status').textContent = "✅ Connected to BNB Chain";
     }
-    document.getElementById('status').textContent = "✅ Connected to BNB Chain";
-    return new ethers.Contract(contractAddress, abi, signer);
+
+    contract = new ethers.Contract(contractAddress, abi, signer);
+    await updateSupply();
   }
 
   async function mintFlame() {
-    const contract = await connect();
-    if (!contract) return;
+    if (!contract) {
+      alert("🦊 Please connect your wallet first");
+      return;
+    }
     try {
       const tx = await contract.mint();
       alert("✅ Mint sent: " + tx.hash);
+      await updateSupply();
     } catch (err) {
       console.error(err);
       alert("❌ Mint failed");
@@ -109,14 +176,26 @@
   }
 
   async function redeemFlame() {
-    const contract = await connect();
-    if (!contract) return;
+    if (!contract) {
+      alert("🦊 Please connect your wallet first");
+      return;
+    }
     try {
       const tx = await contract.redeem();
       alert("✅ Redeem sent: " + tx.hash);
     } catch (err) {
       console.error(err);
       alert("❌ Redeem failed");
+    }
+  }
+
+  async function updateSupply() {
+    if (!contract) return;
+    try {
+      const supply = await contract.totalSupply();
+      document.getElementById('supply').textContent = "Flames minted: " + supply.toString();
+    } catch (err) {
+      console.error("Supply fetch failed", err);
     }
   }
 </script>
