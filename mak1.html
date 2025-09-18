@@ -2,96 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>MAK1 – Maker’s Key | ZARUverse</title>
+  <title>MAK1 Token | Makese Holding Ltd.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="MAK1 – the Maker’s Key in ZARUverse. Grants builder-tier access, staking synergy, and creation rituals." />
+  <meta name="description" content="MAK1 Token by Makese Holding Ltd. – a genesis access token within ZARUverse ecosystem." />
   <link rel="canonical" href="https://zaruverse.github.io/mak1/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="MAK1 – Maker’s Key" />
-  <meta property="og:description" content="Builder-tier access, staking synergy, and creation rituals for the chosen makers." />
+  <meta property="og:title" content="MAK1 Token | Makese Holding Ltd." />
+  <meta property="og:description" content="Genesis access token within ZARUverse ecosystem." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://zaruverse.github.io/mak1/" />
-  <meta property="og:image" content="https://your-cdn-or-ipfs/mak1.png" />
+  <meta property="og:image" content="mak1-512.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MAK1 – Maker’s Key" />
-  <meta name="twitter:description" content="Builder-tier access, staking synergy, and creation rituals for the chosen makers." />
-  <meta name="twitter:image" content="https://your-cdn-or-ipfs/mak1.png" />
+  <meta name="twitter:title" content="MAK1 Token | Makese Holding Ltd." />
+  <meta name="twitter:description" content="Genesis access token within ZARUverse ecosystem." />
+  <meta name="twitter:image" content="mak1-512.png" />
 
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "MAK1 – Maker’s Key",
+    "@type": "Product",
+    "name": "MAK1 Token",
     "url": "https://zaruverse.github.io/mak1/",
-    "image": "https://your-cdn-or-ipfs/mak1.png",
-    "description": "MAK1 – the Maker’s Key in ZARUverse. Grants builder-tier access, staking synergy, and creation rituals.",
-    "creator": { "@type": "Organization", "name": "Makese" }
+    "image": "mak1-512.png",
+    "description": "MAK1 Token by Makese Holding Ltd. – genesis access token within ZARUverse.",
+    "brand": { "@type": "Organization", "name": "Makese Holding Ltd." }
   }
   </script>
 
   <style>
-    :root{
-      --bg:#0b0b0e; --card:#121218; --ink:#e8e8f0; --muted:#9aa0a6; --gold:#f6c453;
-      --accent:#2bd4a7; --line:#1d1d27;
+    :root {
+      --bg: #0b0b0e; --card: #121218; --ink: #e8e8f0; --muted: #9aa0a6;
+      --gold: #f6c453; --accent: #2bd4a7; --line: #1d1d27;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
-    a{color:var(--ink);text-decoration:none}
-    .wrap{max-width:980px;margin:0 auto;padding:32px 20px}
-    .nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:28px}
-    .brand{font-weight:700;letter-spacing:0.6px}
-    .chip{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
-    .hero{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:center}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-    .art{width:100%;aspect-ratio:1/1;object-fit:cover;background:#0f0f14}
-    h1{font-size:32px;margin:0 0 8px}
-    p{line-height:1.6;color:var(--muted)}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
-    .badge{border:1px solid var(--line);padding:6px 10px;border-radius:10px;font-size:13px;color:var(--ink);background:transparent}
-    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:#161625;color:var(--ink);cursor:pointer}
-    .btn.primary{background:var(--accent);border-color:transparent;color:#08110f;font-weight:700}
-    .btn.gold{background:var(--gold);color:#1a1a1f;border:none}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-    .section{padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
-    .section h3{margin:0 0 8px;font-size:18px}
-    code, .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
-    .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .copy{display:flex;align-items:center;gap:10px;background:#0f0f14;border:1px dashed var(--line);padding:10px 12px;border-radius:10px}
-    footer{margin:40px 0 12px;color:var(--muted);font-size:13px;text-align:center}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    * { box-sizing: border-box }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+    }
+    a { color: var(--ink); text-decoration: none }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px }
+    .nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 28px }
+    .brand { font-weight: 700; letter-spacing: 0.6px }
+    .chip { font-size: 12px; color: var(--muted); border: 1px solid var(--line); padding: 4px 8px; border-radius: 999px }
+    .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: center }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden }
+    .art { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #0f0f14 }
+    h1 { font-size: 32px; margin: 0 0 8px }
+    p { line-height: 1.6; color: var(--muted) }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px }
+    .badge { border: 1px solid var(--line); padding: 6px 10px; border-radius: 10px; font-size: 13px; color: var(--ink); background: transparent }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px }
+    .btn { padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line); background: #161625; color: var(--ink); cursor: pointer }
+    .btn.primary { background: var(--accent); border-color: transparent; color: #08110f; font-weight: 700 }
+    .btn.gold { background: var(--gold); color: #1a1a1f; border: none }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px }
+    .section { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card) }
+    .section h3 { margin: 0 0 8px; font-size: 18px }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 12px }
+    .copy { display: flex; align-items: center; gap: 10px; background: #0f0f14; border: 1px dashed var(--line); padding: 10px 12px; border-radius: 10px }
+    footer { margin: 40px 0 12px; color: var(--muted); font-size: 13px; text-align: center }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr } }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="nav">
       <div class="brand">ZARUverse</div>
-      <div class="chip">Makese</div>
+      <div class="chip">Makese Holding Ltd.</div>
     </div>
 
     <div class="hero">
       <div class="card">
-        <img class="art" src="https://your-cdn-or-ipfs/mak1.png" alt="MAK1 – Maker’s Key" />
+        <img class="art" src="mak1-512.png" alt="MAK1 Token" />
       </div>
       <div>
-        <h1>MAK1 — Maker’s Key</h1>
-        <p>The first key of creation in ZARUverse. Holders unlock builder-tier rituals, amplify staking through synergy, and access early drops aligned with the Maker’s path.</p>
+        <h1>MAK1 Token</h1>
+        <p>Issued by Makese Holding Ltd., MAK1 is a genesis access token within the ZARUverse ecosystem. It enables staking synergy, early drop access, and builder-tier privileges.</p>
 
         <div class="badges">
-          <span class="badge">Utility: Builder Access</span>
-          <span class="badge">Synergy: Staking Link</span>
+          <span class="badge">Access: Genesis Tier</span>
+          <span class="badge">Synergy: Staking Boost</span>
           <span class="badge">Perk: Early Drops</span>
         </div>
 
         <div class="cta">
-          <a class="btn primary" href="https://marketplace.link/item/mak1" target="_blank" rel="noopener">View on marketplace</a>
-          <a class="btn gold" href="https://zaruverse.github.io/mint" target="_blank" rel="noopener">Mint</a>
+          <a class="btn primary" href="https://marketplace.link/item/mak1" target="_blank">Marketplace</a>
+          <a class="btn gold" href="https://zaruverse.github.io/mint" target="_blank">Mint</a>
           <a class="btn" href="#utility">Utility</a>
-          <a class="btn" href="#lore">Lore</a>
+          <a class="btn" href="#details">Details</a>
         </div>
 
         <div style="margin-top:16px" class="row">
@@ -108,27 +112,24 @@
       <div class="section">
         <h3>Utility</h3>
         <ul>
-          <li><b>Builder access:</b> Unlock maker-only rituals, routes, and dev drops.</li>
-          <li><b>Staking synergy:</b> Yield synergy when paired with ZARU or DMD holdings.</li>
-          <li><b>Early access:</b> Priority allowlist for Maker-aligned releases.</li>
-          <li><b>Governance signal:</b> Extra weight on creation proposals.</li>
+          <li><b>Genesis access:</b> Unlock exclusive routes and drops.</li>
+          <li><b>Staking synergy:</b> Boost yield when paired with ZARU or DMD.</li>
+          <li><b>Governance signal:</b> Weighted voting in ecosystem proposals.</li>
         </ul>
       </div>
-      <div class="section">
-        <h3>Token details</h3>
+      <div class="section" id="details">
+        <h3>Token Details</h3>
         <ul>
           <li><b>Contract:</b> <span class="mono">0xYOUR_CONTRACT_ADDRESS</span></li>
           <li><b>Standard:</b> ERC-721 / ERC-1155</li>
           <li><b>Supply:</b> 1,000 (Genesis cap)</li>
-          <li><b>Royalties:</b> 5% to Makese Treasury</li>
+          <li><b>Royalties:</b> 5% to Makese Holding Treasury</li>
         </ul>
       </div>
-    </div>
-
     <div class="section" id="lore" style="margin-top:16px">
       <h3>Lore</h3>
-      <p>MAK1 is the Maker’s spark set into metal—a key that doesn’t open doors, it forges them. Those who carry it shape flows, script new rituals, and breathe function into myth.</p>
-      <p>Creation in ZARUverse is not granted; it’s carved. MAK1 chooses hands that will keep carving.</p>
+      <p>MAK1 is forged as the genesis token of ZARUverse—issued by Makese Holding Ltd. It represents access, alignment, and activation. Holders are not just participants; they are initiators of flow, staking, and governance.</p>
+      <p>In the architecture of ZARUverse, MAK1 is the first credential. It doesn’t unlock doors—it defines them.</p>
     </div>
 
     <div class="grid" style="margin-top:16px">
@@ -144,13 +145,13 @@
         <h3>Developers</h3>
         <ul>
           <li><b>NPM SDK:</b> <span class="mono">@zaruverse/lore-engine</span></li>
-          <li><b>Redeem endpoint:</b> <span class="mono">redeemLeader()</span></li>
+          <li><b>Redeem endpoint:</b> <span class="mono">redeemAccess()</span></li>
           <li><b>Stake hook:</b> <span class="mono">stakeZaru()</span></li>
         </ul>
       </div>
     </div>
 
-    <footer>© Makese — ZARUverse</footer>
+    <footer>© Makese Holding Ltd. — ZARUverse</footer>
   </div>
 
   <script>
