@@ -126,3 +126,31 @@
     </div>
 
     <div class="section" id="lore" style="margin-top:16px
+<div class="section" id="lore" style="margin-top:16px">
+      <h3>Lore</h3>
+      <p>DMD is the Diamond Token—solid, rare, and immutable. It anchors value across ZARUverse and reflects Makese’s commitment to durability and precision. Not just a coin, but a signal of trust and weight.</p>
+      <p>Its meme distance is deliberate: viral enough to spread, refined enough to endure. DMD is not noise—it’s signal.</p>
+    </div>
+
+    <div class="section" style="margin-top:16px">
+      <h3>Meme Distance</h3>
+      <p>All Makese tokens are engineered for virality without compromise. DMD carries mythic weight, yet remains meme-aware—designed to travel across Telegram threads, Twitter drops, and lore rituals without losing its core identity.</p>
+    </div>
+
+    <footer>© Makese Holding Ltd. — ZARUverse</footer>
+  </div>
+
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function(){
+        const el = document.getElementById('contract').textContent.trim();
+        navigator.clipboard.writeText(el).then(()=>{
+          this.textContent = 'Copied';
+          setTimeout(()=> this.textContent='Copy', 1200);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
