@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>KYC Admin — MAKESE Holding</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Admin dashboard for reviewing KYC applications under MAKESE Holding Ltd." />
+  <link rel="icon" href="favicon.png" />
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    h1,h2,h3{margin:0 0 10px}
+    p{margin:0 0 12px}
+    a{color:#b48832;text-decoration:none}
+    .container{max-width:880px;margin:0 auto;padding:28px}
+    .toolbar{display:flex;gap:10px;align-items:center;margin:10px 0}
+    .toolbar input,.toolbar select{padding:8px;border:1px solid #e3e3e3;border-radius:8px}
+    .pill{border:1px solid #e8e8e8;border-radius:999px;padding:6px 10px;font-size:12px;color:#555;background:#fafafa;cursor:pointer}
+    table{width:100%;border-collapse:collapse;margin-top:16px}
+    th,td{border:1px solid #ececec;padding:10px;text-align:left}
+    thead th{background:#fbfbfb}
+    .approve{background:#1b5e20;color:#fff;border:0;border-radius:8px;padding:8px 10px;cursor:pointer}
+    .reject{background:#b71c1c;color:#fff;border:0;border-radius:8px;padding:8px 10px;cursor:pointer}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    footer{margin-top:40px;font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>KYC Admin — MAKESE Holding</h1>
+    <p class="small">Review and manage KYC applications submitted under UK compliance framework.</p>
+
+    <div class="toolbar">
+      <input placeholder="Search email or name" id="q" />
+      <select id="status">
+        <option value="">All</option>
+        <option>Pending</option>
+        <option>Verified</option>
+        <option>Rejected</option>
+      </select>
+      <button class="pill" onclick="load()">Refresh</button>
+    </div>
+
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Country</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <footer>
+      MAKESE Holding Ltd. (London, United Kingdom) · Compliance contact: <a href="mailto:compliance@makese.com">compliance@makese.com</a>
+    </footer>
+  </div>
+
+  <script>
+    async function load(){
+      const q = document.getElementById('q').value;
+      const s = document.getElementById('status').value;
+      const res = await fetch(`/api/kyc/applications?q=${encodeURIComponent(q)}&status=${encodeURIComponent(s)}`);
+      const rows = await res.json();
+      const tb = document.querySelector('#tbl tbody'); tb.innerHTML='';
+      rows.forEach(r=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `<td>${r.id}</td><td>${r.fullName}</td><td>${r.email}</td><td>${r.country}</td><td>${r.status}</td>
+          <td>
+            <button class="approve" onclick="decide(${r.id},'Verified')">Approve</button>
+            <button class="reject" onclick="decide(${r.id},'Rejected')">Reject</button>
+          </td>`;
+        tb.appendChild(tr);
+      });
+    }
+
+    async function decide(id,status){
+      const reason = status==='Rejected' ? prompt('Reason for rejection:','Document mismatch') : null;
+      const res = await fetch(`/api/kyc/applications/${id}/status`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({status,reason})
+      });
+      if(res.ok){ alert('Updated'); load(); }
+      else{ alert('Failed to update'); }
+    }
+
+    load();
+  </script>
+</body>
+</html>
