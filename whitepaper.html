@@ -1,180 +1,117 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ZARUverse Whitepaper</title>
+  <meta charset="utf-8" />
+  <title>ZARUverse Ecosystem | Whitepaper | Makese Holding Ltd.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="description" content="ZARUverse whitepaper — full ecosystem architecture, token roles, governance, treasury, and brand policy by Makese Holding Ltd." />
+  <meta name="theme-color" content="#0b0b0e" />
   <style>
-    :root {
-      --black: #0b0b0c; --white: #ffffff; --gold: #ffd700;
-      --light-bg: #f5f5f5; --light-text: #222;
+    @page {
+      margin: 28mm 20mm;
+      @top-center {
+        content: "ZARUverse Ecosystem | Makese Holding Ltd.";
+        font-size: 11pt; color: #555;
+      }
+      @bottom-center {
+        content: "Page " counter(page) " of " counter(pages) " — © Makese Holding Ltd.";
+        font-size: 10pt; color: #777;
+      }
     }
-    [data-theme="dark"] {
-      --bg: var(--black); --text: var(--white); --card: rgba(255,255,255,0.04);
-      --hover: var(--gold); --hover-text: var(--black); --border: rgba(255,255,255,0.12);
-    }
-    [data-theme="light"] {
-      --bg: var(--light-bg); --text: var(--light-text); --card: #fff;
-      --hover: var(--gold); --hover-text: var(--black); --border: rgba(0,0,0,0.1);
-    }
-    body { margin:0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
-    header { display:flex; justify-content: space-between; align-items:center; gap:12px; padding: 18px 20px; }
-    .brand { font-weight: 900; color: var(--hover); letter-spacing:.3px; }
-    .nav { display:flex; gap:10px; flex-wrap:wrap; }
-    .btn { display:inline-block; padding:10px 14px; background: var(--card); border:1px solid var(--border); color: var(--text); text-decoration:none; border-radius:10px; font-weight:600; }
-    .btn:hover { background: var(--hover); color: var(--hover-text); }
-    .theme-toggle { background: var(--hover); color: var(--hover-text); border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    main { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-    h1 { font-size: 38px; font-weight: 900; color: var(--hover); margin: 6px 0 14px; }
-    h2 { font-size: 22px; color: var(--hover); margin: 28px 0 10px; }
-    p { line-height: 1.7; opacity: .9; margin: 10px 0; }
-    ul { margin: 8px 0 8px 18px; line-height: 1.7; opacity:.9; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 16px 0; }
-    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media(min-width: 900px){ .grid { grid-template-columns: 1fr 1fr; } }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    footer { margin-top: 40px; font-size: 13px; opacity: .65; text-align: center; padding: 20px; }
-    blockquote { margin: 10px 0; padding: 12px 14px; background: var(--card); border-left: 3px solid var(--hover); opacity:.95; }
+    body { margin:0; padding:0; background:#fff; color:#111318; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .wrap { max-width:900px; margin:0 auto; padding:32px 20px; }
+    header { display:flex; align-items:center; gap:16px; border-bottom:2px solid #e5e8ef; padding-bottom:16px; margin-bottom:24px; }
+    header img { width:64px; height:64px; object-fit:contain; }
+    h1 { margin:0 0 6px; font-size:30px; }
+    h2 { margin:24px 0 10px; font-size:20px; }
+    p { margin:8px 0; color:#232a37; }
+    ul { margin:10px 0 12px 22px; }
+    li { margin:6px 0; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace; }
+    .hr { height:1px; background:#e5e8ef; margin:20px 0; }
+    .kv { display:grid; grid-template-columns:180px 1fr; gap:10px; }
+    .muted { color: #3c4250; }
+    .note { border-left:4px solid #b8912c; background:#fffaf0; padding:10px 12px; }
+    .table { width:100%; border-collapse: collapse; margin:10px 0 16px; }
+    .table th, .table td { border:1px solid #e5e8ef; padding:8px 10px; text-align:left; }
+    .page-break { page-break-before: always; }
+    footer { margin-top:26px; padding-top:12px; border-top:1px dashed #ccc; font-size:13px; color:#555; }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <img src="zaru-512.png" alt="ZARU logo" />
+      <div>
+        <h1>ZARUverse Ecosystem</h1>
+        <div class="muted">Whitepaper — Makese Holding Ltd.</div>
+      </div>
+    </header>
 
-  <header>
-    <div class="brand">🦁 ZARUverse</div>
-    <nav class="nav">
-      <a class="btn" href="index.html">Home</a>
-      <a class="btn" href="token.html">Tokens</a>
-      <a class="btn" href="governance.html">Governance</a>
-      <a class="btn" href="claim.html">Claim</a>
-      <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
-    </nav>
-  </header>
+    <h2>Executive Summary</h2>
+    <p>ZARUverse is a branded crypto ecosystem engineered by Makese Holding Ltd. It blends viral participation with luxury-grade token architecture. The ecosystem includes three core assets: MAK1, DMD, and ZARU—each with distinct roles in treasury, access, and governance.</p>
 
-  <main>
-    <h1>📜 ZARUverse Whitepaper</h1>
-    <div class="card">
-      <h2>Abstract</h2>
-      <p>ZARUverse is a branded crypto ecosystem on BNB Smart Chain, powered by a dual-token model (ZARU + DMD) and relic-gated governance. Utility meets prestige, lore meets execution. No VC, no fluff—just myth, code, and community.</p>
+    <div class="hr"></div>
+
+    <h2>Token Architecture</h2>
+    <ul>
+      <li><b>MAK1:</b> Strategic treasury token with governance weight and premium access.</li>
+      <li><b>DMD:</b> Liquidity and access token with composable staking and signal roles.</li>
+      <li><b>ZARU:</b> Meme-aware participatory token for lore drops, DAO voting, and viral propagation.</li>
+    </ul>
+
+    <h2>Contract Addresses</h2>
+    <div class="kv">
+      <div class="muted">MAK1</div><div class="mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</div>
+      <div class="muted">DMD</div><div class="mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</div>
+      <div class="muted">ZARU</div><div class="mono">[awaiting confirmed address]</div>
     </div>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Network</h2>
-        <ul>
-          <li><strong>Chain:</strong> BNB Smart Chain (Chain ID: 56)</li>
-          <li><strong>Compatibility:</strong> EVM, low fees, ideal for DeFi/NFT/DAO</li>
-          <li><strong>Explorer:</strong> <a class="btn" target="_blank" href="https://bscscan.com">Open BSCScan</a></li>
-        </ul>
-      </div>
+    <div class="page-break"></div>
 
-      <div class="card">
-        <h2>Tokens</h2>
-        <p><strong>ZARU</strong> — Utility for staking, DAO voting, and lore unlock.</p>
-        <p><strong>DMD</strong> — Prestige for vault control, golden vote, and relic minting.</p>
-      </div>
-    </div>
+    <h2>Governance Framework</h2>
+    <ul>
+      <li><b>Proposal lifecycle:</b> Draft → Review → Vote → Ratify</li>
+      <li><b>Voting weight:</b> MAK1 and DMD carry multiplier roles</li>
+      <li><b>Delegation:</b> Holders may delegate voting power</li>
+      <li><b>Transparency:</b> All decisions published via official channels</li>
+    </ul>
 
-    <div class="card">
-      <h2>Token contracts</h2>
-      <p><strong>ZARU:</strong> <span class="mono">0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</span></p>
-      <p><a class="btn" target="_blank" href="https://bscscan.com/token/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">View ZARU on BSCScan</a></p>
-      <p><strong>DMD:</strong> <span class="mono">0x8c4C0116d051f6F2EA27e8Fa7614c8f799191ab3</span></p>
-      <p><a class="btn" target="_blank" href="https://bscscan.com/token/0x8c4C0116d051f6F2EA27e8Fa7614c8f799191ab3">View DMD on BSCScan</a></p>
-    </div>
+    <h2>Treasury Policy</h2>
+    <ul>
+      <li><b>Reserve bands:</b> Internal thresholds for liquidity and runway</li>
+      <li><b>Disbursement:</b> Multi-sig approvals required</li>
+      <li><b>LP operations:</b> Guardrails for pool depth and volatility</li>
+    </ul>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Governance</h2>
-        <ul>
-          <li><strong>Model:</strong> Dual-token voting + relic gating</li>
-          <li><strong>Platform:</strong> Snapshot (space: zaruverse.bnb)</li>
-          <li><strong>Weights:</strong> ZARU = 1 vote, DMD = 10 votes</li>
-          <li><strong>Gating:</strong> Arxium NFT required to activate voting rights</li>
-        </ul>
-        <div style="margin-top:10px;">
-          <a class="btn" target="_blank" href="https://snapshot.org/#/zaruverse.bnb">Open Snapshot</a>
-          <a class="btn" href="governance.html">Governance page</a>
-        </div>
-      </div>
+    <h2>Brand Integrity</h2>
+    <ul>
+      <li><b>Issuer:</b> Makese Holding Ltd. exclusively</li>
+      <li><b>Identity:</b> No dilution, no off-brand integrations</li>
+      <li><b>Precision:</b> All communications cite full contract addresses</li>
+    </ul>
 
-      <div class="card">
-        <h2>Relics</h2>
-        <p>Relics are governance keys, not collectibles.</p>
-        <ul>
-          <li><strong>Arxium:</strong> Unlocks voting</li>
-          <li><strong>Vaultbound:</strong> Unlocks memory</li>
-          <li><strong>Future:</strong> New rituals, access layers, DAO roles</li>
-        </ul>
-      </div>
-    </div>
+    <div class="page-break"></div>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Treasury</h2>
-        <ul>
-          <li><strong>Sources:</strong> Token/NFT sales, fees, contributions</li>
-          <li><strong>Uses:</strong> Protocol development, branding, liquidity, operations</li>
-          <li><strong>Controls:</strong> Proposal → Snapshot vote → Execution policy</li>
-        </ul>
-      </div>
+    <h2>Security Model</h2>
+    <ul>
+      <li><b>Contract immutability:</b> No mint authority post-deployment</li>
+      <li><b>Operational security:</b> Segregated keys, role-based access</li>
+      <li><b>Monitoring:</b> Alerts for anomalous transfers or LP changes</li>
+    </ul>
 
-      <div class="card">
-        <h2>Roadmap</h2>
-        <ul>
-          <li><strong>Phase I:</strong> Launch site, tokens, Snapshot space</li>
-          <li><strong>Phase II:</strong> Relic utility, staking, lore unlock</li>
-          <li><strong>Phase III:</strong> DAO treasury ops, exchange/NFT integrations</li>
-        </ul>
-      </div>
-    </div>
+    <h2>Risk Disclosures</h2>
+    <ul>
+      <li><b>Market risk:</b> Volatility and liquidity variability</li>
+      <li><b>Counterparty risk:</b> Exchange and integration dependencies</li>
+      <li><b>Regulatory risk:</b> Jurisdictional changes may affect access</li>
+      <li><b>Operational risk:</b> Treasury, listing, or infrastructure incidents</li>
+    </ul>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Security and audit</h2>
-        <ul>
-          <li><strong>Best practices:</strong> Timelocks, multi-sig treasury, minimal permissions</li>
-          <li><strong>Audit:</strong> Reports to be published post-launch</li>
-        </ul>
-      </div>
+    <h2>Compliance Notice</h2>
+    <p class="note">This document is informational and non-solicitational. Always verify contract addresses and links via official Makese channels. Access or use may be restricted under applicable laws.</p>
 
-      <div class="card">
-        <h2>Legal notice</h2>
-        <p>This document is for informational purposes only and does not constitute financial or legal advice. Participation in crypto assets involves risk. Check your local regulations before engaging.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Branding statement</h2>
-      <blockquote>
-        ZARU is not a coin. It’s a covenant.<br />
-        DMD is not a flex. It’s a throne.<br />
-        Relics are not collectibles. They are keys.<br /><br />
-        🦁 ZARUverse — forged for the uncrowned kings.
-      </blockquote>
-    </div>
-
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px;">
-      <a class="btn" href="index.html">← Home</a>
-      <a class="btn" href="token.html">Tokens</a>
-      <a class="btn" href="governance.html">Governance</a>
-      <a class="btn" href="claim.html">Claim</a>
-    </div>
-
-    <footer>© ZARUverse — written in myth, executed on-chain.</footer>
-  </main>
-
-  <script>
-    function toggleTheme(){
-      const d=document.documentElement;
-      const n=d.getAttribute('data-theme')==='dark'?'light':'dark';
-      d.setAttribute('data-theme', n);
-      localStorage.setItem('theme', n);
-    }
-    (function(){
-      const s=localStorage.getItem('theme');
-      if(s){ document.documentElement.setAttribute('data-theme', s); }
-    })();
-  </script>
+    <footer>© Makese Holding Ltd. — ZARUverse Ecosystem Whitepaper</footer>
+  </div>
 </body>
 </html>
