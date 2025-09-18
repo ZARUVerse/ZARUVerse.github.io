@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>MAKESE Holding — KYC Verification</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="KYC form for identity verification under MAKESE Holding Ltd. (London, UK)" />
+  <link rel="icon" href="favicon.png" />
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    h1,h2,h3{margin:0 0 10px}
+    p{margin:0 0 12px}
+    a{color:#b48832;text-decoration:none}
+    .container{max-width:880px;margin:0 auto;padding:28px}
+    .cover{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;padding:36px 0 28px;border-bottom:2px solid #eee}
+    .cover img{width:120px;height:120px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+    .pill{border:1px solid #e8e8e8;border-radius:999px;padding:6px 10px;font-size:12px;color:#555;background:#fafafa}
+    .section{padding:22px 0;border-bottom:1px solid #f0f0f0}
+    .form{max-width:720px;margin:0 auto}
+    .field{margin-bottom:14px}
+    .field label{display:block;margin-bottom:6px;font-weight:600}
+    .field input,.field select{width:100%;padding:10px;border:1px solid #e3e3e3;border-radius:8px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .actions{display:flex;gap:12px;margin-top:16px}
+    .btn{background:#0f1522;color:#fff;border:0;padding:12px 16px;border-radius:10px;cursor:pointer}
+    .btn.alt{background:#b48832;color:#0f1522}
+    .note{font-size:13px;color:#555}
+    .card.ok{border:1px solid #d9f5e5;background:#f6fffa;border-radius:12px;padding:16px}
+    .card.warn{border:1px solid #ffe8c6;background:#fffaf2;border-radius:12px;padding:16px}
+    footer{margin-top:40px;font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Cover -->
+    <section class="cover">
+      <img src="mak1-512.png" alt="MAKESE logo" />
+      <div>
+        <h1>MAKESE Holding — KYC Verification</h1>
+        <p class="small">Identity verification under UK compliance framework</p>
+        <div class="meta">
+          <span class="pill">Jurisdiction: United Kingdom</span>
+          <span class="pill">Operator: MAKESE Holding Ltd.</span>
+          <span class="pill">Status: Live</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="section">
+      <h2>Applicant information</h2>
+      <form class="form" id="kycForm">
+        <div class="split">
+          <div class="field">
+            <label>Full name</label>
+            <input name="fullName" required />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" required />
+          </div>
+        </div>
+        <div class="split">
+          <div class="field">
+            <label>Phone</label>
+            <input name="phone" required />
+          </div>
+          <div class="field">
+            <label>Country of residence</label>
+            <select name="country" required>
+              <option value="">Select…</option>
+              <option>United Kingdom</option>
+              <option>Germany</option>
+              <option>United States</option>
+              <option>France</option>
+              <option>United Arab Emirates</option>
+              <option>Turkey</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="split">
+          <div class="field">
+            <label>Nationality</label>
+            <input name="nationality" required />
+          </div>
+          <div class="field">
+            <label>Account type</label>
+            <select name="accountType" required>
+              <option>Individual</option>
+              <option>Corporate</option>
+            </select>
+          </div>
+        </div>
+
+        <h3>Documents</h3>
+        <div class="split">
+          <div class="field">
+            <label>Passport or ID (front)</label>
+            <input type="file" name="docFront" accept="image/*,.pdf" required />
+          </div>
+          <div class="field">
+            <label>Proof of address</label>
+            <input type="file" name="poa" accept="image/*,.pdf" required />
+          </div>
+        </div>
+        <div class="split">
+          <div class="field">
+            <label>Selfie with document</label>
+            <input type="file" name="selfie" accept="image/*" required />
+          </div>
+          <div class="field">
+            <label>Company docs (if corporate)</label>
+            <input type="file" name="corp" accept="image/*,.pdf" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label><input type="checkbox" required /> I agree to the Terms and Privacy Policy</label>
+          <p class="note">Your data is encrypted in transit and at rest. We store minimal required information to comply with applicable regulations.</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">Submit</button>
+          <button class="btn alt" type="reset">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Info -->
+    <section class="section card warn">
+      <h3>Verification timeline</h3>
+      <p>Most applications are reviewed within 1–24 hours. You will be notified via email.</p>
+    </section>
+
+    <footer>
+      MAKESE Holding Ltd. (London, United Kingdom) · Compliance contact: <a href="mailto:compliance@makese.com">compliance@makese.com</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('kycForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const res = await fetch('/api/kyc/applications', { method:'POST', body:data });
+      if(res.ok){ alert('Submitted. Check your email.'); form.reset(); }
+      else{ alert('Submission failed. Try again.'); }
+    });
+  </script>
+</body>
+</html>
