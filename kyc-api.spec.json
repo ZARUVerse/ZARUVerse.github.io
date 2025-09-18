@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MAKESE Holding — KYC API",
+    "version": "1.0.0",
+    "description": "API for submitting and managing KYC applications under MAKESE Holding Ltd. (London, UK)"
+  },
+  "paths": {
+    "/api/kyc/applications": {
+      "post": {
+        "summary": "Submit KYC application",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullName": { "type": "string" },
+                  "email": { "type": "string", "format": "email" },
+                  "phone": { "type": "string" },
+                  "country": { "type": "string" },
+                  "nationality": { "type": "string" },
+                  "accountType": { "type": "string", "enum": ["Individual", "Corporate"] },
+                  "docFront": { "type": "string", "format": "binary" },
+                  "poa": { "type": "string", "format": "binary" },
+                  "selfie": { "type": "string", "format": "binary" },
+                  "corp": { "type": "string", "format": "binary" }
+                },
+                "required": ["fullName", "email", "phone", "country", "nationality", "accountType", "docFront", "poa", "selfie"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Application submitted successfully" },
+          "400": { "description": "Invalid input or missing fields" }
+        }
+      },
+      "get": {
+        "summary": "List KYC applications",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search by name or email",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by status",
+            "schema": { "type": "string", "enum": ["Pending", "Verified", "Rejected"] }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "fullName": { "type": "string" },
+                      "email": { "type": "string" },
+                      "country": { "type": "string" },
+                      "status": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/kyc/applications/{id}/status": {
+      "post": {
+        "summary": "Update application status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": { "type": "string", "enum": ["Pending", "Verified", "Rejected"] },
+                  "reason": { "type": "string" },
+                  "hash": { "type": "string", "description": "SHA-256 hash of certificate (optional)" }
+                },
+                "required": ["status"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Status updated successfully" },
+          "400": { "description": "Invalid status or missing fields" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    { "BearerAuth": [] }
+  ]
+}
