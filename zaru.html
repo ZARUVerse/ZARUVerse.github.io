@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ZARU — Official Token Page</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="ZARU — the native token of ZARUverse. Official contract, utilities, and brand assets." />
+  <link rel="icon" href="favicon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ZARU — Official Token Page" />
+  <meta property="og:description" content="Native token powering staking, lore drops, and DAO governance." />
+  <meta property="og:image" content="https://zaruverse.github.io/zaru-og.png" />
+  <meta property="og:url" content="https://zaruverse.github.io/zaru.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ZARU — Official Token Page" />
+  <meta name="twitter:description" content="Where every token tells a story." />
+  <meta name="twitter:image" content="https://zaruverse.github.io/zaru-og.png" />
+
+  <style>
+    :root{--bg:#0a0a0a;--fg:#f2f2f2;--gold:#d8b36a;--muted:#9aa0a6;--panel:#0f0f0f;--line:#1c1c1c}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Inter,system-ui}
+    .wrap{max-width:960px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;gap:16px;margin:4px 0 20px}
+    header img{width:72px;height:72px;border-radius:12px;background:#000}
+    h1{margin:0 0 4px;font-size:28px}
+    .tag{color:var(--muted);font-size:14px}
+    .pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px}
+    .card{border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0;background:var(--panel)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .label{color:var(--muted);font-size:13px}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+    .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .addr{display:flex;align-items:center;gap:10px;overflow:auto}
+    .btn{background:var(--gold);color:#111;border:0;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn-outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+    a.btn,button.btn{text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+    a{color:var(--gold);text-decoration:none}
+    h2{margin:4px 0 12px;font-size:18px}
+    footer{margin:28px 0 10px;color:var(--muted);font-size:13px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="zaru-256.png" alt="ZARU logo" />
+      <div>
+        <h1>ZARU</h1>
+        <div class="tag">Native token of ZARUverse</div>
+        <div class="row" style="margin-top:8px">
+          <span class="pill">BEP‑20</span>
+          <span class="pill">Decimals: 18</span>
+          <span class="pill">Supply: TBA</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="grid">
+        <div>
+          <div class="label">Network</div>
+          <div>BNB Smart Chain</div>
+        </div>
+        <div>
+          <div class="label">Decimals</div>
+          <div>18</div>
+        </div>
+        <div>
+          <div class="label">Contract</div>
+          <div class="addr mono">
+            <span id="contract">TBA</span>
+            <button class="btn btn-outline" onclick="copyAddr()">Copy</button>
+            <a class="btn btn-outline" href="#" aria-disabled="true">Explorer</a>
+            <button class="btn btn-outline" onclick="addToWallet()">Add to Wallet</button>
+          </div>
+        </div>
+        <div>
+          <div class="label">Total Supply</div>
+          <div class="mono">TBA</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>About</h2>
+      <p>ZARU powers staking, lore drops, and DAO governance across the ZARUverse. Every token tells a story.</p>
+      <div class="row" style="margin-top:8px">
+        <a class="btn" href="https://zaruverse.github.io" target="_blank">Website</a>
+        <a class="btn btn-outline" href="https://t.me/zaruverse" target="_blank">Telegram</a>
+        <a class="btn btn-outline" href="https://twitter.com/zaruverse" target="_blank">X (Twitter)</a>
+        <a class="btn btn-outline" href="https://github.com/zaruverse" target="_blank">GitHub</a>
+        <a class="btn btn-outline" href="zaru-whitepaper.pdf" target="_blank">Whitepaper (PDF)</a>
+        <a class="btn btn-outline" href="audit3.pdf" target="_blank">Audit Report</a>
+        <a class="btn btn-outline" href="zaru-512.png" target="_blank">Logo (512px)</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Trading</h2>
+      <div class="row">
+        <a class="btn btn-outline" href="#" aria-disabled="true">Buy on PancakeSwap</a>
+        <a class="btn btn-outline" href="#" aria-disabled="true">DexScreener</a>
+        <a class="btn btn-outline" href="#" aria-disabled="true">CoinMarketCap</a>
+        <a class="btn btn-outline" href="#" aria-disabled="true">CoinGecko</a>
+      </div>
+    </section>
+
+    <footer>© 2025 ZARUverse — Official ZARU page</footer>
+  </div>
+
+  <script>
+    const CONTRACT = ""; // Fill when live
+    function copyAddr(){
+      if(!CONTRACT){ alert("Contract not available yet."); return; }
+      navigator.clipboard.writeText(CONTRACT).then(()=>alert("Contract copied."));
+    }
+    async function addToWallet(){
+      if(!window.ethereum){ alert("Wallet not detected."); return; }
+      if(!CONTRACT){ alert("Contract not available yet."); return; }
+      try{
+        await window.ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: {
+              address: CONTRACT,
+              symbol: 'ZARU',
+              decimals: 18,
+              image: location.origin + '/zaru-256.png'
+            }
+          }
+        });
+      }catch(e){ console.log(e); alert("Could not add to wallet."); }
+    }
+  </script>
+</body>
+</html>
