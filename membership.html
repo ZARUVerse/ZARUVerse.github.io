@@ -1,144 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ZARUverse | Membership</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/template.css" />
-
-  <!-- Web3Modal -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
-  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ"></script>
+  <meta charset="utf-8" />
+  <title>Membership — ZARUverse Protocol</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Official membership portal for verified users of ZARUverse Protocol, powered by MAKESE Holding Ltd." />
+  <link rel="icon" href="favicon.png" />
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    h1,h2,h3{margin:0 0 10px}
+    p{margin:0 0 12px}
+    .container{max-width:720px;margin:0 auto;padding:36px}
+    .header{display:flex;align-items:center;gap:20px;margin-bottom:28px}
+    .header img{width:100px;height:100px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .section{margin-bottom:32px}
+    .form label{display:block;margin-bottom:6px;font-weight:600}
+    .form input{width:100%;padding:10px;margin-bottom:16px;border:1px solid #ccc;border-radius:8px}
+    .form button{padding:12px 24px;background:#151515;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer}
+    .form button:hover{background:#333}
+    .footer{margin-top:40px;font-size:13px;color:#666}
+  </style>
 </head>
-
 <body>
-<header>
-  <div class="mobile-header">
-    <a class="brand" href="index.html">ZARUverse</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-  </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="mint.html">🪙 Mint</a>
-    <a href="vault.html">🔐 Vault</a>
-    <a href="dao.html">⚖️ DAO</a>
-    <a href="membership.html">🧬 Membership</a>
-  </nav>
-</header>
+  <div class="container">
+    <div class="header">
+      <img src="mak1-512.png" alt="ZARUverse logo" />
+      <div>
+        <h1>Membership Portal</h1>
+        <p class="small">Powered by MAKESE Holding Ltd. — London, UK</p>
+      </div>
+    </div>
 
-<main>
-  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
-  <h1 style="font-size: 36px; font-weight: 900;">ZARUverse Membership</h1>
-  <p style="max-width:600px; margin:20px auto; font-size:16px;">
-    You’ve been summoned to the realm. Only ZARU holders may inscribe their name into the scrolls of power.
-  </p>
+    <div class="section">
+      <h2>Join the ZARUverse</h2>
+      <p>Become a verified member of the ZARUverse Protocol. Your identity, assets, and access will be secured on-chain.</p>
+    </div>
 
-  <div id="formcarry-section" style="display:none;">
-    <form id="zaru-form" style="max-width:600px; margin:40px auto;">
-      <input type="text" name="name" id="name" placeholder="🧑 Full Name" required class="btn" style="width:100%; margin-bottom:12px;" />
-      <input type="email" name="email" id="email" placeholder="📧 Email Address" required class="btn" style="width:100%; margin-bottom:12px;" />
-      <input type="text" name="wallet" id="wallet" readonly class="btn" style="width:100%; margin-bottom:12px;" />
-      <textarea name="message" id="message" placeholder="📜 Your message to the realm..." class="btn" style="width:100%; height:120px;"></textarea>
-      <button type="submit" class="btn primary" style="width:100%; margin-top:12px;">🧬 Join the Realm</button>
-    </form>
+    <div class="form">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" placeholder="Matin Parsa" />
 
-    <div id="success-message" style="display:none; margin-top:40px; text-align:center;">
-      <h2>✅ Welcome to ZARUverse</h2>
-      <p>Your scroll has been received. The realm hears you.</p>
-      <a class="btn" href="vault.html">🔐 Enter the Vault</a>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="zaru.verse@makese.site" />
+
+      <label for="wallet">Wallet Address</label>
+      <input type="text" id="wallet" name="wallet" placeholder="0x..." />
+
+      <button type="submit">Verify & Join</button>
+    </div>
+
+    <div class="footer">
+      This portal is part of the ZARUverse Protocol and MAKESE Holding Ltd.  
+      For compliance or audit inquiries, contact <a href="mailto:compliance@makese.com">compliance@makese.com</a>
     </div>
   </div>
-
-  <div id="access-denied" style="display:none; text-align:center; padding:40px;">
-    <h2>🚫 Access Denied</h2>
-    <p>You must hold ZARU Token to access this form.</p>
-    <a class="btn" href="mint.html">🪙 Mint ZARU Token</a>
-  </div>
-</main>
-
-<footer>
-  <div>© ZARUverse. All rights reserved.</div>
-  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-</footer>
-
-<script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('show');
-  }
-
-  const zaruTokenAddress = "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6";
-  const zaruTokenABI = [{
-    "constant": true,
-    "inputs": [{"name": "_owner", "type": "address"}],
-    "name": "balanceOf",
-    "outputs": [{"name": "balance", "type": "uint256"}],
-    "type": "function"
-  }];
-
-  async function checkZaruAccess() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider,
-        options: {
-          rpc: { 56: "https://bsc-dataseed.binance.org/" }
-        }
-      }
-    };
-
-    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-    const instance = await web3Modal.connect();
-    const web3 = new Web3(instance);
-    const accounts = await web3.eth.getAccounts();
-    const userAddress = accounts[0];
-    document.getElementById("wallet").value = userAddress;
-
-    const tokenContract = new web3.eth.Contract(zaruTokenABI, zaruTokenAddress);
-    const balance = await tokenContract.methods.balanceOf(userAddress).call();
-
-    if (parseInt(balance) > 0) {
-      document.getElementById("formcarry-section").style.display = "block";
-    } else {
-      document.getElementById("access-denied").style.display = "block";
-    }
-  }
-
-  window.addEventListener("load", () => {
-    checkZaruAccess();
-  });
-
-  document.getElementById("zaru-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    grecaptcha.ready(function() {
-      grecaptcha.execute('6Lem-scrAAAAAGjL94fUCVEtFUUlQGh_MEQ343uJ', {action: 'submit'}).then(function(token) {
-        const formData = new FormData(document.getElementById("zaru-form"));
-        formData.append("g-recaptcha-response", token);
-
-        fetch("https://formcarry.com/s/_g23_Fh7JC5", {
-          method: "POST",
-          body: formData
-        })
-        .then(response => {
-          if (response.ok) {
-            document.getElementById("zaru-form").style.display = "none";
-            document.getElementById("success-message").style.display = "block";
-          } else {
-            alert("❌ Submission failed. Try again.");
-          }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          alert("❌ Network error. Try again.");
-        });
-      });
-    });
-  });
-</script>
-
 </body>
 </html>
