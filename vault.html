@@ -1,117 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <title>ZARUverse | Vault</title>
+  <title>ZARUverse Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0b0c" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/template.css" />
-
-  <!-- Web3Modal -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  <script src="https://unpkg.com/@walletconnect/web3-provider@latest/dist/umd/index.min.js"></script>
-  <script src="https://unpkg.com/web3modal@latest/dist/index.js"></script>
+  <meta name="theme-color" content="#0b0b0e" />
+  <meta name="description" content="ZARUverse Vault — encrypted relic access via DMD, VAULTBOUND, and ZARUX tokens." />
+  <style>
+    :root {
+      --black: #0b0b0e;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
+    }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: rgba(255,255,255,0.04);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(255,255,255,0.12);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(0,0,0,0.1);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
+      transition: background 0.3s ease, color 0.3s ease;
+      text-align: center;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--hover);
+      margin-top: 40px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 800px;
+      margin: 12px auto;
+      line-height: 1.6;
+    }
+    .vault-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    .vault-card h3 {
+      margin-top: 0;
+      color: var(--hover);
+    }
+    .vault-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .vault-card li {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .vault-card li:last-child {
+      border-bottom: none;
+    }
+    .access-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .back-links {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .back-links a {
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .back-links a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      box-shadow: 0 0 12px rgba(255,215,0,0.28);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="mobile-header">
-    <a class="brand" href="index.html">ZARUverse</a>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-  </div>
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="signup.html">🧬 Join ZARUverse</a>
-    <a href="mint.html">🪙 Mint</a>
-    <a href="vault.html">🔐 Vault</a>
-    <a href="dao.html">⚖️ DAO Council</a>
-    <a href="whitepaper.html">📜 Whitepaper</a>
-    <a href="tokensale.html">💰 Token Sale</a>
-  </nav>
-</header>
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
 
-<main>
-  <img src="zaru-lion-logo.jpg" alt="ZARU Lion Logo" style="width:160px; max-width:80%; margin-bottom:30px; filter: drop-shadow(0 0 6px #ffd700);" />
-  <h1 style="font-size: 36px; font-weight: 900;">ZARUverse Vault</h1>
-  <p style="max-width:600px; margin:20px auto; font-size:16px;">
-    Access hidden lore, staked assets, and encrypted relics. Only verified holders may enter.
-  </p>
+<h1>🔐 ZARUverse Vault</h1>
+<p>Access encrypted relics using verified tokens. Only holders of DMD, VAULTBOUND, or ZARUX may unlock myth-bound content.</p>
 
-  <div id="wallet-section" style="margin-top:30px;">
-    <button class="btn primary" id="connect-wallet">🔗 Connect Wallet</button>
-    <p id="wallet-address" style="margin-top:10px;"></p>
-  </div>
+<div class="vault-card">
+  <h3>🧬 Access Requirements</h3>
+  <ul>
+    <li><strong>DMD:</strong> Diamond-tier vault control</li>
+    <li><strong>VAULTBOUND:</strong> Soul-linked lore unlock</li>
+    <li><strong>ZARUX:</strong> Governance-bound relic activation</li>
+  </ul>
+  <button class="access-button">Connect Wallet & Unlock</button>
+</div>
 
-  <div id="vault-access" style="display:none; margin-top:40px;">
-    <h2>🔓 Vault Unlocked</h2>
-    <p>Welcome, Arxium holder. Your encrypted relics await.</p>
-    <ul style="list-style:none; padding:0;">
-      <li><a class="btn" href="lore/arxium-scroll.pdf" target="_blank">📜 Arxium Lore Scroll</a></li>
-      <li><a class="btn" href="lore/dao-map.png" target="_blank">🗺️ DAO Realm Map</a></li>
-      <li><a class="btn" href="staking.html">⚔️ Staking Portal</a></li>
-    </ul>
-  </div>
+<div class="back-links">
+  <a href="index.html">← Gateway</a>
+  <a href="whitepaper.html">📄 Whitepaper</a>
+  <a href="governance.html">⚖️ Governance</a>
+  <a href="philosophy.html">📜 Philosophy</a>
+  <a href="certificate.html">📄 Certificate</a>
+</div>
 
-  <div id="vault-denied" style="display:none; margin-top:40px;">
-    <h2>🚫 Access Denied</h2>
-    <p>You must hold an Arxium NFT to unlock the vault.</p>
-    <a class="btn" href="mint.html">🪙 Mint Arxium NFT</a>
-  </div>
-</main>
-
-<footer>
-  <div>© ZARUverse. All rights reserved.</div>
-  <div style="margin-top:8px;">Built for the uncrowned kings of crypto.</div>
-</footer>
+<footer>© ZARUverse — vaults are earned, not opened.</footer>
 
 <script>
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('show');
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
   }
-
-  const contractAddress = "0x57664ea40e95636ed7a4df35f4b31e3656a851cd";
-  const contractABI = [
-    {
-      "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
-      "name": "balanceOf",
-      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-      "stateMutability": "view",
-      "type": "function"
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
     }
-  ];
-
-  let web3;
-  let userAddress;
-
-  async function connectWallet() {
-    const providerOptions = {
-      walletconnect: {
-        package: window.WalletConnectProvider,
-        options: {
-          rpc: { 56: "https://bsc-dataseed.binance.org/" }
-        }
-      }
-    };
-
-    const web3Modal = new window.Web3Modal.default({ cacheProvider: false, providerOptions });
-    const instance = await web3Modal.connect();
-    web3 = new Web3(instance);
-    const accounts = await web3.eth.getAccounts();
-    userAddress = accounts[0];
-    document.getElementById("wallet-address").innerText = `Connected: ${userAddress}`;
-
-    const contract = new web3.eth.Contract(contractABI, contractAddress);
-    const balance = await contract.methods.balanceOf(userAddress).call();
-
-    if (parseInt(balance) > 0) {
-      document.getElementById("vault-access").style.display = "block";
-    } else {
-      document.getElementById("vault-denied").style.display = "block";
-    }
-  }
-
-  document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+  })();
 </script>
 
 </body>
