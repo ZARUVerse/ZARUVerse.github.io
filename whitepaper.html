@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <title>ZARUverse Ecosystem | Whitepaper | Makese Holding Ltd.</title>
@@ -7,111 +7,190 @@
   <meta name="description" content="ZARUverse whitepaper — full ecosystem architecture, token roles, governance, treasury, and brand policy by Makese Holding Ltd." />
   <meta name="theme-color" content="#0b0b0e" />
   <style>
-    @page {
-      margin: 28mm 20mm;
-      @top-center {
-        content: "ZARUverse Ecosystem | Makese Holding Ltd.";
-        font-size: 11pt; color: #555;
-      }
-      @bottom-center {
-        content: "Page " counter(page) " of " counter(pages) " — © Makese Holding Ltd.";
-        font-size: 10pt; color: #777;
-      }
+    :root {
+      --black: #0b0b0e;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --deep: #111;
+      --light-bg: #f5f5f5;
+      --light-text: #222;
     }
-    body { margin:0; padding:0; background:#fff; color:#111318; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    .wrap { max-width:900px; margin:0 auto; padding:32px 20px; }
-    header { display:flex; align-items:center; gap:16px; border-bottom:2px solid #e5e8ef; padding-bottom:16px; margin-bottom:24px; }
-    header img { width:64px; height:64px; object-fit:contain; }
-    h1 { margin:0 0 6px; font-size:30px; }
-    h2 { margin:24px 0 10px; font-size:20px; }
-    p { margin:8px 0; color:#232a37; }
-    ul { margin:10px 0 12px 22px; }
-    li { margin:6px 0; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace; }
-    .hr { height:1px; background:#e5e8ef; margin:20px 0; }
-    .kv { display:grid; grid-template-columns:180px 1fr; gap:10px; }
-    .muted { color: #3c4250; }
-    .note { border-left:4px solid #b8912c; background:#fffaf0; padding:10px 12px; }
-    .table { width:100%; border-collapse: collapse; margin:10px 0 16px; }
-    .table th, .table td { border:1px solid #e5e8ef; padding:8px 10px; text-align:left; }
-    .page-break { page-break-before: always; }
-    footer { margin-top:26px; padding-top:12px; border-top:1px dashed #ccc; font-size:13px; color:#555; }
+    [data-theme="dark"] {
+      --bg: var(--black);
+      --text: var(--white);
+      --card: rgba(255,255,255,0.04);
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(255,255,255,0.12);
+      --muted: rgba(255,255,255,0.7);
+    }
+    [data-theme="light"] {
+      --bg: var(--light-bg);
+      --text: var(--light-text);
+      --card: #fff;
+      --hover: var(--gold);
+      --hover-text: var(--black);
+      --border: rgba(0,0,0,0.1);
+      --muted: rgba(0,0,0,0.7);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--hover);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--hover);
+      margin-top: 40px;
+    }
+    p, li {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 800px;
+      margin: 12px auto;
+      line-height: 1.6;
+    }
+    ul {
+      list-style: disc;
+      padding-left: 40px;
+    }
+    .kv {
+      display: grid;
+      grid-template-columns:180px 1fr;
+      gap: 10px;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .note {
+      border-left: 4px solid var(--hover);
+      background: var(--card);
+      padding: 12px 16px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--hover);
+      color: var(--hover-text);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .back-links {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .back-links a {
+      padding: 8px 14px;
+      background: var(--card);
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .back-links a:hover {
+      background: var(--hover);
+      color: var(--hover-text);
+      box-shadow: 0 0 12px rgba(255,215,0,0.28);
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 13px;
+      opacity: 0.6;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <img src="zaru-512.png" alt="ZARU logo" />
-      <div>
-        <h1>ZARUverse Ecosystem</h1>
-        <div class="muted">Whitepaper — Makese Holding Ltd.</div>
-      </div>
-    </header>
 
-    <h2>Executive Summary</h2>
-    <p>ZARUverse is a branded crypto ecosystem engineered by Makese Holding Ltd. It blends viral participation with luxury-grade token architecture. The ecosystem includes three core assets: MAK1, DMD, and ZARU—each with distinct roles in treasury, access, and governance.</p>
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
 
-    <div class="hr"></div>
+<h1>📄 ZARUverse Ecosystem Whitepaper</h1>
+<p>Engineered by Makese Holding Ltd. — London, UK</p>
 
-    <h2>Token Architecture</h2>
-    <ul>
-      <li><b>MAK1:</b> Strategic treasury token with governance weight and premium access.</li>
-      <li><b>DMD:</b> Liquidity and access token with composable staking and signal roles.</li>
-      <li><b>ZARU:</b> Meme-aware participatory token for lore drops, DAO voting, and viral propagation.</li>
-    </ul>
+<h2>Executive Summary</h2>
+<p>ZARUverse is a branded crypto ecosystem engineered by Makese Holding Ltd. It blends viral participation with luxury-grade token architecture. The ecosystem includes five core assets: MAK1, DMD, ZARU, ARXIUM, and VAULTBOUND—each with distinct roles in treasury, access, lore, and governance.</p>
 
-    <h2>Contract Addresses</h2>
-    <div class="kv">
-      <div class="muted">MAK1</div><div class="mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</div>
-      <div class="muted">DMD</div><div class="mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</div>
-      <div class="muted">ZARU</div><div class="mono">[awaiting confirmed address]</div>
-    </div>
+<h2>Token Architecture</h2>
+<ul>
+  <li><b>MAK1:</b> Strategic treasury token with governance weight and premium access.</li>
+  <li><b>DMD:</b> Diamond-tier liquidity and vault control token with golden vote rights.</li>
+  <li><b>ZARU:</b> Meme-aware participatory token for lore drops, DAO voting, and viral propagation.</li>
+  <li><b>ARXIUM:</b> Relic-gating token required to activate voting and unlock myth-bound proposals.</li>
+  <li><b>VAULTBOUND:</b> Soul-linked lore token—non-transferable, non-voting, used to unlock encrypted relics.</li>
+</ul>
 
-    <div class="page-break"></div>
+<h2>Contract Addresses</h2>
+<div class="kv">
+  <div>MAK1</div><div class="mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</div>
+  <div>DMD</div><div class="mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</div>
+  <div>ZARU</div><div class="mono">0x000000000000000000000000000000000000ZARU</div>
+  <div>ARXIUM</div><div class="mono">0x000000000000000000000000000000000000ARXI</div>
+  <div>VAULTBOUND</div><div class="mono">0x000000000000000000000000000000000000VAUL</div>
+</div>
 
-    <h2>Governance Framework</h2>
-    <ul>
-      <li><b>Proposal lifecycle:</b> Draft → Review → Vote → Ratify</li>
-      <li><b>Voting weight:</b> MAK1 and DMD carry multiplier roles</li>
-      <li><b>Delegation:</b> Holders may delegate voting power</li>
-      <li><b>Transparency:</b> All decisions published via official channels</li>
-    </ul>
+<h2>Governance Framework</h2>
+<ul>
+  <li><b>Proposal lifecycle:</b> Draft → Review → Vote → Ratify</li>
+  <li><b>Voting weight:</b> MAK1 and DMD carry multiplier roles</li>
+  <li><b>Relic gating:</b> ARXIUM required to activate voting</li>
+  <li><b>Delegation:</b> Holders may delegate voting power</li>
+  <li><b>Transparency:</b> All decisions published via official channels</li>
+</ul>
 
-    <h2>Treasury Policy</h2>
-    <ul>
-      <li><b>Reserve bands:</b> Internal thresholds for liquidity and runway</li>
-      <li><b>Disbursement:</b> Multi-sig approvals required</li>
-      <li><b>LP operations:</b> Guardrails for pool depth and volatility</li>
-    </ul>
+<h2>Treasury Policy</h2>
+<ul>
+  <li><b>Reserve bands:</b> Internal thresholds for liquidity and runway</li>
+  <li><b>Disbursement:</b> Multi-sig approvals required</li>
+  <li><b>LP operations:</b> Guardrails for pool depth and volatility</li>
+</ul>
 
-    <h2>Brand Integrity</h2>
-    <ul>
-      <li><b>Issuer:</b> Makese Holding Ltd. exclusively</li>
-      <li><b>Identity:</b> No dilution, no off-brand integrations</li>
-      <li><b>Precision:</b> All communications cite full contract addresses</li>
-    </ul>
+<h2>Brand Integrity</h2>
+<ul>
+  <li><b>Issuer:</b> Makese Holding Ltd. exclusively</li>
+  <li><b>Identity:</b> No dilution, no off-brand integrations</li>
+  <li><b>Precision:</b> All communications cite full contract addresses</li>
+</ul>
 
-    <div class="page-break"></div>
+<h2>Security Model</h2>
+<ul>
+  <li><b>Contract immutability:</b> No mint authority post-deployment</li>
+  <li><b>Operational security:</b> Segregated keys, role-based access</li>
+  <li><b>Monitoring:</b> Alerts for anomalous transfers or LP changes</li>
+</ul>
 
-    <h2>Security Model</h2>
-    <ul>
-      <li><b>Contract immutability:</b> No mint authority post-deployment</li>
-      <li><b>Operational security:</b> Segregated keys, role-based access</li>
-      <li><b>Monitoring:</b> Alerts for anomalous transfers or LP changes</li>
-    </ul>
+<h2>Risk Disclosures</h2>
+<ul>
+  <li><b>Market risk:</b> Volatility and liquidity variability</li>
+  <li><b>Counterparty risk:</b> Exchange and integration dependencies</li>
+  <li><b>Regulatory risk:</b> Jurisdictional changes may affect access</li>
+  <li><b>Operational risk:</b> Treasury, listing, or infrastructure incidents</li>
+</ul>
 
-    <h2>Risk Disclosures</h2>
-    <ul>
-      <li><b>Market risk:</b> Volatility and liquidity variability</li>
-      <li><b>Counterparty risk:</b> Exchange and integration dependencies</li>
-      <li><b>Regulatory risk:</b> Jurisdictional changes may affect access</li>
-      <li><b>Operational risk:</b> Treasury, listing, or infrastructure incidents</li>
-    </ul>
+<h2>Compliance Notice</h2>
+<p class="note">This document is informational and non-solicitational. Always verify contract addresses and links via official Makese channels. Access or use may be restricted under applicable laws.</p>
 
-    <h2>Compliance Notice</h2>
-    <p class="note">This document is informational and non-solicitational. Always verify contract addresses and links via official Makese channels. Access or use may be restricted under applicable laws.</p>
-
-    <footer>© Makese Holding Ltd. — ZARUverse Ecosystem Whitepaper</footer>
-  </div>
-</body>
-</html>
+<div class="
