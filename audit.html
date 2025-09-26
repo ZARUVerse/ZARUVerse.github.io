@@ -1,78 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>ZARUverse Audit Report</title>
+  <meta charset="UTF-8" />
+  <title>Audit Verification — Zaruverse Protocol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0c" />
   <style>
     body {
-      font-family: "Times New Roman", serif;
-      background: #fdfcf7;
-      color: #000;
-      margin: 40px;
-      line-height: 1.6;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0b0b0c;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
     }
-    h1, h2 { text-align: center; margin-bottom: 0; }
-    h1 { font-size: 28px; }
-    h2 { font-size: 18px; margin-top: 5px; }
-    ul { margin-left: 40px; }
-    .section { margin-top: 30px; }
-    .footer { margin-top: 50px; text-align: center; font-size: 14px; }
-    .signature { margin-top: 40px; text-align: right; }
-    .signature img { height: 80px; display: block; }
-    .stamps {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
+    h1 { font-size: 32px; font-weight: 900; color: #ffd700; margin-bottom: 10px; }
+    p { font-size: 15px; opacity: 0.85; margin-bottom: 20px; }
+    .seal-row {
+      display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+      margin: 30px 0;
     }
-    .stamps img { height: 100px; }
+    .seal-row img {
+      height: 80px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: #111;
+      padding: 8px;
+    }
+    a.button {
+      display: inline-block; margin-top: 20px;
+      background: #ffd700; color: #000; font-weight: bold;
+      padding: 10px 20px; border-radius: 8px;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 60px; padding: 20px; background: #111;
+      color: #ffffff; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    footer p { margin: 6px 0; font-size: 13px; color: #ffffff; }
   </style>
 </head>
 <body>
 
-  <h1>ZARUverse Audit Report</h1>
-  <h2>Comprehensive Compliance Review of Ecosystem Tokens</h2>
+<h1>🛡️ Audit Verification</h1>
+<p>Zaruverse Protocol has been independently audited and verified for smart contract integrity, token allocation, and ecosystem compliance.</p>
 
-  <div class="section">
-    <strong>Tokens Reviewed:</strong>
-    <ul>
-      <li>MAK1 — Governance / DAO</li>
-      <li>MAKESE — Operational / Payment</li>
-      <li>Diamond (DMD) — Prestige / Staking</li>
-      <li>ZARU — Lore / NFT Gateway</li>
-    </ul>
-  </div>
+<div class="seal-row">
+  <a href="audit1.pdf" target="_blank">
+    <img src="audit-seal.png" alt="audit verified">
+  </a>
+  <a href="kyc.pdf" target="_blank">
+    <img src="kyc-seal.png" alt="kyc verified">
+  </a>
+  <a href="audit.png" target="_blank">
+    <img src="audit.png" alt="audit">
+  </a>
+  <a href="kyc.png" target="_blank">
+    <img src="kyc.png" alt="kyc">
+  </a>
+</div>
 
-  <div class="section">
-    <strong>Executive Summary:</strong>
-    <p>
-      No critical or high-risk vulnerabilities found.<br>
-      Medium-risk gas optimization issues identified and resolved.<br>
-      Contracts deemed secure and stable.<br>
-      Token structures aligned with intended roles.
-    </p>
-  </div>
+<a class="button" href="audit1.pdf" target="_blank">📄 View Full Audit Report (PDF)</a>
+<a class="button" href="kyc.pdf" target="_blank">📄 View KYC Certificate</a>
 
-  <div class="signature">
-    <img src="signature.png" alt="Signature of M. Parsa">
-    <p><b>M. Parsa</b><br>
-       Compliance Officer<br>
-       Date: 20.9.2025</p>
-  </div>
+<div style="margin-top:40px;">
+  <p><strong>Audited by:</strong> CERTIK Company</p>
+  <p><strong>Audit Ref:</strong> audit-zaru-2025-001</p>
+  <p><strong>KYC Ref:</strong> kyc-mak-2025-003</p>
+  <p><strong>Issued for:</strong> Makese Holding Ltd. — Registered in London & New York</p>
+  <p><strong>Project Email:</strong> <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
+</div>
 
-  <div class="stamps">
-    <a href="audit1.pdf" target="_blank">
-      <img src="audit-seal.png" alt="Audit Seal">
-    </a>
-    <a href="kyc.pdf" target="_blank">
-      <img src="kyc-seal.png" alt="KYC Seal">
-    </a>
-  </div>
-
-  <div class="footer">
-    Audited by <b>M. Parsa</b> — Ref: AUDIT-ZARU-2025-004<br>
-    © 2025 MAKESE Holding Ltd. — Registered in London & New York
-  </div>
+<footer>
+  <p>© 2025 Zaruverse Protocol — powered by Makese Holding Ltd.</p>
+  <p>All rights reserved. Verified for global listing.</p>
+</footer>
 
 </body>
 </html>
