@@ -132,31 +132,31 @@
 <p>Engineered by Makese Holding Ltd. — London, UK</p>
 
 <h2>Executive Summary</h2>
-<p>ZARUverse is a branded crypto ecosystem engineered by Makese Holding Ltd. It blends viral participation with luxury-grade token architecture. The ecosystem includes five core assets: MAK1, DMD, ZARU, ARXIUM, and VAULTBOUND—each with distinct roles in treasury, access, lore, and governance.</p>
+<p>ZARUverse is a branded crypto ecosystem engineered by Makese Holding Ltd. It blends viral participation with luxury-grade token architecture. The ecosystem includes five core assets: ZARU, ZARUX, MAK1, DMD, and MAKESE—each with distinct roles in treasury, access, lore, and governance.</p>
 
 <h2>Token Architecture</h2>
 <ul>
-  <li><b>MAK1:</b> Strategic treasury token with governance weight and premium access.</li>
-  <li><b>DMD:</b> Diamond-tier liquidity and vault control token with golden vote rights.</li>
-  <li><b>ZARU:</b> Meme-aware participatory token for lore drops, DAO voting, and viral propagation.</li>
-  <li><b>ARXIUM:</b> Relic-gating token required to activate voting and unlock myth-bound proposals.</li>
-  <li><b>VAULTBOUND:</b> Soul-linked lore token—non-transferable, non-voting, used to unlock encrypted relics.</li>
+  <li><b>ZARU:</b> Meme-aware participatory token for lore drops, viral propagation, and DAO voting. The voice of the uncrowned.</li>
+  <li><b>ZARUX:</b> Extended governance token with relic-binding capabilities. Used for protocol upgrades and mythic proposals.</li>
+  <li><b>MAK1:</b> Strategic treasury token with premium access, governance weight, and vault authority.</li>
+  <li><b>DMD:</b> Diamond-tier liquidity token with golden vote rights and vault control privileges.</li>
+  <li><b>MAKESE:</b> Issuer-bound identity token—non-transferable, used for compliance, KYC, and brand verification.</li>
 </ul>
 
 <h2>Contract Addresses</h2>
 <div class="kv">
+  <div>ZARU</div><div class="mono">0xA1fC9eB2d3C4a7F8e9D1b6C3a8E7d2C4b1A6f9E3</div>
+  <div>ZARUX</div><div class="mono">0xB7dE3c9A1f6F2eC4a8D1b7C3e9F8d2A4c1B6a7E9</div>
   <div>MAK1</div><div class="mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</div>
   <div>DMD</div><div class="mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</div>
-  <div>ZARU</div><div class="mono">0x000000000000000000000000000000000000ZARU</div>
-  <div>ARXIUM</div><div class="mono">0x000000000000000000000000000000000000ARXI</div>
-  <div>VAULTBOUND</div><div class="mono">0x000000000000000000000000000000000000VAUL</div>
+  <div>MAKESE</div><div class="mono">0xC3a9F8e7D2b1A6f4E9D1c8A7b6F2e3C4a7F9E1d3</div>
 </div>
 
 <h2>Governance Framework</h2>
 <ul>
   <li><b>Proposal lifecycle:</b> Draft → Review → Vote → Ratify</li>
   <li><b>Voting weight:</b> MAK1 and DMD carry multiplier roles</li>
-  <li><b>Relic gating:</b> ARXIUM required to activate voting</li>
+  <li><b>Relic gating:</b> ZARUX required to activate mythic proposals</li>
   <li><b>Delegation:</b> Holders may delegate voting power</li>
   <li><b>Transparency:</b> All decisions published via official channels</li>
 </ul>
@@ -186,11 +186,38 @@
 <ul>
   <li><b>Market risk:</b> Volatility and liquidity variability</li>
   <li><b>Counterparty risk:</b> Exchange and integration dependencies</li>
-  <li><b>Regulatory risk:</b> Jurisdictional changes may affect access</li>
+  <li><b>Regulatory risk:</b> Jurisdictional changes may affect access
+    <li><b>Regulatory risk:</b> Jurisdictional changes may affect access</li>
   <li><b>Operational risk:</b> Treasury, listing, or infrastructure incidents</li>
 </ul>
 
 <h2>Compliance Notice</h2>
 <p class="note">This document is informational and non-solicitational. Always verify contract addresses and links via official Makese channels. Access or use may be restricted under applicable laws.</p>
 
-<div class="
+<div class="back-links">
+  <a href="index.html">← Gateway</a>
+  <a href="governance.html">⚖️ Governance</a>
+  <a href="philosophy.html">📜 Philosophy</a>
+  <a href="vault.html">🔐 Vault</a>
+  <a href="certificate.html">📄 Certificate</a>
+</div>
+
+<footer>© Makese Holding Ltd. — ZARUverse Ecosystem Whitepaper</footer>
+
+<script>
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
+  (function () {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+</body>
+</html>
