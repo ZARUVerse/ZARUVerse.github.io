@@ -1,20 +1,30 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+/// @title KYCRegistry — ZARUverse Protocol
+/// @notice On-chain registry for verified KYC certificates issued by MAKESE Holding Ltd.
+/// @dev Designed for global listing, audit verification, and compliance tracking
+
 contract KYCRegistry {
-    address public owner;
-
-    enum Status { Pending, Verified, Rejected }
-
-    struct Record {
-        Status status;
-        string hash; // SHA-256 or IPFS CID
-        uint256 timestamp;
+    struct Certificate {
+        string fullName;
+        string email;
+        string country;
+        string nationality;
+        string certHash;
+        string signature;
+        uint256 issuedOn;
     }
 
-    mapping(address => Record) public records;
+    mapping(address => Certificate) public certificates;
+    address public owner;
 
-    event KYCUpdated(address indexed user, Status status, string hash);
+    event CertificateRegistered(
+        address indexed user,
+        string fullName,
+        string certHash,
+        uint256 issuedOn
+    );
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Not authorized");
@@ -25,24 +35,43 @@ contract KYCRegistry {
         owner = msg.sender;
     }
 
-    function updateKYC(address user, Status status, string calldata hash) external onlyOwner {
-        records[user] = Record({
-            status: status,
-            hash: hash,
-            timestamp: block.timestamp
-        });
-        emit KYCUpdated(user, status, hash);
+    /// @notice Register a new KYC certificate
+    /// @param fullName Full legal name of applicant
+    /// @param email Verified email address
+    /// @param country Country of residence
+    /// @param nationality Nationality (e.g. British)
+    /// @param certHash SHA256 hash of the certificate document
+    /// @param signature Compliance officer's signature hash
+    /// @param issuedOn Timestamp of issuance
+    function registerCertificate(
+        string memory fullName,
+        string memory email,
+        string memory country,
+        string memory nationality,
+        string memory certHash,
+        string memory signature,
+        uint256 issuedOn
+    ) external {
+        certificates[msg.sender] = Certificate(
+            fullName,
+            email,
+            country,
+            nationality,
+            certHash,
+            signature,
+            issuedOn
+        );
+        emit CertificateRegistered(msg.sender, fullName, certHash, issuedOn);
     }
 
-    function getKYC(address user) external view returns (Status, string memory, uint256) {
-        Record memory r = records[user];
-        return (r.status, r.hash, r.timestamp);
+    /// @notice Retrieve certificate details for a given address
+    /// @param user Address of the certificate holder
+    function getCertificate(address user) external view returns (Certificate memory) {
+        return certificates[user];
     }
 
-    function isVerified(address user) external view returns (bool) {
-        return records[user].status == Status.Verified;
-    }
-
+    /// @notice Transfer registry ownership
+    /// @param newOwner Address of new registry owner
     function transferOwnership(address newOwner) external onlyOwner {
         owner = newOwner;
     }
