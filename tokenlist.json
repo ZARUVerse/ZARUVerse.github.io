@@ -1,0 +1,69 @@
+{
+  "name": "ZARUverse Official Token List",
+  "logoURI": "https://zaruverse.github.io/zaru-lion-logo.jpg",
+  "keywords": ["zarunomics", "defi", "luxury", "mythic"],
+  "timestamp": "2025-10-07T13:35:00+03:30",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tokens": [
+    {
+      "name": "BTCBR",
+      "symbol": "BITCOIN BR",
+      "address": "0x90bb20727b6e28c02cd941ecce635ffd826e3e00",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/25RymHJJ/token-logo-256.png"
+    },
+    {
+      "name": "BITCOIN BR",
+      "symbol": "BTCBR",
+      "address": "0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/sgbcvp7d/image-1759010056633.jpg"
+    },
+    {
+      "name": "DIAMOND",
+      "symbol": "DMD",
+      "address": "0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/0ycqKHS5/IMG-20250716-071617-309.jpg"
+    },
+    {
+      "name": "ZARU",
+      "symbol": "ZARU",
+      "address": "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/LsCXTbSn/copilot-image-1760147977035.png"
+    },
+    {
+      "name": "ZARU GOLD",
+      "symbol": "ZARUX",
+      "address": "0x7e8e9a6f626e499cf24063cdaf937615576b6cf3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/tTvX3ZhN/copilot-image-1760147653234.png"
+    },
+    {
+      "name": "MAK1",
+      "symbol": "MAKESE",
+      "address": "0xa6bcd9434e8db84108612bb7ccb77775306adf1a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/g2VT9CBF/image-1759223550402.jpg"
+    },
+    {
+      "name": "MAKESE",
+      "symbol": "MAK1",
+      "address": "0x9f833ca55ce0431045098ef12b64da6b33cf1f48",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.postimg.cc/k4f0004L/copilot-image-1759170972916.png"
+    }
+  ]
+}
