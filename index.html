@@ -4,167 +4,106 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZARUverse</title>
-  <link rel="icon" href="https://zaruverse.github.io/favicon.png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0b0b0c;
-      color: #ffd700;
-    }
-    header, section, footer {
-      padding: 20px;
-      text-align: center;
-    }
-    h1, h2 {
-      margin-bottom: 10px;
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
-      background-color: #ffd700;
-      color: #0b0b0c;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-    }
-    .token-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-    }
-    .token-card {
-      background-color: #1a1a1d;
-      border: 1px solid #ffd700;
-      border-radius: 8px;
-      padding: 16px;
-      width: 280px;
-    }
-    .roadmap-line {
-      margin: 20px 0;
-      font-weight: bold;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    ul li {
-      margin: 6px 0;
-    }
-    a {
-      color: #ffd700;
-    }
-    footer img {
-      height: 40px;
-      margin: 10px;
-    }
-    @media (max-width: 600px) {
-      .token-card {
-        width: 90%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-<header>
-  <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Logo" height="80" />
-  <h1>ZARUVERSE</h1>
-  <p>Mythic Contracts for DeFi Utility</p>
-  <a href="#flashloan" class="btn">LAUNCH FLASH LOAN</a>
-  <a href="#connect" class="btn">CONNECT WALLET</a>
-</header>
+  <header>
+    <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Logo" class="logo" />
+    <h1>ZARUVERSE</h1>
+    <p class="tagline">Mythic Contracts for DeFi Utility</p>
+    <div class="cta-buttons">
+      <a href="#flashloan" class="btn">LAUNCH FLASH LOAN</a>
+      <a href="#connect" class="btn">CONNECT WALLET</a>
+    </div>
+  </header>
 
-<section id="tokens">
-  <h2>Token Contracts</h2>
-  <div class="token-grid">
+  <section class="token-section">
     <div class="token-card">
-      <h3>ZARU</h3>
-      <p>0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</p>
-      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">TRADE</a> |
-      <a href="https://zaruverse.github.io/zaru.html">INFO</a>
+      <h2>ZARU</h2>
+      <p id="zaru-price">Loading...</p>
+      <p>Contract: 0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</p>
+      <a href="https://zaruverse.github.io/zaru.html" class="btn">INFO</a>
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" class="btn">TRADE</a>
     </div>
-    <div class="token-card">
-      <h3>ZARUX</h3>
-      <p>0x7e8e9a6f626e499cf24063cdaf937615576b6cf3</p>
-      <a href="#">TRADE</a> |
-      <a href="#">INFO</a>
-    </div>
-    <div class="token-card">
-      <h3>DIAMOND</h3>
-      <p>0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</p>
-      <a href="#">TRADE</a> |
-      <a href="https://zaruverse.github.io/dmd.html">INFO</a>
-    </div>
-    <div class="token-card">
-      <h3>MAK1</h3>
-      <p>0x9f833ca55ce0431045098ef12b64da6b33cf1f48</p>
-      <a href="#">TRADE</a> |
-      <a href="https://zaruverse.github.io/mak1.html">INFO</a>
-    </div>
-    <div class="token-card">
-      <h3>MAKESE</h3>
-      <p>0xa6bcd9434e8db84108612bb7ccb77775306adf1a</p>
-      <a href="#">TRADE</a> |
-      <a href="https://zaruverse.github.io/makese.html">INFO</a>
-    </div>
-    <div class="token-card">
-      <h3>BTCBR</h3>
-      <p>0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164</p>
-      <a href="#">TRADE</a> |
-      <a href="#">INFO</a>
-    </div>
-    <div class="token-card">
-      <h3>Bitcoin BR</h3>
-      <p>0x90bb20727b6e28c02cd941ecce635ffd826e3e00</p>
-      <a href="#">TRADE</a> |
-      <a href="#">INFO</a>
-    </div>
-  </div>
-</section>
 
-<section id="about">
-  <h2>About ZARUverse</h2>
-  <p>ZARUverse is an ecosystem of branded tokens and pooled staking contracts that add strength and prestige to the DeFi space. Anchored by the mythic token ZARU, our project allows users to connect with our DApp to launch flash loans and delve into the vaults for staking yields.</p>
-</section>
+    <div class="token-card">
+      <h2>ZARUX</h2>
+      <p id="zarux-price">Loading...</p>
+      <p>Contract: 0x7e8e9a6f626e499cf24063cdaf937615576b6cf3</p>
+      <a href="https://zaruverse.github.io/zarux.html" class="btn">INFO</a>
+    </div>
 
-<section id="roadmap">
-  <h2>Roadmap</h2>
-  <div class="roadmap-line">
-    ZARU → ZARUX → DMD → MAK1 → MAKESE → BTCBR → Bitcoin BR
-  </div>
-</section>
+    <div class="token-card">
+      <h2>DIAMOND</h2>
+      <p id="dmd-price">Loading...</p>
+      <p>Contract: 0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</p>
+      <a href="https://zaruverse.github.io/dmd.html" class="btn">INFO</a>
+    </div>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>📩 Official Email: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
-</section>
+    <div class="token-card">
+      <h2>MAK1</h2>
+      <p id="mak1-price">Loading...</p>
+      <p>Contract: 0x9f833ca55ce0431045098ef12b64da6b33cf1f48</p>
+      <a href="https://zaruverse.github.io/mak1.html" class="btn">INFO</a>
+    </div>
 
-<section id="links">
-  <h2>Official Links</h2>
-  <ul>
-    <li><a href="https://zaruverse.github.io">Main Site</a></li>
-    <li><a href="https://github.com/zaruverse">GitHub</a></li>
-    <li><a href="https://zaruverse.github.io/whitepaper.html">Whitepaper</a></li>
-    <li><a href="https://t.me/zaruverse">Telegram</a></li>
-    <li><a href="https://x.com/zaruverse">Twitter</a></li>
-    <li><a href="https://instagram.com/zaruverse">Instagram</a></li>
-    <li><a href="https://discord.gg/EWVcrwwJ">Discord</a></li>
-    <li><a href="https://medium.com/@zaruverse">Medium</a></li>
-    <!-- ادامه لینک‌ها طبق لیست کامل -->
-  </ul>
-</section>
+    <div class="token-card">
+      <h2>MAKESE</h2>
+      <p id="makese-price">Loading...</p>
+      <p>Contract: 0xa6bcd9434e8db84108612bb7ccb77775306adf1a</p>
+      <a href="https://zaruverse.github.io/makese.html" class="btn">INFO</a>
+    </div>
 
-<footer>
-  <img src="https://zaruverse.github.io/audit-seal.png" alt="Audit Seal" />
-  <img src="https://zaruverse.github.io/kyc-seal.png" alt="KYC Seal" />
-  <p>London: 120 Old Broad St, EC2N 1AR</p>
-  <p>New York: 1100 Sixth Ave, 10th Floor</p>
-  <p>Forged for the Uncrowned Kings</p>
-</footer>
+    <div class="token-card">
+      <h2>BTCBR</h2>
+      <p id="btcbr-price">Loading...</p>
+      <p>Contract: 0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164</p>
+      <a href="https://zaruverse.github.io/btcbr.html" class="btn">INFO</a>
+    </div>
+
+    <div class="token-card">
+      <h2>Bitcoin BR</h2>
+      <p id="bitcoinbr-price">Loading...</p>
+      <p>Contract: 0x90bb20727b6e28c02cd941ecce635ffd826e3e00</p>
+      <a href="https://zaruverse.github.io/bitcoinbr.html" class="btn">INFO</a>
+    </div>
+  </section>
+
+  <section class="roadmap-section">
+    <h2>Roadmap</h2>
+    <ul>
+      <li>Q1 — Launch ZARU (NFT Gateway Token)</li>
+      <li>Q2 — Deploy ZARUX (Prestige Gold Token)</li>
+      <li>Q3 — Activate DIAMOND Vaults (Staking Protocol)</li>
+      <li>Q4 — Launch MAK1 Governance Beta</li>
+      <li>Q1 — Release MAKESE Payments Layer</li>
+      <li>Q2 — Integrate BTCBR + Bitcoin BR Bridge</li>
+      <li>Q3 — DAO Governance & Identity Verification</li>
+    </ul>
+  </section>
+
+  <section class="about-section">
+    <h2>About ZARUverse</h2>
+    <p>ZARUverse is an ecosystem of branded tokens and pooled staking contracts that add strength and prestige to the DeFi space. Anchored by the mythic lion ZARU, our project allows users to connect with our DApp to launch flash loans and delve into the vaults for staking yields.</p>
+  </section>
+
+  <section class="contact-section">
+    <h2>Contact</h2>
+    <p>📩 Official Email: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
+  </section>
+
+  <footer>
+    <div class="footer-icons">
+      <img src="https://zaruverse.github.io/audit-seal.png" alt="Audit" />
+      <img src="https://zaruverse.github.io/kyc-seal.png" alt="KYC" />
+      <img src="https://zaruverse.github.io/whitepaper.html" alt="PDF" />
+    </div>
+    <p>London: 120 Old Broad St, EC2N 1AR</p>
+    <p>New York: 1100 Sixth Ave, 10th Floor</p>
+    <p class="slogan">FORGED FOR THE UNCROWNED KINGS</p>
+  </footer>
 
 </body>
 </html>
