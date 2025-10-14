@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZARUverse</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b0b0c" />
   <script src="script.js" defer></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </head>
 <body>
 
@@ -26,50 +33,32 @@
         <h2>ZARU</h2>
         <p id="zaru-price">Loading...</p>
         <p>Contract: 0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</p>
-        <a href="https://zaruverse.github.io/zaru.html" class="btn">INFO</a>
+        <a href="zaru.html" class="btn">INFO</a>
         <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" class="btn">TRADE</a>
       </div>
-
       <!-- سایر توکن‌ها مشابه همین ساختار -->
-      <!-- ZARUX, DIAMOND, MAK1, MAKESE, BTCBR, Bitcoin BR -->
-      <!-- فقط آدرس‌ها و شناسه‌ها رو تغییر بده -->
     </section>
 
     <section class="roadmap">
       <h2>Roadmap</h2>
       <div class="roadmap-line">
-        <span>ZARU</span>
-        <span>→</span>
-        <span>ZARUX</span>
-        <span>→</span>
-        <span>DIAMOND</span>
-        <span>→</span>
-        <span>MAK1</span>
-        <span>→</span>
-        <span>MAKESE</span>
-        <span>→</span>
-        <span>BTCBR</span>
-        <span>→</span>
-        <span>Bitcoin BR</span>
+        <span>ZARU</span> → <span>ZARUX</span> → <span>DIAMOND</span> → <span>MAK1</span> → <span>MAKESE</span> → <span>BTCBR</span> → <span>Bitcoin BR</span>
       </div>
-    </section>
-
-    <section class="about">
-      <h2>About ZARUverse</h2>
-      <p>ZARUverse is an ecosystem of branded tokens and pooled staking contracts that add strength and prestige to the DeFi space. Anchored by the mythic lion ZARU, our project allows users to connect with our DApp to launch flash loans and delve into the vaults for staking yields.</p>
     </section>
 
     <section class="contact">
       <h2>Contact</h2>
-      <p>📩 Official Email: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
+      <p>📩 <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
     </section>
   </main>
 
   <footer>
     <div class="footer-icons">
-      <img src="https://zaruverse.github.io/audit-seal.png" alt="Audit" />
-      <img src="https://zaruverse.github.io/kyc-seal.png" alt="KYC" />
-      <img src="https://zaruverse.github.io/whitepaper.html" alt="PDF" />
+      <a href="https://facebook.com/zaruverse"><img src="facebook-icon.png" alt="Facebook" /></a>
+      <a href="https://t.me/zaruverse"><img src="telegram-icon.png" alt="Telegram" /></a>
+      <a href="https://x.com/zaruverse"><img src="x-icon.png" alt="X" /></a>
+      <a href="https://instagram.com/zaruverse"><img src="instagram-icon.png" alt="Instagram" /></a>
+      <a href="https://github.com/zaruverse"><img src="github-icon.png" alt="GitHub" /></a>
     </div>
     <p>London: 120 Old Broad St, EC2N 1AR</p>
     <p>New York: 1100 Sixth Ave, 10th Floor</p>
