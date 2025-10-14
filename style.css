@@ -1,0 +1,122 @@
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0b0b0c;
+  color: #ffd700;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 40px 20px;
+}
+.logo {
+  height: 80px;
+}
+h1 {
+  font-size: 36px;
+  margin: 10px 0;
+}
+.tagline {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.cta-buttons .btn {
+  margin: 10px;
+  padding: 12px 24px;
+  background-color: #ffd700;
+  color: #0b0b0c;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Token Cards */
+.token-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+.token-card {
+  background-color: #1a1a1d;
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+}
+.token-card h2 {
+  margin-bottom: 10px;
+}
+.token-card p {
+  margin: 6px 0;
+}
+.token-card .btn {
+  display: inline-block;
+  margin: 6px;
+  padding: 8px 16px;
+  background-color: #ffd700;
+  color: #0b0b0c;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Roadmap */
+.roadmap-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+.roadmap-section h2 {
+  margin-bottom: 20px;
+}
+.roadmap-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.roadmap-section li {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* About & Contact */
+.about-section, .contact-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+.contact-section a {
+  color: #ffd700;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #111;
+}
+.footer-icons img {
+  height: 40px;
+  margin: 10px;
+}
+footer p {
+  margin: 6px 0;
+}
+.slogan {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .token-card {
+    width: 90%;
+  }
+}
