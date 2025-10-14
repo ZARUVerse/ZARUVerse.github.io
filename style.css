@@ -60,6 +60,7 @@ h1 {
 }
 .roadmap-line {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
   font-size: 18px;
