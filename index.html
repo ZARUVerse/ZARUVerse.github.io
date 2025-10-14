@@ -9,25 +9,29 @@
 </head>
 <body>
 
-  <header>
+  <header class="hero">
     <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Logo" class="logo" />
     <h1>ZARUVERSE</h1>
     <p class="tagline">Mythic Contracts for DeFi Utility</p>
-    <div class="cta-buttons">
-      <a href="#flashloan" class="btn">LAUNCH FLASH LOAN</a>
-      <a href="#connect" class="btn">CONNECT WALLET</a>
+    <div class="hero-buttons">
+      <a href="#flashloan" class="btn primary">LAUNCH FLASH LOAN</a>
+      <a href="#connect" class="btn primary">CONNECT WALLET</a>
     </div>
   </header>
 
-  <section class="token-section">
+  <section class="token-grid">
+    <!-- ZARU -->
     <div class="token-card">
       <h2>ZARU</h2>
       <p id="zaru-price">Loading...</p>
       <p>Contract: 0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</p>
-      <a href="https://zaruverse.github.io/zaru.html" class="btn">INFO</a>
-      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" class="btn">TRADE</a>
+      <div class="card-buttons">
+        <a href="https://zaruverse.github.io/zaru.html" class="btn">INFO</a>
+        <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" class="btn">TRADE</a>
+      </div>
     </div>
 
+    <!-- Repeat for other tokens -->
     <div class="token-card">
       <h2>ZARUX</h2>
       <p id="zarux-price">Loading...</p>
@@ -71,25 +75,19 @@
     </div>
   </section>
 
-  <section class="roadmap-section">
+  <section class="roadmap">
     <h2>Roadmap</h2>
-    <ul>
-      <li>Q1 — Launch ZARU (NFT Gateway Token)</li>
-      <li>Q2 — Deploy ZARUX (Prestige Gold Token)</li>
-      <li>Q3 — Activate DIAMOND Vaults (Staking Protocol)</li>
-      <li>Q4 — Launch MAK1 Governance Beta</li>
-      <li>Q1 — Release MAKESE Payments Layer</li>
-      <li>Q2 — Integrate BTCBR + Bitcoin BR Bridge</li>
-      <li>Q3 — DAO Governance & Identity Verification</li>
-    </ul>
+    <div class="roadmap-line">
+      <span>ZARU</span> → <span>ZARUX</span> → <span>DIAMOND</span> → <span>MAK1</span> → <span>MAKESE</span> → <span>BTCBR</span> → <span>Bitcoin BR</span>
+    </div>
   </section>
 
-  <section class="about-section">
+  <section class="about">
     <h2>About ZARUverse</h2>
     <p>ZARUverse is an ecosystem of branded tokens and pooled staking contracts that add strength and prestige to the DeFi space. Anchored by the mythic lion ZARU, our project allows users to connect with our DApp to launch flash loans and delve into the vaults for staking yields.</p>
   </section>
 
-  <section class="contact-section">
+  <section class="contact">
     <h2>Contact</h2>
     <p>📩 Official Email: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
   </section>
