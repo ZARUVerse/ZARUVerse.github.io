@@ -1,4 +1,3 @@
-/* Base styles */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -6,8 +5,7 @@ body {
   color: #ffd700;
 }
 
-/* Header */
-header {
+.hero {
   text-align: center;
   padding: 40px 20px;
 }
@@ -15,29 +13,28 @@ header {
   height: 80px;
 }
 h1 {
-  font-size: 36px;
-  margin: 10px 0;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 .tagline {
   font-size: 18px;
   margin-bottom: 20px;
 }
-.cta-buttons .btn {
+.hero-buttons .btn {
   margin: 10px;
-  padding: 12px 24px;
+  padding: 14px 28px;
   background-color: #ffd700;
   color: #0b0b0c;
-  text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
+  text-decoration: none;
   display: inline-block;
 }
 
-/* Token Cards */
-.token-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   padding: 40px 20px;
 }
@@ -46,14 +43,8 @@ h1 {
   border: 1px solid #ffd700;
   border-radius: 8px;
   padding: 20px;
-  width: 280px;
   text-align: center;
-}
-.token-card h2 {
-  margin-bottom: 10px;
-}
-.token-card p {
-  margin: 6px 0;
+  min-height: 220px;
 }
 .token-card .btn {
   display: inline-block;
@@ -66,36 +57,27 @@ h1 {
   font-weight: bold;
 }
 
-/* Roadmap */
-.roadmap-section {
+.roadmap {
   text-align: center;
   padding: 40px 20px;
 }
-.roadmap-section h2 {
-  margin-bottom: 20px;
-}
-.roadmap-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-}
-.roadmap-section li {
-  margin: 8px 0;
+.roadmap-line {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* About & Contact */
-.about-section, .contact-section {
+.about, .contact {
   text-align: center;
   padding: 40px 20px;
 }
-.contact-section a {
+.contact a {
   color: #ffd700;
   text-decoration: underline;
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 30px 20px;
@@ -112,11 +94,4 @@ footer p {
   font-size: 16px;
   font-weight: bold;
   margin-top: 10px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .token-card {
-    width: 90%;
-  }
 }
