@@ -6,7 +6,8 @@ self.addEventListener("install", event => {
         "/style.css",
         "/script.js",
         "/manifest.json",
-        "/zaru-512.png"
+        "https://zaruverse.github.io/zaru-512.png",
+        "https://zaruverse.github.io/lion-logo.png"
       ]);
     })
   );
