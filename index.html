@@ -8,23 +8,92 @@
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="manifest" href="manifest.json" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --panel: #141415;
+      --text: #ffd700;
+      --muted: #e8d68a;
+      --accent: #ffd700;
+      --mono: "SFMono-Regular", Consolas, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; }
 
-  <script defer src="script.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) { navigator.serviceWorker.register("service-worker.js"); }
-  </script>
+    /* Hero */
+    .hero { text-align: center; padding: 36px 16px; }
+    .logo { height: 80px; filter: drop-shadow(0 6px 12px rgba(255,215,0,0.2)); }
+    h1 { font-size: 36px; margin: 12px 0 8px; letter-spacing: 2px; }
+    .tagline { font-size: 15px; color: var(--muted); margin-bottom: 18px; }
+    .hero-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn { background: var(--accent); color: #0b0b0c; font-weight: 700; padding: 12px 18px; border-radius: 8px; text-decoration: none; display: inline-block; }
+    .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--text); }
+
+    /* Sections */
+    .section { padding: 28px 16px; max-width: 1100px; margin: 0 auto; }
+    .section h2 { font-size: 22px; margin-bottom: 10px; }
+    .section p { line-height: 1.6; color: var(--muted); }
+    .roadmap-line { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; font-weight: 700; }
+
+    /* Tokens */
+    .token-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+    .token-card { background: var(--panel); border: 1px solid var(--accent); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .token-card h3 { margin: 0; font-size: 18px; }
+    .token-desc { color: var(--muted); font-size: 14px; }
+    .token-address { font-size: 12px; color: #c9b35b; }
+    .mono { font-family: var(--mono); }
+    .token-price { font-weight: 700; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .actions .btn { flex: 1; min-width: 120px; text-align: center; }
+
+    /* Footer */
+    .footer { background: #111; padding: 20px 16px; }
+    .footer-sections { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    .footer-section h3 { margin: 0 0 8px; font-size: 16px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .links a { color: var(--text); text-decoration: underline; font-size: 14px; }
+
+    /* Footer Docs with enlarge-on-click */
+    .footer-docs { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 14px; }
+    .footer-docs .doc { position: relative; width: 100px; height: 100px; flex: 0 0 auto; }
+    .footer-docs img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1;
+      position: relative;
+    }
+    .footer-docs img.enlarged {
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 220px; height: 220px;
+      z-index: 10;
+      background: #000;
+      padding: 4px;
+      border: 2px solid var(--accent);
+    }
+    .doc figcaption { font-size: 14px; font-weight: 600; color: #ffd700; text-align: center; margin-top: 4px; }
+
+    .footer-meta { text-align: center; margin-top: 18px; }
+    .slogan { font-weight: 700; margin-top: 10px; }
+
+    @media (min-width: 820px) {
+      h1 { font-size: 44px; }
+      .tagline { font-size: 16px; }
+      .footer-sections { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Hero -->
   <header class="hero">
     <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse Logo" class="logo" />
     <h1>ZARUVERSE</h1>
-    <p class="tagline">Mythic Contracts, Real DeFi Utility — built for precise, unstoppable execution.</p>
+    <p class="tagline">Mythic Contracts, Real DeFi Utility — built for unstoppable execution.</p>
     <div class="hero-buttons">
       <a href="#tokens" class="btn">View tokens</a>
       <a href="#about" class="btn btn-outline">What is ZARUverse?</a>
@@ -32,263 +101,65 @@
   </header>
 
   <main>
-    <!-- About -->
     <section id="about" class="section">
       <h2>About ZARUverse</h2>
-      <p>
-        ZARUverse is a luxury-grade DeFi ecosystem on BNB Smart Chain focused on real utility, branded trust signals,
-        and compliant documentation. The core token ZARU anchors the roadmap to ZARUX, DMD, MAK1, MAKESE, BTC BR, and BitcoinBR—
-        connecting liquidity, governance, and global credibility in a single installable app experience.
-      </p>
+      <p>ZARUverse is a luxury-grade DeFi ecosystem on BNB Smart Chain. The core token ZARU anchors the roadmap to ZARUX, DMD, MAK1, MAKESE, BTC BR, and BitcoinBR.</p>
       <div class="roadmap-line">
         <span>ZARU</span> → <span>ZARUX</span> → <span>DMD</span> → <span>MAK1</span> → <span>MAKESE</span> → <span>BTC BR</span> → <span>BitcoinBR</span>
       </div>
     </section>
 
-    <!-- Tokens -->
     <section id="tokens" class="section">
       <h2>Tokens</h2>
       <div class="token-grid">
-
-        <!-- ZARU -->
+        <!-- نمونه: ZARU -->
         <article class="token-card">
           <h3>ZARU</h3>
-          <p class="token-desc">Core token of ZARUverse on BNB Smart Chain for utility and brand execution.</p>
+          <p class="token-desc">Core token of ZARUverse on BNB Smart Chain.</p>
           <p class="token-address">Contract: <span class="mono">0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</span></p>
           <p id="zaru-price" class="token-price">Loading price...</p>
           <div class="actions">
             <a class="btn" href="https://zaruverse.github.io/zaru.html">Info</a>
             <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">Trade</a>
-            <a class="btn btn-outline" href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">CMC DEX</a>
           </div>
         </article>
-
-        <!-- ZARUX -->
-        <article class="token-card">
-          <h3>ZARUX</h3>
-          <p class="token-desc">Extended utility layer linked to ZARU for advanced flows and integrations.</p>
-          <p class="token-address">Contract: <span class="mono">0x7e8e9a6f626e499cf24063cdaf937615576b6cf3</span></p>
-          <p id="zarux-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/zarux.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x7e8e9a6f626e499cf24063cdaf937615576b6cf3">Trade</a>
-          </div>
-        </article>
-
-        <!-- DMD -->
-        <article class="token-card">
-          <h3>DMD</h3>
-          <p class="token-desc">Premium value transfer across ecosystem layers; brand-backed diamond logic.</p>
-          <p class="token-address">Contract: <span class="mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</span></p>
-          <p id="dmd-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/dmd.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3">Trade</a>
-          </div>
-        </article>
-
-        <!-- MAK1 -->
-        <article class="token-card">
-          <h3>MAK1</h3>
-          <p class="token-desc">Connector token for MAKESE pathways and staged ecosystem expansion.</p>
-          <p class="token-address">Contract: <span class="mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</span></p>
-          <p id="mak1-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/mak1.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x9f833ca55ce0431045098ef12b64da6b33cf1f48">Trade</a>
-          </div>
-        </article>
-
-        <!-- MAKESE -->
-        <article class="token-card">
-          <h3>MAKESE</h3>
-          <p class="token-desc">Brand identity token supporting investment flows and trust signals.</p>
-          <p class="token-address">Contract: <span class="mono">0xa6bcd9434e8db84108612bb7ccb77775306adf1a</span></p>
-          <p id="makese-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/makese.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0xa6bcd9434e8db84108612bb7ccb77775306adf1a">Trade</a>
-          </div>
-        </article>
-
-        <!-- BTC BR -->
-        <article class="token-card">
-          <h3>BTC BR</h3>
-          <p class="token-desc">Bridge into Bitcoin BR pathways for diversified branded exposure.</p>
-          <p class="token-address">Contract: <span class="mono">0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164</span></p>
-          <p id="btcbr-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/btcbr.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164">Trade</a>
-          </div>
-        </article>
-
-        <!-- BitcoinBR -->
-        <article class="token-card">
-          <h3>BitcoinBR</h3>
-          <p class="token-desc">Final branded endpoint for the roadmap’s global touchpoint strategy.</p>
-          <p class="token-address">Contract: <span class="mono">0x90bb20727b6e28c02cd941ecce635ffd826e3e00</span></p>
-          <p id="bitcoinbr-price" class="token-price">Loading price...</p>
-          <div class="actions">
-            <a class="btn" href="https://zaruverse.github.io/bitcoinbr.html">Info</a>
-            <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x90bb20727b6e28c02cd941ecce635ffd826e3e00">Trade</a>
-          </div>
-        </article>
-
+        <!-- بقیه توکن‌ها هم به همین شکل اضافه می‌شن -->
       </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section">
-      <h2>Contact</h2>
-      <p>Official email: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></p>
     </section>
   </main>
 
-  <!-- Footer: social links, docs (zoom-on-click), meta -->
   <footer class="footer">
-    <div class="footer-sections">
-
-      <!-- Community -->
-      <div class="footer-section">
-        <h3>Community</h3>
-        <div class="links">
-          <a href="https://zaruverse.github.io">Website</a>
-          <a href="https://facebook.com/zaruverse">Facebook</a>
-          <a href="https://t.me/zaruverse">Telegram</a>
-          <a href="https://x.com/zaruverse">X</a>
-          <a href="https://instagram.com/zaruverse">Instagram</a>
-          <a href="https://github.com/zaruverse">GitHub</a>
-          <a href="https://youtube.com/@zaruverse?si=FQYqOEL">YouTube</a>
-          <a href="https://t.me/zaruversebot/app">Telegram App</a>
-          <a href="https://discord.gg/EWVcrwwJ">Discord</a>
-          <a href="https://reddit.com/u/zaruverse">Reddit</a>
-          <a href="https://hey.xyz/u/zaruverse">Hey.xyz</a>
-          <a href="https://www.linkdin.com/in/zaruverse">LinkedIn</a>
-          <a href="https://substack.com/@zaruverse?utm_source=share&utm_medium=android&r=4m57ig">Substack</a>
-          <a href="https://t.me/zaru-eco">Telegram (Eco)</a>
-          <a href="https://medium.com/@zaruverse">Medium</a>
-          <a href="https://bsky.app/profile/makese.site">Bluesky</a>
-          <a href="https://www.tiktok.com/@zaruverse0?_t=ZN-905WePpJ2hi&_r=1">TikTok</a>
-          <a href="https://linkfly.to/zaruverse">Linkfly</a>
-          <a href="https://linkfly.to/zaruteam">Linkfly Team</a>
-          <a href="https://linktr.ee/zaru.verse">Linktree</a>
-          <a href="https://bitcointalk.org/index.php?topic=5558498.new#new">Bitcointalk</a>
-        </div>
-      </div>
-
-      <!-- Exchanges & Markets -->
-      <div class="footer-section">
-        <h3>Exchanges & Market data</h3>
-        <div class="links">
-          <a href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">PancakeSwap</a>
-          <a href="https://www.geckoterminal.com/bsc/pools/0x8555f1aa6abe1f5ee6e1be2adf33ae0d9a807ef6">GeckoTerminal</a>
-          <a href="https://dex.coinmarketcap.com/token/BSC/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6">CMC DEX</a>
-        </div>
-      </div>
-
-      <!-- Docs & Compliance -->
-      <div class="footer-section">
-        <h3>Docs & Compliance</h3>
-        <div class="links">
-          <a href="https://zaruverse.github.io/whitepaper.html">Whitepaper (HTML)</a>
-          <a href="https://github.com/zaruverse/zarutoken-contract/whitepaper.pdf">Whitepaper (PDF)</a>
-          <a href="https://zaruverse.github.io/tokensale.html">Token Sale</a>
-          <a href="https://zaruverse.gitbook.com">GitBook</a>
-          <a href="https://zaruverse.github.io/docs">Docs</a>
-          <a href="https://github.com/zaruverse/zarutoken-contract">Contracts (GitHub)</a>
-          <a href="https://zaruverse.github.io/kyc.html">KYC</a>
-          <a href="https://zaruverse.github.io/audit.html">Audit</a>
-          <a href="https://zaruverse.github.io/certificate.html">Certificate</a>
-          <a href="mailto:zaru.verse@makese.site">Official Email</a>
-        </div>
-      </div>
-
-      <!-- Documents with thumbnails (zoom) -->
-      <div class="footer-docs">
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/audit-seal.png" alt="Audit seal" data-full="https://zaruverse.github.io/audit-seal.png">
-          <figcaption>Audit seal</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/audit.png" alt="Audit badge" data-full="https://zaruverse.github.io/audit.png">
-          <figcaption>Audit badge</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/kyc-seal.png" alt="KYC seal" data-full="https://zaruverse.github.io/kyc-seal.png">
-          <figcaption>KYC seal</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/kyc.png" alt="KYC badge" data-full="https://zaruverse.github.io/kyc.png">
-          <figcaption>KYC badge</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/signature.png" alt="Certificate signature" data-full="https://zaruverse.github.io/signature.png">
-          <figcaption>Certificate signature</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/zaru-whitepaper.pdf" alt="Whitepaper" data-full="https://zaruverse.github.io/zaru-whitepaper.pdf">
-          <figcaption>Whitepaper (PDF)</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/mak1-whitepaper.pdf" alt="MAK1 whitepaper" data-full="https://zaruverse.github.io/mak1-whitepaper.pdf">
-          <figcaption>MAK1 whitepaper</figcaption>
-        </figure>
-        <figure class="doc">
-          <img src="https://zaruverse.github.io/dmd-whitepaper.pdf" alt="DMD whitepaper" data-full="https://zaruverse.github.io/dmd-whitepaper.pdf">
-          <figcaption>DMD whitepaper</figcaption>
-        </figure>
-      </div>
-
-      <!-- Ecosystem quick links -->
-      <div class="footer-section">
-        <h3>Ecosystem</h3>
-        <div class="links">
-          <a href="https://zaruverse.github.io/mak1.html">MAK1</a>
-          <a href="https://zaruverse.github.io/zaru.html">ZARU</a>
-          <a href="https://zaruverse.github.io/dmd.html">DMD</a>
-          <a href="https://zaruverse.github.io/makese.html">MAKESE</a>
-          <a href="https://zaruverse.github.io/vault.html">Vault</a>
-          <a href="https://zaruverse.github.io/dao.html">DAO</a>
-          <a href="https://zaruverse.github.io/governance.html">Governance</a>
-          <a href="https://zaruverse.github.io/staking.html">Staking</a>
-          <a href="https://zaruverse.github.io/nft.html">NFT</a>
-          <a href="https://zaruverse.github.io/mint.html">Mint</a>
-          <a href="https://zaruverse.github.io/membership.html">Membership</a>
-          <a href="https://zaruverse.github.io/ambassadors.html">Ambassadors</a>
-          <a href="https://zaruverse.github.io/claim.html">Claim</a>
-          <a href="https://zaruverse.github.io/drop.html">Drop</a>
-          <a href="https://zaruverse.github.io/signup.html">Signup</a>
-          <a href="https://zaruverse.github.io/education.html">Education</a>
-          <a href="https://zaruverse.github.io/philosophy.html">Philosophy</a>
-          <a href="https://zaruverse.github.io/lore.html">Lore</a>
-          <a href="https://zaruverse.github.io/technology.html">Technology</a>
-          <a href="https://zaruverse.github.io/docs.html">Docs page</a>
-          <a href="https://zaruverse.github.io/token.html">Token</a>
-          <a href="https://zaruverse.github.io/tokenlist.json">Token list</a>
-        </div>
-      </div>
-
-      <!-- Brand assets -->
-      <div class="footer-section">
-        <h3>Brand assets</h3>
-        <div class="links">
-          <a href="https://zaruverse.github.io/zaru-256.png">ZARU 256</a>
-          <a href="https://zaruverse.github.io/zaru-512.png">ZARU 512</a>
-          <a href="https://zaruverse.github.io/zaru-og.png">ZARU OG</a>
-          <a href="https://zaruverse.github.io/zaru-lion.jpg">ZARU Lion</a>
-          <a href="https://zaruverse.github.io/zaru-lion-logo.jpg">Lion Logo</a>
-          <a href="https://zaruverse.github.io/dmd-256.png">DMD 256</a>
-          <a href="https://zaruverse.github.io/dmd-512.png">DMD 512</a>
-          <a href="https://zaruverse.github.io/dmd-og.png">DMD OG</a>
-          <a href="https://zaruverse.github.io/mak1-256.png">MAK1 256</a>
-          <a href="https://zaruverse.github.io/mak1-512.png">MAK1 512</a>
-          <a href="https://zaruverse.github.io/mak1-og.png">MAK1 OG</a>
-          <a href="https://zaruverse.github.io/favicon.png">Favicon</a>
-          <a href="https://zaruverse.github.io/arexium.jpg">Arexium</a>
-          <a href="https://i.postimg.cc/XYSmp4rM/resized-1000030525-q85-1757791616516.jpg">Press image</a>
-        </div>
-      </div>
+    <div class="footer-docs">
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/audit-seal.png" alt="Audit seal">
+        <figcaption>Audit seal</figcaption>
+      </figure>
+      <figure class="doc">
+        [43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/szerintedmi/roadmap-radar-chart/tree/45ee5f9f7a1d44100313358e369abb025b935cea/README.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1&citationId=2 "github.com")<img src="https://zaruverse.github.io/kyc-seal.png
+                    <figure class="doc">
+        <img src="https://zaruverse.github.io/kyc-seal.png" alt="KYC seal">
+        <figcaption>KYC seal</figcaption>
+      </figure>
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/kyc.png" alt="KYC badge">
+        <figcaption>KYC badge</figcaption>
+      </figure>
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/signature.png" alt="Certificate signature">
+        <figcaption>Certificate signature</figcaption>
+      </figure>
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/zaru-whitepaper.pdf" alt="Whitepaper">
+        <figcaption>Whitepaper (PDF)</figcaption>
+      </figure>
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/mak1-whitepaper.pdf" alt="MAK1 whitepaper">
+        <figcaption>MAK1 whitepaper</figcaption>
+      </figure>
+      <figure class="doc">
+        <img src="https://zaruverse.github.io/dmd-whitepaper.pdf" alt="DMD whitepaper">
+        <figcaption>DMD whitepaper</figcaption>
+      </figure>
     </div>
 
     <div class="footer-meta">
@@ -298,14 +169,69 @@
     </div>
   </footer>
 
-  <!-- Lightbox modal -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <div class="lightbox-content">
-      <button class="lightbox-close" aria-label="Close">×</button>
-      <iframe id="lightbox-pdf" class="lightbox-pdf" src="" title="Document viewer"></iframe>
-      <img id="lightbox-img" class="lightbox-img" src="" alt="Document full view"/>
-    </div>
-  </div>
+  <script>
+    // -----------------------------
+    // Token Contracts
+    // -----------------------------
+    const TOKENS = {
+      zaru: "0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6",
+      zarux: "0x7e8e9a6f626e499cf24063cdaf937615576b6cf3",
+      dmd: "0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3",
+      mak1: "0x9f833ca55ce0431045098ef12b64da6b33cf1f48",
+      makese: "0xa6bcd9434e8db84108612bb7ccb77775306adf1a",
+      btcbr: "0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164",
+      bitcoinbr: "0x90bb20727b6e28c02cd941ecce635ffd826e3e00"
+    };
+
+    // -----------------------------
+    // Fetch live prices from CoinGecko
+    // -----------------------------
+    function fetchPrices() {
+      const entries = Object.entries(TOKENS);
+      const addresses = entries.map(([_, addr]) => addr).join(",");
+      fetch(`https://api.coingecko.com/api/v3/simple/token_price/binance-smart-chain?contract_addresses=${addresses}&vs_currencies=usd`)
+        .then(r => r.json())
+        .then(data => {
+          entries.forEach(([key, addr]) => {
+            const price = data[addr.toLowerCase()]?.usd;
+            const el = document.getElementById(`${key}-price`);
+            if (el) el.textContent = price ? `$${Number(price).toFixed(4)}` : "No price";
+          });
+        })
+        .catch(() => {
+          entries.forEach(([key]) => {
+            const el = document.getElementById(`${key}-price`);
+            if (el) el.textContent = "Price unavailable";
+          });
+        });
+    }
+
+    // -----------------------------
+    // Footer docs enlarge-on-click
+    // -----------------------------
+    function setupFooterDocs() {
+      const imgs = document.querySelectorAll(".footer-docs img");
+      imgs.forEach(img => {
+        img.addEventListener("click", () => {
+          if (img.classList.contains("enlarged")) {
+            img.classList.remove("enlarged");
+          } else {
+            imgs.forEach(i => i.classList.remove("enlarged"));
+            img.classList.add("enlarged");
+          }
+        });
+      });
+    }
+
+    // -----------------------------
+    // Init
+    // -----------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchPrices();
+      setupFooterDocs();
+      setInterval(fetchPrices, 60000);
+    });
+  </script>
 
 </body>
-</html>
+</html>                                                                                                                                                                                                                                   
