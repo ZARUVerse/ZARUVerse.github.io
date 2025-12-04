@@ -14,367 +14,180 @@
       --radius:12px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;padding:0;background:var(--bg);color:var(--text);font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
     a{color:inherit;text-decoration:none}
     .page{max-width:1100px;margin:0 auto;padding:20px}
-    header.hero{padding:18px 8px;text-align:center;border-bottom:1px solid rgba(255,215,0,0.04)}
-    .logo{height:64px;display:inline-block;margin-bottom:8px}
-    h1{margin:6px 0 4px;font-size:28px;letter-spacing:1px}
-    .tag{color:var(--muted);font-size:13px;margin-bottom:6px}
+    header.hero{text-align:center;padding:20px;border-bottom:1px solid rgba(255,215,0,0.04)}
+    .logo{height:64px;margin-bottom:8px}
+    h1{margin:6px 0;font-size:32px;letter-spacing:1px}
+    .tag{color:var(--muted);font-size:14px}
+    .section{margin:24px 0;padding:16px}
+    .section h2{margin:0 0 12px;font-size:20px}
     .muted{color:var(--muted)}
-    .container{margin-top:18px}
-    .section{margin-bottom:20px;padding:12px;background:transparent;border-radius:8px}
-    .section h2{margin:0 0 8px;font-size:18px;color:var(--text)}
-    p.lead{color:var(--muted);line-height:1.6;margin:0 0 10px}
 
-    /* Tokens grid (graphic cards) */
+    /* Token cards */
     .token-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-    .token-card{background:linear-gradient(180deg,var(--card), #0f0f10);border:1px solid rgba(255,215,0,0.06);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;min-height:160px}
+    .token-card{background:var(--card);border:1px solid rgba(255,215,0,0.06);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px}
     .token-head{display:flex;align-items:center;gap:12px}
-    .token-badge{width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#1b1b1b,#0f0f10);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,215,0,0.06)}
-    .token-name{font-size:18px;font-weight:700}
+    .token-badge{width:56px;height:56px;border-radius:10px;background:var(--panel);display:flex;align-items:center;justify-content:center}
+    .token-name{font-weight:700}
     .token-desc{color:var(--muted);font-size:13px}
-    .token-address{font-family:var(--mono);font-size:12px;color:#e6d88e;word-break:break-all}
+    .token-address{font-family:var(--mono);font-size:12px;color:#e6d88e}
     .token-actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:#0b0b0c;padding:8px 12px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,215,0,0.08);color:var(--text);padding:7px 10px;border-radius:10px;display:inline-flex;align-items:center;gap:8px}
-    .platform-icon{width:16px;height:16px;display:inline-block;vertical-align:middle}
+    .btn{background:var(--accent);color:#0b0b0c;padding:8px 12px;border-radius:10px;font-weight:700}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,215,0,0.08);padding:7px 10px;border-radius:10px;color:var(--text)}
 
-    /* Links table (categorized) */
-    .links-section{margin-top:26px;margin-bottom:26px}
-    .links-table{width:100%;border-collapse:collapse;background:transparent}
-    .links-table thead th{background:transparent;color:var(--muted);text-align:left;padding:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
-    .links-table tbody tr{border-bottom:1px solid rgba(255,255,255,0.02)}
-    .links-table td{padding:10px;vertical-align:middle}
-    .link-cell{display:flex;align-items:center;gap:10px}
-    .icon-wrap{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:var(--glass)}
-    .link-label{font-weight:600}
+    /* Tables */
+    .links-table{width:100%;border-collapse:collapse}
+    .links-table th{color:var(--muted);text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
+    .links-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)}
     .link-url{color:var(--muted);font-size:13px}
 
-    /* NFT & DAO lists */
-    .list-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    /* Store */
+    .store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .product-card{background:var(--card);border:1px solid rgba(255,215,0,0.08);border-radius:12px;padding:12px}
+    .product-title{font-weight:700}
+    .product-desc{color:var(--muted);font-size:13px}
+    .price{font-weight:700;color:var(--accent)}
+    .cart{margin-top:16px;background:var(--panel);padding:12px;border-radius:12px}
 
-    /* Roadmap image */
-    .roadmap-wrap{display:flex;justify-content:center;margin:12px 0}
-    .roadmap-wrap img{max-width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,215,0,0.06);box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+    /* Roadmap */
+    .roadmap-wrap{text-align:center}
+    .roadmap-wrap img{max-width:100%;border-radius:10px;border:1px solid rgba(255,215,0,0.06)}
 
-    /* Footer two images horizontal */
-    footer.site-footer{background:#0f0f10;padding:18px 12px;margin-top:22px;border-top:1px solid rgba(255,215,0,0.03)}
-    .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px;align-items:center}
-    .docs-row{display:flex;gap:12px;align-items:center;justify-content:center}
-    .doc-item{width:64px;height:32px;position:relative;flex:0 0 auto}
-    .doc-item img{width:100%;height:100%;object-fit:contain;border-radius:6px;border:1px solid rgba(255,215,0,0.08);cursor:pointer;transition:transform .28s ease,box-shadow .2s}
-    .doc-item img.enlarged{transform:scale(1.4);z-index:50;box-shadow:0 18px 40px rgba(0,0,0,0.7);position:relative}
-    .footer-meta{color:var(--muted);text-align:center;font-size:13px}
-
-    /* Contact block */
-    .contact{margin-top:10px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);width:100%;max-width:820px;text-align:center}
-    .contact .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
-    .contact .item{min-width:180px;color:var(--muted)}
-
-    @media(min-width:900px){ h1{font-size:34px} .page{padding:28px} }
+    /* Footer */
+    footer{background:#0f0f10;padding:20px;margin-top:30px;border-top:1px solid rgba(255,255,255,0.03);text-align:center}
+    .footer-meta{color:var(--muted);margin-top:10px}
   </style>
 </head>
 <body>
   <div class="page">
-    <header class="hero" role="banner">
+    <header class="hero">
       <img src="https://zaruverse.github.io/lion-logo.png" alt="ZARUverse" class="logo">
       <h1>ZARUVERSE</h1>
       <div class="tag">Mythic Contracts · Brand-backed DeFi on BNB Smart Chain</div>
-      <div class="muted">Primary contact verification email: <a href="mailto:zaru.verse@makese.site">info@zarucake.com</a></div>
+      <div class="muted">Contact: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></div>
     </header>
 
-    <main class="container">
-
-      <!-- 1) Tokens (graphic cards) -->
-      <section id="tokens" class="section" aria-labelledby="tokens-h">
-        <h2 id="tokens-h">Tokens</h2>
-        <div class="token-grid" role="list">
-
-          <!-- ZARU -->
-          <article class="token-card" role="listitem">
+    <main>
+      <!-- Tokens -->
+      <section class="section">
+        <h2>Tokens</h2>
+        <div class="token-grid">
+          <!-- Example token -->
+          <article class="token-card">
             <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/></svg>
-              </div>
+              <div class="token-badge">Z</div>
               <div>
                 <div class="token-name">ZARU</div>
-                <div class="token-desc">Core ecosystem token used for payments, staking and governance.</div>
+                <div class="token-desc">Core ecosystem token for payments, staking and governance.</div>
               </div>
             </div>
-            <div class="token-address mono">0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</div>
+            <div class="token-address">0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6</div>
             <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank" rel="noopener">
-                <span class="platform-icon">🍰</span> Buy
-              </a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/zaru" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0xdac6f0ec5901b3877dc6db23c3882267ba9fabf6" target="_blank" rel="noopener">GeckoTerminal</a>
+              <a class="btn" href="#">Buy</a>
+              <a class="btn-ghost" href="#">CoinGecko</a>
+              <a class="btn-ghost" href="#">GeckoTerminal</a>
             </div>
           </article>
-
-          <!-- ZARUX -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
-              </div>
-              <div>
-                <div class="token-name">ZARUX</div>
-                <div class="token-desc">Utility extension layer for integrations, service payments and DApp connectors.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0x7e8e9a6f626e499cf24063cdaf937615576b6cf3</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x7e8e9a6f626e499cf24063cdaf937615576b6cf3" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/zarux" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0x7e8e9a6f626e499cf24063cdaf937615576b6cf3" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
-          <!-- DMD -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,3 15,9 21,9 16.5,13.5 18,20 12,16 6,20 7.5,13.5 3,9 9,9"/></svg>
-              </div>
-              <div>
-                <div class="token-name">DMD</div>
-                <div class="token-desc">Premium value token: diamond-grade privileges, exclusive access, vault features.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/dmd" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0x8c4c0116d051f6f2ea27e8fa7614c8f799191ab3" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
-          <!-- MAK1 -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8zM7 4h10v6H7z"/></svg>
-              </div>
-              <div>
-                <div class="token-name">MAK1</div>
-                <div class="token-desc">Connector token for cross-product flows and investment pathways.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0x9f833ca55ce0431045098ef12b64da6b33cf1f48</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x9f833ca55ce0431045098ef12b64da6b33cf1f48" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/mak1" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0x9f833ca55ce0431045098ef12b64da6b33cf1f48" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
-          <!-- MAKESE -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3"/><rect x="6" y="13" width="12" height="6" rx="2"/></svg>
-              </div>
-              <div>
-                <div class="token-name">MAKESE</div>
-                <div class="token-desc">Brand-identity token supporting structured products and KYC-linked utilities.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0xa6bcd9434e8db84108612bb7ccb77775306adf1a</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0xa6bcd9434e8db84108612bb7ccb77775306adf1a" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/makese" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0xa6bcd9434e8db84108612bb7ccb77775306adf1a" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
-          <!-- BTC BR -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ff8c00" xmlns="http://www.w3.org/2000/svg"><text x="6" y="17" font-size="12" fill="#fff">₿</text></svg>
-              </div>
-              <div>
-                <div class="token-name">BTC BR</div>
-                <div class="token-desc">Bridge token enabling Bitcoin-denominated exposures and wrapped strategies on BSC.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/btcbr" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0x40310d3d4eaeeffba63e39cd5b7b65bd51d23164" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
-          <!-- BitcoinBR -->
-          <article class="token-card" role="listitem">
-            <div class="token-head">
-              <div class="token-badge" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#ff8c00" xmlns="http://www.w3.org/2000/svg"><text x="6" y="17" font-size="12" fill="#fff">₿</text></svg>
-              </div>
-              <div>
-                <div class="token-name">BitcoinBR</div>
-                <div class="token-desc">Final branded endpoint token for cross-chain strategy and global market presence.</div>
-              </div>
-            </div>
-            <div class="token-address mono">0x90bb20727b6e28c02cd941ecce635ffd826e3e00</div>
-            <div class="token-actions">
-              <a class="btn" href="https://pancakeswap.finance/swap?outputCurrency=0x90bb20727b6e28c02cd941ecce635ffd826e3e00" target="_blank" rel="noopener">🍰 Buy</a>
-              <a class="btn-ghost" href="https://www.coingecko.com/en/coins/bitcoinbr" target="_blank" rel="noopener">CoinGecko</a>
-              <a class="btn-ghost" href="https://www.geckoterminal.com/bsc/pools/0x90bb20727b6e28c02cd941ecce635ffd826e3e00" target="_blank" rel="noopener">GeckoTerminal</a>
-            </div>
-          </article>
-
+          <!-- Add other tokens here -->
         </div>
       </section>
 
-      <!-- 2) NFT -->
-      <section id="nft" class="section" aria-labelledby="nft-h">
-        <h2 id="nft-h">Non-Fungible Tokens (NFTs)</h2>
-        <p class="lead">ZARUverse NFTs represent brand assets, contributor badges and utility passes. Mint, stake and manage NFTs to access gated drops, on-chain reputation and dynamic rewards.</p>
-        <div class="list-grid" style="margin-top:12px">
-          <div style="background:var(--panel);padding:12px;border-radius:10px">
-            <strong>NFT Marketplace</strong>
-            <div class="muted">Buy, sell and trade ZARUverse NFTs.</div>
-            <a class="btn-ghost" href="https://zaruverse.github.io/nft.html" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">NFT page</a>
-          </div>
-          <div style="background:var(--panel);padding:12px;border-radius:10px">
-            <strong>NFT Staking</strong>
-            <div class="muted">Stake NFTs to increase rewards and governance weight.</div>
-            <a class="btn-ghost" href="https://zaruverse.github.io/staking.html" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">Staking</a>
-          </div>
+      <!-- NFTs -->
+      <section class="section">
+        <h2>NFTs</h2>
+        <p class="muted">ZARUverse NFTs represent brand assets, contributor badges and utility passes.</p>
+        <div class="token-actions">
+          <a class="btn-ghost" href="nft.html">NFT Marketplace</a>
+          <a class="btn-ghost" href="staking.html">NFT Staking</a>
         </div>
       </section>
 
-      <!-- 3) Roadmap -->
-      <section id="roadmap" class="section" aria-labelledby="roadmap-h">
-        <h2 id="roadmap-h">Roadmap</h2>
+      <!-- Roadmap -->
+      <section class="section">
+        <h2>Roadmap</h2>
         <div class="roadmap-wrap">
-          <img src="https://copilot.microsoft.com/th/id/BCO.4cda661d-8e4d-4eef-93f0-bf9921a3df8a.png" alt="ZARUverse roadmap graphic">
+          <img src="roadmap.png" alt="Roadmap graphic">
         </div>
-        <div style="color:var(--muted);line-height:1.6;padding:8px;background:transparent;border-radius:8px">
-          <strong style="color:var(--text)">Milestones</strong>
-          <ul style="margin:8px 0 0 18px;color:var(--muted)">
-            <li><strong>Phase 1 — Foundation</strong>: Vision, mission, team, initial audits and legal setup.</li>
-            <li><strong>Phase 2 — ZARU Launch</strong>: Token deployment, community bootstrap, liquidity provisioning.</li>
-            <li><strong>Phase 3 — ZARUX & Integrations</strong>: Utility layer roll-out and developer SDKs.</li>
-            <li><strong>Phase 4 — DMD & MAK1</strong>: Premium features and connector token release.</li>
-            <li><strong>Phase 5 — MAKESE & KYC Products</strong>: Brand token and KYC-linked structured products.</li>
-            <li><strong>Phase 6 — BTC BR</strong>: Bridging and wrapped Bitcoin strategies on BSC.</li>
-            <li><strong>Phase 7 — BitcoinBR</strong>: Cross-chain expansion and global presence.</li>
-          </ul>
-        </div>
+        <h3>Milestones</h3>
+        <ul class="muted">
+          <li><strong>Phase 1</strong>: Foundation</li>
+          <li><strong>Phase 2</strong>: ZARU Launch</li>
+          <li><strong>Phase 3</strong>: ZARUX Integrations</li>
+          <li><strong>Phase 4</strong>: DMD & MAK1</li>
+          <li><strong>Phase 5</strong>: MAKESE & KYC Products</li>
+          <li><strong>Phase 6</strong>: BTC BR</li>
+          <li><strong>Phase 7</strong>: BitcoinBR</li>
+        </ul>
       </section>
 
-      <!-- 4) Affiliated pages: audit, kyc, whitepaper -->
-      <section id="affiliates" class="section" aria-labelledby="aff-h">
-        <h2 id="aff-h">Affiliated Pages & Documents</h2>
-        <table class="links-table" role="table" aria-label="Affiliated">
-          <thead><tr><th style="width:220px">Document</th><th>Link</th></tr></thead>
+      <!-- Affiliates -->
+      <section class="section">
+        <h2>Affiliated Pages & Documents</h2>
+        <table class="links-table">
           <tbody>
-            <tr><td>Whitepaper</td><td><a class="link-url" href="https://zaruverse.github.io/whitepaper.html" target="_blank" rel="noopener">whitepaper.html</a></td></tr>
-            <tr><td>Whitepaper</td><td><a class="link-url" href="https://zaruverse.github.io/whitepaper123.pdf" target="_blank" rel="noopener">whitepaper123.pdf</a></td></tr>
-            <tr><td>Whitepaper (ZARU)</td><td><a class="link-url" href="https://zaruverse.github.io/zaru-whitepaper.pdf" target="_blank" rel="noopener">zaru-whitepaper.pdf</a></td></tr>
-            <tr><td>Whitepaper (MAK1)</td><td><a class="link-url" href="https://zaruverse.github.io/mak1-whitepaper.pdf" target="_blank" rel="noopener">mak1-whitepaper.pdf</a></td></tr>
-            <tr><td>Token Contracts (GitHub)</td><td><a class="link-url" href="https://github.com/zaruverse/zarutoken-contract" target="_blank" rel="noopener">Contracts repo</a></td></tr>
-            <tr><td>Audit Report</td><td><a class="link-url" href="https://zaruverse.github.io/audit.html" target="_blank" rel="noopener">audit.html</a></td></tr>
-            <tr><td>KYC Documentation</td><td><a class="link-url" href="https://zaruverse.github.io/kyc.html" target="_blank" rel="noopener">kyc.html</a></td></tr>
+            <tr><td>Whitepaper</td><td><a class="link-url" href="whitepaper.html">whitepaper.html</a></td></tr>
+            <tr><td>Audit Report</td><td><a class="link-url" href="audit.html">audit.html</a></td></tr>
+            <tr><td>KYC Documentation</td><td><a class="link-url" href="kyc.html">kyc.html</a></td></tr>
           </tbody>
         </table>
       </section>
 
-      <!-- 5) Social links -->
-      <section id="social" class="section" aria-labelledby="social-h">
-        <h2 id="social-h">Social & Community</h2>
-        <table class="links-table" role="table" aria-label="Social links">
-          <thead><tr><th style="width:180px">Platform</th><th>Link</th></tr></thead>
+      <!-- Social -->
+      <section class="section">
+        <h2>Social & Community</h2>
+        <table class="links-table">
           <tbody>
-            <tr>
-              <td><div class="link-cell"><span class="icon-wrap" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.92c-.64.28-1.32.47-2.04.56.73-.44 1.28-1.14 1.54-1.98-.68.4-1.44.7-2.24.86C18.9 4.4 17.86 4 16.74 4c-1.7 0-3.08 1.36-3.08 3.04 0 .24.02.48.07.7C10.1 7.55 7.07 6.02 5.02 3.6c-.26.44-.4.96-.4 1.52 0 1.06.54 2 1.36 2.56-.6-.02-1.16-.18-1.64-.46v.04c0 1.46 1.04 2.68 2.42 2.96-.26.06-.54.1-.82.1-.2 0-.4-.02-.6-.06.4 1.22 1.54 2.1 2.9 2.12C9.4 14.8 7.9 15.6 6.18 15.6c-.32 0-.64-.02-.96-.06 1.78 1.12 3.88 1.76 6.14 1.76 7.36 0 11.38-6.04 11.38-11.28v-.52c.78-.56 1.42-1.26 1.94-2.06-.72.34-1.5.58-2.32.68z"/></svg></span><span class="link-label">X / Twitter</span></div></td>
-              <td><a class="link-url" href="https://x.com/zaruverse" target="_blank" rel="noopener">x.com/zaruverse</a></td>
-            </tr>
-            <tr>
-              <td><div class="link-cell"><span class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><path d="M22 3.1L2.9 10.9c-.7.26-.69 1.24.02 1.48l4.7 1.6 1.8 5.2c.28.82 1.52.98 2.08.26L20 5.9c.48-.58-.04-1.3-.9-1z"/></svg></span><span class="link-label">Telegram</span></div></td>
-              <td><a class="link-url" href="https://t.me/zarucake" target="_blank" rel="noopener">t.me/zarucake</a></td>
-            </tr>
-            <tr>
-              <td><div class="link-cell"><span class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><path d="M20 4a2 2 0 00-1.68-1.98 11 11 0 00-4.64 0A2 2 0 0012 4C7.5 4 4 7.5 4 12c0 1.9.6 3.66 1.6 5.16a1 1 0 00.98.5c1.3-.2 2.3-.9 3.2-1.6 1 .26 2 .4 3 .4s2-.14 3-.4c.9.7 1.9 1.4 3.2 1.6a1 1 0 00.98-.5C19.4 15.66 20 13.9 20 12c0-4.5-3.5-8-8-8z"/></svg></span><span class="link-label">Discord</span></div></td>
-              <td><a class="link-url" href="https://discord.gg/EWVcrwwJ" target="_blank" rel="noopener">discord.gg/EWVcrwwJ</a></td>
-            </tr>
-            <tr>
-              <td><div class="link-cell"><span class="icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ffd700" xmlns="http://www.w3.org/2000/svg"><path d="M23 7s-.2-1.6-.8-2.3C21 4 19.7 4 19.1 3.8 16.6 3.5 12 3.5 12 3.5s-4.7 0-7.1.3C4.3 4 3 4 1.8 4.7.2 5.6 0 7 0 7s0 1.9 0 3.9v1.3C0 14 0.2 15.4 1.8 16.3 3 17 4.3 17 4.3 17s4.6 0 7.1.3C12 17.6 16.6 17.6 16.6 17.6s4.6 0 7.1-.3c.6-.1 1.9-.1 2.9-.8 1.6-.9 1.8-2.3 1.8-2.3V7z"/></svg></span><span class="link-label">YouTube</span></div></td>
-              <td><a class="link-url" href="https://youtube.com/@zaruverse" target="_blank" rel="noopener">youtube.com/@zaruverse</a></td>
-            </tr>
+            <tr><td>Twitter</td><td><a class="link-url" href="https://x.com/zaruverse">x.com/zaruverse</a></td></tr>
+            <tr><td>Telegram</td><td><a class="link-url" href="https://t.me/zarucake">t.me/zarucake</a></td></tr>
+            <tr><td>Discord</td><td><a class="link-url" href="https://discord.gg/EWVcrwwJ">discord.gg/EWVcrwwJ</a></td></tr>
+            <tr><td>YouTube</td><td><a class="link-url" href="https://youtube.com/@zaruverse">youtube.com/@zaruverse</a></td></tr>
           </tbody>
         </table>
       </section>
 
-      <!-- 6) NFT & DAO pages -->
-      <section id="nft-dao" class="section" aria-labelledby="nftdao-h">
-        <h2 id="nftdao-h">NFT & DAO Pages</h2>
-        <div class="list-grid">
-          <div style="background:var(--panel);padding:12px;border-radius:10px">
-            <strong>NFT Marketplace</strong>
-            <div class="muted">Buy, sell and trade ZARUverse NFTs.</div>
-            <a class="btn-ghost" href="https://zaruverse.github.io/nft.html" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">NFT page</a>
-          </div>
-          <div style="background:var(--panel);padding:12px;border-radius:10px">
-            <strong>DAO</strong>
-            <div class="muted">Governance proposals, forums and voting.</div>
-            <a class="btn-ghost" href="https://zaruverse.github.io/dao.html" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">DAO page</a>
-          </div>
-        </div>
+      <!-- DAO -->
+      <section class="section">
+        <h2>DAO</h2>
+        <p class="muted">Governance proposals, forums and voting.</p>
+        <a class="btn-ghost" href="dao.html">DAO page</a>
       </section>
-
-      <!-- Footer area with two small horizontal images (audit.png and favicon.png) -->
-      <footer class="site-footer" role="contentinfo">
-        <div class="footer-inner">
-          <div class="docs-row" aria-hidden="false">
-            <figure class="doc-item"><img src="https://zaruverse.github.io/audit.png" alt="Audit badge" id="audit-img"></figure>
-            <figure class="doc-item"><img src="https://zaruverse.github.io/favicon.png" alt="Favicon" id="fav-img"></figure>
-          </div>
-
-          <!-- Contact block at page end -->
-          <div class="contact" role="contentinfo" aria-labelledby="contact-h">
-            <h3 id="contact-h" style="margin:0 0 8px;color:var(--text)">Contact Us</h3>
-            <div class="row">
-              <div class="item"><strong>Email</strong><div class="muted"><a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a></div></div>
-              <div class="item"><strong>Phone</strong><div class="muted">+44 7552 847468</div></div>
-              <div class="item"><strong>WhatsApp</strong><div class="muted">+44 7552 847468</div></div>
-              <div class="item"><strong>Telegram</strong><div class="muted"><a href="https://t.me/zaruverse" target="_blank" rel="noopener">zaruverse</a></div></div>
-              <div class="item"><strong>Address</strong><div class="muted">London: 120 Old Broad St, EC2N 1AR</div></div>
-            </div>
-          </div>
-
-          <div class="footer-meta">
-            <div style="font-weight:700">FORGED FOR THE UNCROWNED KINGS</div>
-          </div>
-        </div>
-      </footer>
-
     </main>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <div>
+      <img src="https://zaruverse.github.io/audit.png" alt="Audit badge" style="height:32px;margin:0 6px">
+      <img src="https://zaruverse.github.io/favicon.png" alt="Favicon" style="height:32px;margin:0 6px">
+    </div>
+    <div class="footer-meta">
+      <div style="font-weight:700">FORGED FOR THE UNCROWNED KINGS</div>
+      <div>Contact: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a> · London HQ</div>
+    </div>
+  </footer>
+
   <script>
-    // register service worker silently
+    // Service worker
     if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('/service-worker.js').catch(()=>{/* silent */});
+      navigator.serviceWorker.register('/service-worker.js').catch(()=>{});
     }
 
-    // Footer images: small in-place enlarge (keeps layout)
+    // Footer images enlarge
     (function(){
-      const imgs = Array.from(document.querySelectorAll('.doc-item img'));
+      const imgs = document.querySelectorAll('footer img');
       imgs.forEach(img=>{
         img.addEventListener('click', e=>{
           e.stopPropagation();
-          if(img.classList.contains('enlarged')) img.classList.remove('enlarged');
-          else { imgs.forEach(i=>i.classList.remove('enlarged')); img.classList.add('enlarged'); img.scrollIntoView({behavior:'smooth',block:'center'}); }
+          imgs.forEach(i=>i.classList.remove('enlarged'));
+          img.classList.add('enlarged');
         });
       });
-      document.addEventListener('click', e=>{ if(!e.target.closest('.docs-row')) imgs.forEach(i=>i.classList.remove('enlarged')); });
+      document.addEventListener('click', e=>{
+        if(!e.target.closest('footer')) imgs.forEach(i=>i.classList.remove('enlarged'));
+      });
     })();
   </script>
 </body>
 </html>
-```[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/mintdawn/lavender/tree/4b47a586e519ad1766e36a17a48dfc97bfabc7d8/register.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1&citationId=2 "github.com")
