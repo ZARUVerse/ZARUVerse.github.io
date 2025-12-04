@@ -34,14 +34,8 @@
     .token-desc{color:var(--muted);font-size:13px}
     .token-address{font-family:var(--mono);font-size:12px;color:#e6d88e}
     .token-actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:#0b0b0c;padding:8px 12px;border-radius:10px;font-weight:700}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,215,0,0.08);padding:7px 10px;border-radius:10px;color:var(--text)}
-
-    /* Tables */
-    .links-table{width:100%;border-collapse:collapse}
-    .links-table th{color:var(--muted);text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
-    .links-table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)}
-    .link-url{color:var(--muted);font-size:13px}
+    .btn{background:var(--accent);color:#0b0b0c;padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,215,0,0.08);padding:7px 10px;border-radius:10px;color:var(--text);cursor:pointer}
 
     /* Store */
     .store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -50,10 +44,6 @@
     .product-desc{color:var(--muted);font-size:13px}
     .price{font-weight:700;color:var(--accent)}
     .cart{margin-top:16px;background:var(--panel);padding:12px;border-radius:12px}
-
-    /* Roadmap */
-    .roadmap-wrap{text-align:center}
-    .roadmap-wrap img{max-width:100%;border-radius:10px;border:1px solid rgba(255,215,0,0.06)}
 
     /* Footer */
     footer{background:#0f0f10;padding:20px;margin-top:30px;border-top:1px solid rgba(255,255,255,0.03);text-align:center}
@@ -90,78 +80,68 @@
               <a class="btn-ghost" href="#">GeckoTerminal</a>
             </div>
           </article>
-          <!-- Add other tokens here -->
         </div>
       </section>
 
-      <!-- NFTs -->
-      <section class="section">
-        <h2>NFTs</h2>
-        <p class="muted">ZARUverse NFTs represent brand assets, contributor badges and utility passes.</p>
-        <div class="token-actions">
-          <a class="btn-ghost" href="nft.html">NFT Marketplace</a>
-          <a class="btn-ghost" href="staking.html">NFT Staking</a>
+      <!-- Store -->
+      <section class="section store" id="store">
+        <h2>Gift Cards & MasterCard Store</h2>
+        
+        <!-- Buy -->
+        <div class="store-grid">
+          <article class="product-card" data-sku="APPLE-25" data-price="29">
+            <div class="product-title">Apple Gift Card — 25$</div>
+            <div class="product-desc">Digital code for App Store & iTunes</div>
+            <span class="price">29 USDT</span>
+            <div class="actions"><button class="btn" data-action="add">Buy</button></div>
+          </article>
+
+          <article class="product-card" data-sku="PLAY-50" data-price="55">
+            <div class="product-title">Google Play Gift Card — 50$</div>
+            <div class="product-desc">Instant code for Play Store</div>
+            <span class="price">55 USDT</span>
+            <div class="actions"><button class="btn" data-action="add">Buy</button></div>
+          </article>
+
+          <article class="product-card" data-sku="MC-100" data-price="105">
+            <div class="product-title">MasterCard Prepaid — 100$</div>
+            <div class="product-desc">Prepaid MasterCard usable worldwide</div>
+            <span class="price">105 USDT</span>
+            <div class="actions"><button class="btn" data-action="add">Buy</button></div>
+          </article>
         </div>
-      </section>
 
-      <!-- Roadmap -->
-      <section class="section">
-        <h2>Roadmap</h2>
-        <div class="roadmap-wrap">
-          <img src="roadmap.png" alt="Roadmap graphic">
+        <!-- Sell -->
+        <div class="cart" style="margin-top:20px">
+          <h3>Sell Your Cards</h3>
+          <p class="muted">Submit your Gift Card or MasterCard code to sell to ZARUverse.</p>
+          <form id="sell-form">
+            <label>Brand</label>
+            <select id="sell-brand" class="select">
+              <option value="Apple">Apple Gift Card</option>
+              <option value="Google Play">Google Play Gift Card</option>
+              <option value="MasterCard">MasterCard Prepaid</option>
+            </select>
+            <label>Value</label>
+            <select id="sell-value" class="select">
+              <option value="25">25$</option>
+              <option value="50">50$</option>
+              <option value="100">100$</option>
+            </select>
+            <label>Card Code</label>
+            <input id="sell-code" class="input" type="text" placeholder="XXXX-XXXX-XXXX">
+            <label>Contact (Email or Telegram)</label>
+            <input id="sell-contact" class="input" type="text" placeholder="you@example.com or @username">
+            <button class="btn" id="sell-submit-btn">Submit for Quote</button>
+          </form>
+          <div id="sell-status" class="muted"></div>
         </div>
-        <h3>Milestones</h3>
-        <ul class="muted">
-          <li><strong>Phase 1</strong>: Foundation</li>
-          <li><strong>Phase 2</strong>: ZARU Launch</li>
-          <li><strong>Phase 3</strong>: ZARUX Integrations</li>
-          <li><strong>Phase 4</strong>: DMD & MAK1</li>
-          <li><strong>Phase 5</strong>: MAKESE & KYC Products</li>
-          <li><strong>Phase 6</strong>: BTC BR</li>
-          <li><strong>Phase 7</strong>: BitcoinBR</li>
-        </ul>
-      </section>
-
-      <!-- Affiliates -->
-      <section class="section">
-        <h2>Affiliated Pages & Documents</h2>
-        <table class="links-table">
-          <tbody>
-            <tr><td>Whitepaper</td><td><a class="link-url" href="whitepaper.html">whitepaper.html</a></td></tr>
-            <tr><td>Audit Report</td><td><a class="link-url" href="audit.html">audit.html</a></td></tr>
-            <tr><td>KYC Documentation</td><td><a class="link-url" href="kyc.html">kyc.html</a></td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Social -->
-      <section class="section">
-        <h2>Social & Community</h2>
-        <table class="links-table">
-          <tbody>
-            <tr><td>Twitter</td><td><a class="link-url" href="https://x.com/zaruverse">x.com/zaruverse</a></td></tr>
-            <tr><td>Telegram</td><td><a class="link-url" href="https://t.me/zarucake">t.me/zarucake</a></td></tr>
-            <tr><td>Discord</td><td><a class="link-url" href="https://discord.gg/EWVcrwwJ">discord.gg/EWVcrwwJ</a></td></tr>
-            <tr><td>YouTube</td><td><a class="link-url" href="https://youtube.com/@zaruverse">youtube.com/@zaruverse</a></td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- DAO -->
-      <section class="section">
-        <h2>DAO</h2>
-        <p class="muted">Governance proposals, forums and voting.</p>
-        <a class="btn-ghost" href="dao.html">DAO page</a>
       </section>
     </main>
   </div>
 
   <!-- Footer -->
   <footer>
-    <div>
-      <img src="https://zaruverse.github.io/audit.png" alt="Audit badge" style="height:32px;margin:0 6px">
-      <img src="https://zaruverse.github.io/favicon.png" alt="Favicon" style="height:32px;margin:0 6px">
-    </div>
     <div class="footer-meta">
       <div style="font-weight:700">FORGED FOR THE UNCROWNED KINGS</div>
       <div>Contact: <a href="mailto:zaru.verse@makese.site">zaru.verse@makese.site</a> · London HQ</div>
@@ -169,25 +149,39 @@
   </footer>
 
   <script>
+  <script>
+    // Cart state
+    const cart = [];
+    function addToCart(card){
+      const sku = card.dataset.sku;
+      const price = Number(card.dataset.price);
+      const title = card.querySelector('.product-title').textContent;
+      cart.push({ sku, title, price });
+      alert(`${title} added to cart. Price: ${price} USDT`);
+    }
+    document.querySelectorAll('.product-card [data-action="add"]').forEach(btn=>{
+      btn.addEventListener('click', ()=> addToCart(btn.closest('.product-card')));
+    });
+
+    // Sell form
+    document.getElementById('sell-submit-btn').addEventListener('click', e=>{
+      e.preventDefault();
+      const brand = document.getElementById('sell-brand').value;
+      const value = document.getElementById('sell-value').value;
+      const code = document.getElementById('sell-code').value.trim();
+      const contact = document.getElementById('sell-contact').value.trim();
+      if(!code || !contact){ 
+        document.getElementById('sell-status').textContent = 'Please enter code and contact.'; 
+        return; 
+      }
+      document.getElementById('sell-status').textContent = `Sell request submitted for ${brand} ${value}$. Contact: ${contact}`;
+      alert(`Sell request submitted.\nBrand: ${brand}\nValue: ${value}$\nContact: ${contact}`);
+    });
+
     // Service worker
     if('serviceWorker' in navigator){
       navigator.serviceWorker.register('/service-worker.js').catch(()=>{});
     }
-
-    // Footer images enlarge
-    (function(){
-      const imgs = document.querySelectorAll('footer img');
-      imgs.forEach(img=>{
-        img.addEventListener('click', e=>{
-          e.stopPropagation();
-          imgs.forEach(i=>i.classList.remove('enlarged'));
-          img.classList.add('enlarged');
-        });
-      });
-      document.addEventListener('click', e=>{
-        if(!e.target.closest('footer')) imgs.forEach(i=>i.classList.remove('enlarged'));
-      });
-    })();
   </script>
 </body>
 </html>
